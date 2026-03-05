@@ -190,8 +190,9 @@
         </nav>
       </div>
     </header>
-    <!-- Ensaio do dia (aparece automaticamente quando houver match de data) -->
-    <section id="rehearsalSection" class="mt-3 no-print" aria-label="Ensaio do dia"></section>
+
+    <!-- Card dinâmico do ensaio (hoje / próximo / último) -->
+    <section id="rehearsalSection" class="mt-3 no-print" aria-label="Ensaio (dinâmico)"></section>
 
     <main role="main" class="mt-3">
       <section aria-label="Resumo e legenda"
@@ -214,184 +215,203 @@
         <ul id="cardsGrid" class="row g-4 list-unstyled m-0 p-0"></ul>
       </section>
     </main>
+
     <footer class="text-center text-body-secondary small py-4" role="contentinfo"></footer>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
     // =========================
     // 1) TODAS AS MÚSICAS + PDFs
     // =========================
-    const data = [{
-      id: "forrest_gump",
-      title: "Forrest Gump",
-      composer: "Alan Silvestri",
-      parts: [{
-        label: "Flauta 1",
-        players: ["Renison",],
-        pdf: "pdf/Forrest Gump • Alan Silvestri • Flauta 1 • Renison.pdf"
+    const data = [
+      {
+        id: "forrest_gump",
+        title: "Forrest Gump",
+        composer: "Alan Silvestri",
+        parts: [
+          {
+            label: "Flauta 1",
+            players: ["Renison"],
+            pdf: "pdf/Forrest Gump • Alan Silvestri • Flauta 1 • Renison.pdf"
+          },
+          {
+            label: "Flauta 2",
+            players: ["Flávio", "Isabella", "Miguel"],
+            pdf: "pdf/Forrest Gump • Alan Silvestri • Flauta 2 • Flávio • Isabella • Miguel.pdf"
+          },
+        ],
       },
       {
-        label: "Flauta 2",
-        players: ["Flávio", "Isabella", "Miguel"],
-        pdf: "pdf/Forrest Gump • Alan Silvestri • Flauta 2 • Flávio • Isabella • Miguel.pdf"
-      },
-      ],
-    },
-    {
-      id: "gabriels_oboe",
-      title: "Gabriel's Oboé",
-      composer: "Ennio Morricone",
-      parts: [{
-        label: "Flauta 1",
-        players: ["Renison"],
-        pdf: "pdf/Gabriel's Oboé • Ennio Morricone • Ennio Morricone • Flauta 1 • Renison.pdf"
-      },
-      {
-        label: "Flauta 2",
-        players: ["Flávio", "Isabella", "Miguel"],
-        pdf: "pdf/Gabriel's Oboé • Ennio Morricone • Ennio Morricone • Flauta 2 • Flávio • Isabella • Miguel.pdf"
-      },
-      ],
-    },
-    {
-      id: "il_buono_il_brutto_il_cattivo",
-      title: "IL Buono, IL Brutto, IL Cattivo",
-      composer: "Ennio Morricone",
-      parts: [{
-        label: "Flauta 1",
-        players: ["Renison", "Flávio"],
-        pdf: "pdf/IL Buono, IL Brutto, IL Cattivo • Ennio Morricone • Flauta 1 • Renison • Flávio.pdf"
+        id: "gabriels_oboe",
+        title: "Gabriel's Oboé",
+        composer: "Ennio Morricone",
+        parts: [
+          {
+            label: "Flauta 1",
+            players: ["Renison"],
+            pdf: "pdf/Gabriel's Oboé • Ennio Morricone • Ennio Morricone • Flauta 1 • Renison.pdf"
+          },
+          {
+            label: "Flauta 2",
+            players: ["Flávio", "Isabella", "Miguel"],
+            pdf: "pdf/Gabriel's Oboé • Ennio Morricone • Ennio Morricone • Flauta 2 • Flávio • Isabella • Miguel.pdf"
+          },
+        ],
       },
       {
-        label: "Flauta 2",
-        players: ["Isabella", "Miguel"],
-        pdf: "pdf/IL Buono, IL Brutto, IL Cattivo • Ennio Morricone • Flauta 2 • Isabella • Miguel.pdf"
-      },
-      ],
-    },
-    {
-      id: "imperial_march",
-      title: 'Imperial March ("From Star Wars")',
-      composer: "John Williams",
-      parts: [{
-        label: "Flauta 1",
-        players: ["Renison", "Flávio"],
-        pdf: "pdf/Imperial March (_From Star Wars_) • John Williams • Flauta 1 • Renison • Flávio.pdf"
-      },
-      {
-        label: "Flauta 2",
-        players: ["Isabella", "Miguel"],
-        pdf: "pdf/Imperial March (_From Star Wars_) • John Williams • Flauta 2 • Isabella • Miguel.pdf"
-      },
-      ],
-    },
-    {
-      id: "cast_away",
-      title: 'Main Theme ("From Cast Away")',
-      composer: "Alan Silvestri",
-      parts: [{
-        label: "Flauta 1",
-        players: ["Renison", "Flávio"],
-        pdf: "pdf/Main Theme (_From Cast Away_) • Alan Silvestri • Flauta 1 • Renison • Flávio.pdf"
+        id: "il_buono_il_brutto_il_cattivo",
+        title: "IL Buono, IL Brutto, IL Cattivo",
+        composer: "Ennio Morricone",
+        parts: [
+          {
+            label: "Flauta 1",
+            players: ["Renison", "Flávio"],
+            pdf: "pdf/IL Buono, IL Brutto, IL Cattivo • Ennio Morricone • Flauta 1 • Renison • Flávio.pdf"
+          },
+          {
+            label: "Flauta 2",
+            players: ["Isabella", "Miguel"],
+            pdf: "pdf/IL Buono, IL Brutto, IL Cattivo • Ennio Morricone • Flauta 2 • Isabella • Miguel.pdf"
+          },
+        ],
       },
       {
-        label: "Flauta 2",
-        players: ["Isabella", "Miguel"],
-        pdf: "pdf/Main Theme (_From Cast Away_) • Alan Silvestri • Flauta 2 • Isabella • Miguel.pdf"
-      },
-      ],
-    },
-    {
-      id: "cinema_paradiso",
-      title: 'Main Theme ("From Cinema Paradiso")',
-      composer: "Ennio Morricone",
-      parts: [{
-        label: "Flauta 1",
-        players: ["Renison", "Flávio"],
-        pdf: "pdf/Main Theme (_From Cinema Paradiso_) • Ennio Morricone • Flauta 1 • Renison • Flávio.pdf"
-      },
-      {
-        label: "Flauta 2",
-        players: ["Isabella", "Miguel"],
-        pdf: "pdf/Main Theme (_From Cinema Paradiso_) • Ennio Morricone • Flauta 2 • Isabella • Miguel.pdf"
-      },
-      ],
-    },
-    {
-      id: "interstellar",
-      title: 'Main Theme ("From Interstellar")',
-      composer: "Hans Zimmer",
-      parts: [{
-        label: "Flauta 1",
-        players: ["Renison", "Flávio"],
-        pdf: "pdf/Main Theme (_From Interstellar_) • Hans Zimmer • Flauta 1 • Renison • Flávio.pdf"
+        id: "imperial_march",
+        title: 'Imperial March ("From Star Wars")',
+        composer: "John Williams",
+        parts: [
+          {
+            label: "Flauta 1",
+            players: ["Renison", "Flávio"],
+            pdf: "pdf/Imperial March (_From Star Wars_) • John Williams • Flauta 1 • Renison • Flávio.pdf"
+          },
+          {
+            label: "Flauta 2",
+            players: ["Isabella", "Miguel"],
+            pdf: "pdf/Imperial March (_From Star Wars_) • John Williams • Flauta 2 • Isabella • Miguel.pdf"
+          },
+        ],
       },
       {
-        label: "Flauta 2",
-        players: ["Isabella", "Miguel"],
-        pdf: "pdf/Main Theme (_From Interstellar_) • Hans Zimmer • Flauta 2 • Isabella • Miguel"
-      },
-      ],
-    },
-    {
-      id: "now_we_are_free",
-      title: 'Now We Are Free ("Fom Gladiator")',
-      composer: "Hans Zimmer",
-      parts: [{
-        label: "Flauta 1",
-        players: ["Renison", "Flávio"],
-        pdf: "pdf/Now We Are Free (Fom Gladiator) • Hans Zimmer • Flauta 1 • Renison • Flávio.pdf"
-      },
-      {
-        label: "Flauta 2",
-        players: ["Isabella", "Miguel"],
-        pdf: "pdf/Now We Are Free (Fom Gladiator) • Hans Zimmer • Flauta 2 • Isabella • Miguel.pdf"
-      },
-      ],
-    },
-    {
-      id: "jurassic_park",
-      title: "Theme from Jurassic Park",
-      composer: "John Williams",
-      parts: [{
-        label: "Flauta 1",
-        players: ["Renison", "Flávio"],
-        pdf: "pdf/Theme from Jurassic Park • John Williams • Flauta 1 • Renison • Flávio.pdf"
+        id: "cast_away",
+        title: 'Main Theme ("From Cast Away")',
+        composer: "Alan Silvestri",
+        parts: [
+          {
+            label: "Flauta 1",
+            players: ["Renison", "Flávio"],
+            pdf: "pdf/Main Theme (_From Cast Away_) • Alan Silvestri • Flauta 1 • Renison • Flávio.pdf"
+          },
+          {
+            label: "Flauta 2",
+            players: ["Isabella", "Miguel"],
+            pdf: "pdf/Main Theme (_From Cast Away_) • Alan Silvestri • Flauta 2 • Isabella • Miguel.pdf"
+          },
+        ],
       },
       {
-        label: "Flauta 2",
-        players: ["Isabella", "Miguel"],
-        pdf: "pdf/Theme from Jurassic Park • John Williams • Flauta 2 • Isabella • Miguel.pdf"
-      },
-      ],
-    },
-    {
-      id: "schindlers_list",
-      title: `Three Pieces ("From Schindler's List")`,
-      composer: "John Williams",
-      parts: [{
-        label: "Flauta 1",
-        players: ["Renison", "Flávio"],
-        pdf: "pdf/Three Pieces (_From Schindler's List_) • John Williams • Flauta 1 • Renison • Flávio.pdf"
+        id: "cinema_paradiso",
+        title: 'Main Theme ("From Cinema Paradiso")',
+        composer: "Ennio Morricone",
+        parts: [
+          {
+            label: "Flauta 1",
+            players: ["Renison", "Flávio"],
+            pdf: "pdf/Main Theme (_From Cinema Paradiso_) • Ennio Morricone • Flauta 1 • Renison • Flávio.pdf"
+          },
+          {
+            label: "Flauta 2",
+            players: ["Isabella", "Miguel"],
+            pdf: "pdf/Main Theme (_From Cinema Paradiso_) • Ennio Morricone • Flauta 2 • Isabella • Miguel.pdf"
+          },
+        ],
       },
       {
-        label: "Flauta 2",
-        players: ["Isabella", "Miguel"],
-        pdf: "pdf/Three Pieces (_From Schindler's List_) • John Williams • Flauta 2 • Isabella • Miguel.pdf"
+        id: "interstellar",
+        title: 'Main Theme ("From Interstellar")',
+        composer: "Hans Zimmer",
+        parts: [
+          {
+            label: "Flauta 1",
+            players: ["Renison", "Flávio"],
+            pdf: "pdf/Main Theme (_From Interstellar_) • Hans Zimmer • Flauta 1 • Renison • Flávio.pdf"
+          },
+          {
+            label: "Flauta 2",
+            players: ["Isabella", "Miguel"],
+            // mantive como você mandou (sem .pdf). Se quiser, é só adicionar o .pdf.
+            pdf: "pdf/Main Theme (_From Interstellar_) • Hans Zimmer • Flauta 2 • Isabella • Miguel"
+          },
+        ],
       },
-      ],
-    },
+      {
+        id: "now_we_are_free",
+        title: 'Now We Are Free ("Fom Gladiator")',
+        composer: "Hans Zimmer",
+        parts: [
+          {
+            label: "Flauta 1",
+            players: ["Renison", "Flávio"],
+            pdf: "pdf/Now We Are Free (Fom Gladiator) • Hans Zimmer • Flauta 1 • Renison • Flávio.pdf"
+          },
+          {
+            label: "Flauta 2",
+            players: ["Isabella", "Miguel"],
+            pdf: "pdf/Now We Are Free (Fom Gladiator) • Hans Zimmer • Flauta 2 • Isabella • Miguel.pdf"
+          },
+        ],
+      },
+      {
+        id: "jurassic_park",
+        title: "Theme from Jurassic Park",
+        composer: "John Williams",
+        parts: [
+          {
+            label: "Flauta 1",
+            players: ["Renison", "Flávio"],
+            pdf: "pdf/Theme from Jurassic Park • John Williams • Flauta 1 • Renison • Flávio.pdf"
+          },
+          {
+            label: "Flauta 2",
+            players: ["Isabella", "Miguel"],
+            pdf: "pdf/Theme from Jurassic Park • John Williams • Flauta 2 • Isabella • Miguel.pdf"
+          },
+        ],
+      },
+      {
+        id: "schindlers_list",
+        title: `Three Pieces ("From Schindler's List")`,
+        composer: "John Williams",
+        parts: [
+          {
+            label: "Flauta 1",
+            players: ["Renison", "Flávio"],
+            pdf: "pdf/Three Pieces (_From Schindler's List_) • John Williams • Flauta 1 • Renison • Flávio.pdf"
+          },
+          {
+            label: "Flauta 2",
+            players: ["Isabella", "Miguel"],
+            pdf: "pdf/Three Pieces (_From Schindler's List_) • John Williams • Flauta 2 • Isabella • Miguel.pdf"
+          },
+        ],
+      },
     ];
+
     // =========================================
     // 2) ENSAIOS
     //    date no formato YYYY-MM-DD
     // =========================================
-    const rehearsals = [{
-      date: "2026-03-05",
-      time: "19:30",
-      songs: ["cast_away", "forrest_gump", "interstellar"], // <- só IDs daqui
-    }];
+    const rehearsals = [
+      {
+        date: "2026-03-05",
+        time: "19:30",
+        songs: ["cast_away", "forrest_gump", "interstellar"], // <- só IDs daqui
+      }
+      // Exemplo de como adicionar mais:
+      // ,{ date:"2026-03-12", time:"19:30", songs:["jurassic_park","schindlers_list"] }
+    ];
 
     // Se quiser que as músicas do ensaio apareçam primeiro na lista:
     const PIN_REHEARSAL_TO_TOP = true;
@@ -522,7 +542,6 @@
     }
 
     function formatBRDate(isoDate) {
-      // isoDate: YYYY-MM-DD
       const [y, m, d] = isoDate.split("-").map(Number);
       const dt = new Date(y, m - 1, d);
       return new Intl.DateTimeFormat("pt-BR", {
@@ -557,20 +576,94 @@
       `;
     }
 
-    function renderRehearsal(todayISO, rehearsal, indexById) {
-      if (!rehearsal) {
-        rehearsalSection.innerHTML = "";
-        return;
+    // ====== DINÂMICO (hoje / próximo / último) ======
+    const MS_DAY = 24 * 60 * 60 * 1000;
+
+    function parseISODateToLocal(isoDate) {
+      const [y, m, d] = isoDate.split("-").map(Number);
+      return new Date(y, m - 1, d);
+    }
+
+    function startOfDay(dt) {
+      return new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
+    }
+
+    function diffDays(a, b) {
+      const A = startOfDay(a).getTime();
+      const B = startOfDay(b).getTime();
+      return Math.round((B - A) / MS_DAY);
+    }
+
+    function humanDays(n) {
+      const abs = Math.abs(n);
+      return abs === 1 ? "1 dia" : `${abs} dias`;
+    }
+
+    function getRehearsalContext(todayISO) {
+      const today = parseISODateToLocal(todayISO);
+
+      const list = rehearsals
+        .map(r => ({ ...r, _dt: parseISODateToLocal(r.date) }))
+        .sort((a, b) => a._dt - b._dt);
+
+      if (!list.length) {
+        return {
+          hasAny: false,
+          today: null,
+          prev: null,
+          next: null,
+          focus: null,
+          title: "Nenhum ensaio cadastrado",
+          meta: "Cadastre datas no array rehearsals[] para ativar o card automaticamente."
+        };
       }
 
-      const dateBR = formatBRDate(rehearsal.date);
-      const time = rehearsal.time ? ` • ${escapeHtml(rehearsal.time)}h` : "";
-      const songsResolved = rehearsal.songs
+      const todayReh = list.find(r => r.date === todayISO) || null;
+
+      let prev = null, next = null;
+      for (const r of list) {
+        if (r._dt < today) prev = r;
+        if (!next && r._dt > today) next = r;
+      }
+
+      const focus = todayReh || next || prev;
+
+      let title = "Ensaio";
+      if (todayReh) {
+        title = "Ensaio de hoje";
+      } else if (next) {
+        title = `Próximo ensaio em ${humanDays(diffDays(today, next._dt))}`;
+      } else {
+        title = `Último ensaio foi há ${humanDays(diffDays(prev._dt, today))}`;
+      }
+
+      let metaParts = [];
+      if (prev) metaParts.push(`Último: ${formatBRDate(prev.date)} (há ${humanDays(diffDays(prev._dt, today))})`);
+      if (next) metaParts.push(`Próximo: ${formatBRDate(next.date)} (em ${humanDays(diffDays(today, next._dt))})`);
+
+      return {
+        hasAny: true,
+        today: todayReh,
+        prev,
+        next,
+        focus,
+        title,
+        meta: metaParts.join(" • ")
+      };
+    }
+
+    function renderRehearsal(todayISO, ctx, indexById) {
+      const r = ctx.focus;
+
+      const dateBR = r ? formatBRDate(r.date) : "";
+      const time = r?.time ? ` • ${escapeHtml(r.time)}h` : "";
+      const metaLine = ctx.meta ? `<div class="text-body-secondary small mt-1">${escapeHtml(ctx.meta)}</div>` : "";
+
+      const songsResolved = (r?.songs || [])
         .map(id => indexById.get(id))
         .filter(Boolean);
 
       const itemsHtml = songsResolved.map(song => {
-        // pega pdfs por parte (se existir)
         const f1 = song.parts.find(p => p.label.toLowerCase().includes("1"));
         const f2 = song.parts.find(p => p.label.toLowerCase().includes("2"));
 
@@ -596,8 +689,8 @@
           <div class="d-flex flex-column flex-md-row gap-2 align-items-md-center justify-content-between">
             <div class="title">
               <i class="bi bi-calendar2-check text-primary" aria-hidden="true"></i>
-              <span>Ensaio de hoje</span>
-              <span class="badge rehearsal-badge badge-chip ms-1">${dateBR}${time}</span>
+              <span>${escapeHtml(ctx.title)}</span>
+              ${r ? `<span class="badge rehearsal-badge badge-chip ms-1">${dateBR}${time}</span>` : ``}
             </div>
 
             <div class="text-body-secondary small">
@@ -605,8 +698,14 @@
             </div>
           </div>
 
+          ${metaLine}
+
           <div class="rehearsal-list mt-2">
-            ${itemsHtml || `<div class="text-body-secondary small mt-2">Nenhuma música configurada para hoje.</div>`}
+            ${
+              r
+                ? (itemsHtml || `<div class="text-body-secondary small mt-2">Nenhuma música configurada para este ensaio.</div>`)
+                : `<div class="text-body-secondary small mt-2">Sem ensaio para mostrar.</div>`
+            }
           </div>
         </div>
       `;
@@ -618,16 +717,21 @@
       // index por id
       const indexById = new Map(data.map(x => [x.id, x]));
 
-      // acha ensaio do dia
-      const rehearsal = rehearsals.find(r => r.date === todayISO) || null;
-      const rehearsalSet = new Set(rehearsal ? rehearsal.songs : []);
+      // contexto (hoje / próximo / último)
+      const ctx = getRehearsalContext(todayISO);
 
-      // seção do ensaio
-      renderRehearsal(todayISO, rehearsal, indexById);
+      // ensaio “em foco” (hoje > próximo > último)
+      const focus = ctx.focus;
 
-      // ordenação: músicas do ensaio primeiro (se habilitado)
+      // set para pin + badge "Ensaio"
+      const rehearsalSet = new Set(focus ? focus.songs : []);
+
+      // seção do ensaio (dinâmica)
+      renderRehearsal(todayISO, ctx, indexById);
+
+      // ordenação: músicas do ensaio em foco primeiro (se habilitado)
       const list = [...data];
-      if (PIN_REHEARSAL_TO_TOP && rehearsal) {
+      if (PIN_REHEARSAL_TO_TOP && focus) {
         list.sort((a, b) => {
           const ar = rehearsalSet.has(a.id) ? 0 : 1;
           const br = rehearsalSet.has(b.id) ? 0 : 1;
