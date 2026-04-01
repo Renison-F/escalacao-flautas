@@ -401,19 +401,17 @@
 
     // =========================================
     // 2) ENSAIOS
-    //    date no formato YYYY-MM-DD
+    //    data no formato YYYY-MM-DD
     // =========================================
     const rehearsals = [
       {
-        date: "2026-03-12",
+        date: "2026-04-01",
         time: "19:30",
-        songs: ["interstellar", "forrest_gump"], // <- só IDs daqui
+        songs: ["forrest_gump"], // <- IDs daqui
       }
-      // Exemplo de como adicionar mais:
-      // ,{ date:"2026-03-12", time:"19:30", songs:["jurassic_park","schindlers_list"] }
     ];
 
-    // Se quiser que as músicas do ensaio apareçam primeiro na lista:
+    // as músicas do ensaio apareçam primeiro na lista:
     const PIN_REHEARSAL_TO_TOP = true;
 
     const grid = document.getElementById("cardsGrid");
