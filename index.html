@@ -226,6 +226,23 @@
     // 1) TODAS AS MÚSICAS + PDFs
     // =========================
     const data = [
+       {
+        id: "Medley",
+        title: "Medley",
+        composer: "John Williams",
+        parts: [
+          {
+            label: "Flauta 1",
+            players: ["Renison", "Flávio"],
+            pdf: "pdf/Medley • John Williams • Flauta 1 • Renison • Flávio.pdf"
+          },
+          {
+            label: "Flauta 2",
+            players: ["Isabella", "Miguel"],
+            pdf: "pdf/Medley • John Williams • Flauta 2 • Isabella • Miguel.pdf"
+          },
+        ],
+      },
       {
         id: "forrest_gump",
         title: "Forrest Gump",
@@ -405,7 +422,7 @@
     // =========================================
     const rehearsals = [
       {
-        date: "2026-04-01",
+        date: "2026-04-09",
         time: "19:30",
         songs: ["forrest_gump"], // <- IDs daqui
       }
