@@ -1,799 +1,1990 @@
-<!doctype html>
-<html lang="pt-BR" data-bs-theme="light">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Escalação • Flautas</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escalação · Naipe de Flautas · OSCG</title>
+  <meta name="description"
+    content="Escalação, agenda de ensaios e repertório do Naipe de Flautas da Orquestra Sinfônica Camargo Guarnieri." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
   <style>
+    :root {
+      --ink: #04070d;
+      --ink2: #08111d;
+      --surface: #0f1828;
+      --card: #131f31;
+      --card-2: #162538;
+      --gold: #d4a43a;
+      --gold2: #f0c96c;
+      --jade: #34d9c3;
+      --txt: #e3ebf8;
+      --txt2: #93a4bc;
+      --txt3: #6f8099;
+      --bdr: rgba(212, 164, 58, .16);
+      --bdr2: rgba(255, 255, 255, .07);
+      --shadow: 0 24px 70px rgba(0, 0, 0, .45);
+      --ease: cubic-bezier(.22, .61, .36, 1);
+      --radius: 22px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
     body {
-      background: #f6f7fb;
       min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--txt);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(212, 164, 58, .11) 0%, transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(52, 217, 195, .08) 0%, transparent 24%),
+        radial-gradient(circle at 50% 120%, rgba(44, 79, 136, .18) 0%, transparent 36%),
+        linear-gradient(180deg, #03050a 0%, #07101b 38%, #05080f 100%);
+      position: relative;
+      isolation: isolate;
     }
 
-    .app-shell {
-      max-width: 1100px;
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      inset: auto;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(22px);
+      opacity: .9;
     }
 
-    .card {
-      border-radius: 1.25rem;
-      border: 1px solid rgba(15, 23, 42, .06);
+    body::before {
+      width: 42rem;
+      height: 42rem;
+      left: -12rem;
+      top: 6vh;
+      background: radial-gradient(circle, rgba(212, 164, 58, .18) 0%, rgba(212, 164, 58, .07) 34%, transparent 74%);
+      animation: ambientGold 18s ease-in-out infinite;
     }
 
-    .card .card-header {
-      border-top-left-radius: 1.25rem;
-      border-top-right-radius: 1.25rem;
-      background: #ffffff;
-      border-bottom: 1px solid rgba(15, 23, 42, .06);
+    body::after {
+      width: 34rem;
+      height: 34rem;
+      right: -9rem;
+      top: 44vh;
+      background: radial-gradient(circle, rgba(52, 217, 195, .15) 0%, rgba(52, 217, 195, .05) 34%, transparent 74%);
+      animation: ambientJade 22s ease-in-out infinite;
     }
 
-    .soft-shadow {
-      box-shadow: 0 10px 24px rgba(15, 23, 42, .06);
+    @keyframes ambientGold {
+
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0) scale(1)
+      }
+
+      50% {
+        transform: translate3d(42px, 26px, 0) scale(1.09)
+      }
     }
 
-    .badge-chip {
-      border: 1px solid rgba(15, 23, 42, .08);
-      font-weight: 600;
-      letter-spacing: .1px;
+    @keyframes ambientJade {
+
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0) scale(1)
+      }
+
+      50% {
+        transform: translate3d(-30px, -24px, 0) scale(1.11)
+      }
     }
 
-    .mono {
-      font-variant-numeric: tabular-nums;
+    #bgCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .96;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 14px rgba(212, 164, 58, .18));
     }
 
-    .sticky-toolbar {
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .05;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, .6) 0 1px, transparent 1px),
+        radial-gradient(circle at 80% 40%, rgba(255, 255, 255, .5) 0 1px, transparent 1px),
+        radial-gradient(circle at 40% 80%, rgba(255, 255, 255, .4) 0 1px, transparent 1px);
+      background-size: 140px 140px, 180px 180px, 220px 220px;
+      animation: grainShift 14s linear infinite;
+    }
+
+    @keyframes grainShift {
+      from {
+        transform: translate3d(0, 0, 0)
+      }
+
+      to {
+        transform: translate3d(-30px, 20px, 0)
+      }
+    }
+
+    .z1 {
+      position: relative;
+      z-index: 1
+    }
+
+    .glass {
+      background: linear-gradient(180deg, rgba(17, 29, 47, .74), rgba(10, 18, 30, .82));
+      border: 1px solid var(--bdr2);
+      backdrop-filter: blur(18px) saturate(150%);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
+    }
+
+    .nav-wrap {
       position: sticky;
-      top: .75rem;
-      z-index: 1020;
+      top: 0;
+      z-index: 240;
+      background: rgba(4, 7, 13, .72);
+      border-bottom: 1px solid rgba(212, 164, 58, .11);
+      backdrop-filter: blur(18px) saturate(170%);
     }
 
-    .toolbar {
-      border: 1px solid rgba(15, 23, 42, .08);
-      background: #ffffff;
-    }
-
-    /* ===== Chips ===== */
-    .chip {
-      border: 1px solid rgba(15, 23, 42, .10);
-      padding: .38rem .62rem;
-    }
-
-    .chip-renison {
-      color: #0b3a8a;
-      background: #dbeafe;
-    }
-
-    .chip-flavio {
-      color: #065f46;
-      background: #d1fae5;
-    }
-
-    .chip-isabella {
-      color: #9d174d;
-      background: #fce7f3;
-    }
-
-    .chip-miguel {
-      color: #92400e;
-      background: #fef3c7;
-    }
-
-    /* ===== PDF buttons (pequeno e alinhado) ===== */
-    .part-left {
+    .nav-inner {
       display: flex;
       align-items: center;
-      gap: .5rem;
-      min-width: 180px;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .95rem 0;
     }
 
-    .pdf-actions .btn {
-      padding: .22rem .45rem;
-      line-height: 1;
-    }
-
-    .pdf-actions .btn i {
-      font-size: 1rem;
-    }
-
-    /* ===== Destaque do ensaio ===== */
-    .is-rehearsal {
-      border-color: rgba(37, 99, 235, .30) !important;
-      box-shadow: 0 10px 24px rgba(37, 99, 235, .10);
-    }
-
-    .is-rehearsal .card-header {
-      background: #eff6ff;
-      border-bottom-color: rgba(37, 99, 235, .15);
-    }
-
-    .rehearsal-badge {
-      color: #1e40af;
-      background: #dbeafe;
-      border: 1px solid rgba(30, 64, 175, .18);
-      font-weight: 700;
-    }
-
-    /* Card do ensaio (topo) */
-    .rehearsal-card {
-      border: 1px solid rgba(37, 99, 235, .22);
-      background: #ffffff;
-      border-radius: 1.25rem;
-    }
-
-    .rehearsal-card .title {
+    .nav-logo {
       display: flex;
       align-items: center;
-      gap: .5rem;
+      gap: .9rem;
+    }
+
+    .nav-logo-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* background:
+        linear-gradient(135deg, rgba(240, 201, 108, .12), rgba(52, 217, 195, .08)),
+        linear-gradient(180deg, #15253d, #0d1728); */
+      border: 2px solid rgba(212, 164, 58, .28);
+      box-shadow: 0 0 22px rgba(212, 164, 58, .10);
+      color: var(--gold2);
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(.84rem, 1.6vw, .98rem);
       font-weight: 800;
+      color: var(--gold2);
+      line-height: 1.15;
+      letter-spacing: .01em;
     }
 
-    .rehearsal-list .item {
-      border-top: 1px solid rgba(15, 23, 42, .06);
-      padding-top: .75rem;
-      margin-top: .75rem;
+    .nav-logo-org {
+      font-size: .63rem;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--txt3);
+      margin-top: .18rem;
     }
 
-    .mini-pdf .btn {
-      padding: .16rem .38rem;
-      line-height: 1;
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .35rem .95rem;
+      border-radius: 999px;
+      border: 1px solid rgba(52, 217, 195, .24);
+      background: rgba(52, 217, 195, .08);
+      color: var(--jade);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
     }
 
-    @media print {
-      .no-print {
-        display: none !important;
+    .nav-pill::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--jade);
+      box-shadow: 0 0 10px rgba(52, 217, 195, .55);
+      animation: pulseDot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1
       }
 
-      body {
-        background: #fff !important;
+      50% {
+        transform: scale(.72);
+        opacity: .42
+      }
+    }
+
+    .hero {
+      position: relative;
+      padding: 6.6rem 0 4.2rem;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .025) 0%, transparent 36%, rgba(255, 255, 255, .015) 100%);
+      pointer-events: none;
+    }
+
+    .hero-ring {
+      position: absolute;
+      left: 50%;
+      top: -340px;
+      transform: translateX(-50%);
+      width: 1040px;
+      height: 1040px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 164, 58, .16) 0%, rgba(212, 164, 58, .07) 26%, transparent 66%);
+      filter: blur(8px);
+      pointer-events: none;
+      animation: heroRing 10s ease-in-out infinite;
+    }
+
+    .hero-ring::after {
+      content: '';
+      position: absolute;
+      inset: 18%;
+      border-radius: 50%;
+      border: 1px solid rgba(240, 201, 108, .08);
+      box-shadow: 0 0 40px rgba(212, 164, 58, .08) inset;
+    }
+
+    .hero-aurora {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      right: -90px;
+      bottom: -120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(52, 217, 195, .14) 0%, rgba(52, 217, 195, .06) 30%, transparent 72%);
+      pointer-events: none;
+      animation: heroAurora 12s ease-in-out infinite;
+    }
+
+    @keyframes heroRing {
+
+      0%,
+      100% {
+        transform: translateX(-50%) scale(1);
+        opacity: .82
       }
 
-      .soft-shadow {
-        box-shadow: none !important;
+      50% {
+        transform: translateX(-50%) scale(1.1);
+        opacity: 1
+      }
+    }
+
+    @keyframes heroAurora {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1)
       }
 
-      .card {
-        break-inside: avoid;
+      50% {
+        transform: translateY(-16px) scale(1.08)
+      }
+    }
+
+    .hero-topline {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--jade);
+      margin-bottom: 1.15rem;
+    }
+
+    .hero-topline::before,
+    .hero-topline::after {
+      content: '';
+      display: block;
+      width: 38px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--jade));
+    }
+
+    .hero-topline::after {
+      background: linear-gradient(90deg, var(--jade), transparent);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.35rem, 6vw, 4.9rem);
+      line-height: 1.02;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      text-shadow: 0 0 28px rgba(212, 164, 58, .08);
+      margin-bottom: 1rem;
+    }
+
+    .hero-title .line1 {
+      background: linear-gradient(100deg, #f8deb0 0%, var(--gold2) 30%, var(--gold) 68%, #9d6915 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-title .line2 {
+      color: var(--txt);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      max-width: 780px;
+      margin: 0 auto;
+      color: var(--txt2);
+      font-size: .98rem;
+      line-height: 1.75;
+    }
+
+    .hero-sep {
+      width: 78px;
+      height: 3px;
+      border: none;
+      border-radius: 999px;
+      margin: 2rem auto 0;
+      background: linear-gradient(90deg, var(--gold), var(--jade));
+      opacity: 1;
+      box-shadow: 0 0 20px rgba(212, 164, 58, .18);
+    }
+
+    .rehearsal-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, .42), 0 0 0 1px rgba(255, 255, 255, .02) inset;
+    }
+
+    .rehearsal-card::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold2) 38%, var(--jade) 62%, transparent);
+      z-index: 1;
+    }
+
+    .rehearsal-card::after {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      right: -70px;
+      top: -90px;
+      background: radial-gradient(circle, rgba(212, 164, 58, .08) 0%, transparent 72%);
+      pointer-events: none;
+    }
+
+    .rc-left,
+    .rc-right {
+      position: relative;
+      z-index: 1;
+      padding: 2.4rem 2.55rem;
+    }
+
+    .rc-left {
+      border-right: 1px solid var(--bdr2)
+    }
+
+    .rc-right {
+      padding: 0
+    }
+
+    .rc-right-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(290px, .85fr);
+      min-height: 100%;
+    }
+
+    .rc-pane {
+      position: relative;
+      z-index: 1;
+      padding: 2.4rem 2.3rem;
+      min-width: 0;
+    }
+
+    .rc-pane+.rc-pane {
+      border-left: 1px solid var(--bdr2)
+    }
+
+    .rc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .32rem .92rem;
+      border-radius: 999px;
+      background: rgba(212, 164, 58, .10);
+      border: 1px solid rgba(212, 164, 58, .24);
+      color: var(--gold2);
+      font-size: .66rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .rc-badge.is-jade {
+      background: rgba(52, 217, 195, .08);
+      border-color: rgba(52, 217, 195, .22);
+      color: var(--jade);
+    }
+
+    .rc-date {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.9rem, 6vw, 4.2rem);
+      line-height: .95;
+      color: var(--gold2);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      text-shadow: 0 0 20px rgba(212, 164, 58, .10);
+    }
+
+    .rc-present-pane .rc-date {
+      font-size: clamp(2.5rem, 4vw, 3.7rem)
+    }
+
+    .rc-weekday {
+      font-size: .95rem;
+      color: var(--jade);
+      font-weight: 700;
+      letter-spacing: .04em;
+      margin-top: .5rem;
+    }
+
+    .rc-meta {
+      display: flex;
+      align-items: flex-start;
+      gap: .72rem;
+      margin-top: .95rem;
+      color: var(--txt2);
+      font-size: .85rem;
+      line-height: 1.55;
+    }
+
+    .rc-meta i {
+      color: var(--gold);
+      margin-top: .14rem;
+      flex-shrink: 0
+    }
+
+    .rc-meta strong {
+      color: var(--txt);
+      font-weight: 600;
+      display: block
+    }
+
+    .rc-list-head {
+      padding-bottom: .78rem;
+      margin-bottom: .5rem;
+      border-bottom: 1px solid var(--bdr2);
+      font-size: .64rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--jade);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .rc-program-note {
+      color: var(--txt3);
+      font-size: .72rem;
+      letter-spacing: normal;
+      text-transform: none;
+      font-weight: 600;
+    }
+
+    .rc-song {
+      display: flex;
+      align-items: baseline;
+      gap: .7rem;
+      padding: .48rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .035);
+      font-size: .83rem;
+    }
+
+    .rc-song:last-child {
+      border-bottom: none
+    }
+
+    .rc-song-num {
+      min-width: 1.75rem;
+      font-family: 'DM Mono', monospace;
+      font-size: .67rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .rc-song-name {
+      color: var(--txt);
+      font-weight: 600
+    }
+
+    .rc-song-comp {
+      color: var(--txt2);
+      font-size: .77rem
+    }
+
+    .rc-countdown {
+      margin-top: 1.15rem;
+      padding: 1rem 1.05rem;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
+      border: 1px solid rgba(255, 255, 255, .08);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, .015) inset;
+    }
+
+    .rc-countdown.is-gold {
+      border-color: rgba(212, 164, 58, .18)
+    }
+
+    .rc-countdown.is-jade {
+      border-color: rgba(52, 217, 195, .18)
+    }
+
+    .rc-countdown-label {
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--txt3);
+    }
+
+    .rc-countdown-value {
+      margin-top: .45rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 1.08rem;
+      line-height: 1.1;
+    }
+
+    .rc-countdown.is-gold .rc-countdown-value {
+      color: var(--gold2)
+    }
+
+    .rc-countdown.is-jade .rc-countdown-value {
+      color: var(--jade)
+    }
+
+    .rc-countdown-sub {
+      margin-top: .32rem;
+      font-size: .74rem;
+      color: var(--txt2)
+    }
+
+    .search-zone {
+      position: relative;
+      z-index: 1;
+      padding: 1.25rem 0 1.1rem;
+      border-top: 1px solid rgba(255, 255, 255, .04);
+      border-bottom: 1px solid rgba(255, 255, 255, .05);
+      background: rgba(8, 14, 24, .68);
+      backdrop-filter: blur(18px) saturate(160%);
+    }
+
+    .search-shell {
+      border-radius: 20px;
+      padding: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .18)
+    }
+
+    .search-field {
+      position: relative;
+      width: 100%
+    }
+
+    .search-field i {
+      position: absolute;
+      left: 1.08rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      color: var(--txt3);
+      pointer-events: none;
+    }
+
+    .search-field input {
+      width: 100%;
+      min-height: 58px;
+      border-radius: 16px;
+      padding: .9rem 1.1rem .9rem 3.1rem;
+      border: 1px solid rgba(212, 164, 58, .18);
+      background: linear-gradient(180deg, rgba(15, 24, 39, .92), rgba(11, 19, 32, .95));
+      color: var(--txt);
+      font-size: .98rem;
+      font-weight: 500;
+      transition: .25s var(--ease);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, .015) inset;
+    }
+
+    .search-field input::placeholder {
+      color: var(--txt3)
+    }
+
+    .search-field input:focus {
+      outline: none;
+      border-color: rgba(212, 164, 58, .46);
+      box-shadow: 0 0 0 4px rgba(212, 164, 58, .10), 0 0 30px rgba(212, 164, 58, .08);
+      background: linear-gradient(180deg, rgba(17, 28, 45, .96), rgba(13, 21, 34, .98));
+    }
+
+    #composerChips {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      margin-top: .95rem;
+    }
+
+    .c-chip {
+      appearance: none;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .35rem;
+      padding: .48rem .92rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .035);
+      border: 1px solid rgba(255, 255, 255, .06);
+      color: var(--txt2);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .01em;
+      transition: .22s var(--ease);
+      cursor: pointer;
+    }
+
+    .c-chip:hover {
+      color: var(--txt);
+      border-color: rgba(212, 164, 58, .18);
+      transform: translateY(-1px)
+    }
+
+    .c-chip.active {
+      color: var(--gold2);
+      background: rgba(212, 164, 58, .10);
+      border-color: rgba(212, 164, 58, .34);
+      box-shadow: 0 0 18px rgba(212, 164, 58, .07);
+    }
+
+    .results-label {
+      margin-top: .78rem;
+      font-size: .75rem;
+      color: var(--txt2)
+    }
+
+    .results-label b {
+      color: var(--gold2)
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 3.2rem 0 1.85rem;
+    }
+
+    .section-head-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.05rem, 2vw, 1.34rem);
+      color: #d1dced;
+      letter-spacing: .02em;
+      white-space: nowrap;
+    }
+
+    .section-head-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(212, 164, 58, .18), transparent)
+    }
+
+    #musicGrid {
+      display: grid;
+      gap: 2rem;
+      padding-bottom: 4rem
+    }
+
+    .composer-block {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .composer-head {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      padding: .95rem 1.1rem;
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .02));
+      border: 1px solid rgba(255, 255, 255, .06);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .14);
+    }
+
+    .composer-head-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      box-shadow: 0 0 16px currentColor;
+      flex-shrink: 0;
+    }
+
+    .composer-head-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--txt);
+      margin: 0;
+    }
+
+    .composer-head-count {
+      margin-left: auto;
+      font-size: .75rem;
+      color: var(--txt2);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .composer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.35rem;
+    }
+
+    .mc {
+      --card-accent: #f0c96c;
+      --card-accent-rgb: 240, 201, 108;
+      position: relative;
+      border-radius: 0px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(20, 31, 49, .88), rgba(13, 22, 36, .94));
+      border: 1px solid rgba(255, 255, 255, .06);
+      box-shadow: 0 20px 54px rgba(0, 0, 0, .34), 0 0 0 1px rgba(255, 255, 255, .015) inset;
+      backdrop-filter: blur(14px);
+      transition: transform .32s var(--ease), box-shadow .32s var(--ease), border-color .32s var(--ease);
+      animation: cardRise .5s var(--ease) both;
+      isolation: isolate;
+    }
+
+    .mc::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(var(--card-accent-rgb), .08), transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .mc:hover {
+      transform: translateY(-7px);
+      border-color: rgba(var(--card-accent-rgb), .34);
+      box-shadow: 0 28px 64px rgba(0, 0, 0, .42), 0 0 36px rgba(var(--card-accent-rgb), .12);
+    }
+
+    .mc.mc-is-ensaio {
+      border-color: rgba(var(--card-accent-rgb), .50);
+      box-shadow: 0 24px 62px rgba(0, 0, 0, .38), 0 0 0 1px rgba(var(--card-accent-rgb), .16) inset, 0 0 30px rgba(var(--card-accent-rgb), .18);
+    }
+
+    .mc.mc-is-ensaio:hover {
+      border-color: rgba(var(--card-accent-rgb), .64);
+      box-shadow: 0 30px 72px rgba(0, 0, 0, .44), 0 0 0 1px rgba(var(--card-accent-rgb), .18) inset, 0 0 42px rgba(var(--card-accent-rgb), .24);
+    }
+
+    .mc.mc-is-ensaio::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(var(--card-accent-rgb), .12), transparent 30%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .mc-badge-ensaio {
+      display: inline-flex;
+      align-items: center;
+      gap: .36rem;
+      margin-top: .76rem;
+      margin-left: .55rem;
+      padding: .28rem .72rem;
+      border-radius: 999px;
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .01em;
+      color: var(--card-accent);
+      background: rgba(var(--card-accent-rgb), .12);
+      border: 1px solid rgba(var(--card-accent-rgb), .30);
+      box-shadow: 0 0 18px rgba(var(--card-accent-rgb), .10);
+    }
+
+    @keyframes cardRise {
+      from {
+        opacity: 0;
+        transform: translateY(18px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .mc-stripe {
+      position: relative;
+      z-index: 1;
+      height: 3px
+    }
+
+    .jw {
+      background: linear-gradient(90deg, #d4a43a, #f0c96c)
+    }
+
+    .as {
+      background: linear-gradient(90deg, #34d9c3, #71ebdc)
+    }
+
+    .em {
+      background: linear-gradient(90deg, #8890ff, #bcc1ff)
+    }
+
+    .hz {
+      background: linear-gradient(90deg, #df6e6e, #ffb1b1)
+    }
+
+    .mc-header,
+    .mc-body {
+      position: relative;
+      z-index: 1
+    }
+
+    .mc-header {
+      padding: 1.24rem 1.42rem .95rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .05);
+    }
+
+    .mc-track {
+      font-family: 'DM Mono', monospace;
+      font-size: .64rem;
+      letter-spacing: .16em;
+      color: var(--txt3);
+      margin-bottom: .4rem;
+    }
+
+    .mc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.18rem;
+      line-height: 1.24;
+      font-weight: 800;
+      color: var(--txt);
+      letter-spacing: -.015em;
+    }
+
+    .mc-subtitle {
+      margin-top: .18rem;
+      color: #9aacbf;
+      font-size: .79rem;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .mc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .34rem;
+      margin-top: .76rem;
+      padding: .28rem .72rem;
+      border-radius: 999px;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .01em;
+      border: 1px solid transparent;
+    }
+
+    .bjw {
+      background: rgba(212, 164, 58, .10);
+      color: #f0c96c;
+      border-color: rgba(212, 164, 58, .2)
+    }
+
+    .bas {
+      background: rgba(52, 217, 195, .10);
+      color: #65f2e0;
+      border-color: rgba(52, 217, 195, .18)
+    }
+
+    .bem {
+      background: rgba(136, 144, 255, .11);
+      color: #c5c9ff;
+      border-color: rgba(136, 144, 255, .2)
+    }
+
+    .bhz {
+      background: rgba(223, 110, 110, .11);
+      color: #ffbaba;
+      border-color: rgba(223, 110, 110, .2)
+    }
+
+    .mc-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      padding: 1.12rem 1.42rem 1.35rem;
+    }
+
+    .naipe-col {
+      min-width: 0;
+      display: flex;
+      flex-direction: column
+    }
+
+    .naipe-head {
+      display: flex;
+      align-items: center;
+      gap: .42rem;
+      padding-bottom: .48rem;
+      margin-bottom: .58rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      font-size: .66rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .naipe-head.f1 {
+      color: var(--gold2)
+    }
+
+    .naipe-head.f2 {
+      color: var(--jade)
+    }
+
+    .chips-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: .36rem;
+      margin-bottom: .92rem
+    }
+
+    .pchip {
+      display: flex;
+      align-items: center;
+      gap: .38rem;
+      padding: .42rem .62rem;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, .035);
+      border: 1px solid rgba(255, 255, 255, .06);
+      color: var(--txt);
+      font-size: .8rem;
+      font-weight: 600;
+      line-height: 1.35;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pchip i {
+      font-size: .64rem;
+      color: var(--txt3);
+      flex-shrink: 0
+    }
+
+    .col-btn {
+      position: relative;
+      overflow: hidden;
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+      min-height: 44px;
+      border-radius: 8px;
+      padding: .66rem .8rem;
+      text-decoration: none;
+      font-size: .77rem;
+      font-weight: 800;
+      letter-spacing: .01em;
+      border: 1px solid;
+      transition: .24s var(--ease);
+      white-space: nowrap;
+      isolation: isolate;
+    }
+
+    .col-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, .14) 50%, transparent 80%);
+      transform: translateX(-120%);
+      transition: transform .55s var(--ease);
+      z-index: 0;
+    }
+
+    .col-btn:hover::before {
+      transform: translateX(120%)
+    }
+
+    .col-btn>* {
+      position: relative;
+      z-index: 1
+    }
+
+    .col-btn-f1 {
+      color: #ffe6aa;
+      background: rgba(212, 164, 58, .08);
+      border-color: rgba(212, 164, 58, .24)
+    }
+
+    .col-btn-f1:hover {
+      color: #fff2d2;
+      background: rgba(212, 164, 58, .15);
+      border-color: rgba(212, 164, 58, .46);
+      box-shadow: 0 10px 24px rgba(212, 164, 58, .14)
+    }
+
+    .col-btn-f2 {
+      color: #aaf7ee;
+      background: rgba(52, 217, 195, .08);
+      border-color: rgba(52, 217, 195, .22)
+    }
+
+    .col-btn-f2:hover {
+      color: #d9fffb;
+      background: rgba(52, 217, 195, .14);
+      border-color: rgba(52, 217, 195, .42);
+      box-shadow: 0 10px 24px rgba(52, 217, 195, .12)
+    }
+
+    .col-btn.is-disabled {
+      pointer-events: none;
+      opacity: .48;
+      filter: grayscale(.2);
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 5rem 1rem;
+      color: var(--txt2);
+      border-radius: 24px;
+      border: 1px dashed rgba(255, 255, 255, .08);
+      background: rgba(255, 255, 255, .02);
+    }
+
+    .no-results i {
+      display: block;
+      font-size: 3rem;
+      color: rgba(255, 255, 255, .08);
+      margin-bottom: 1rem
+    }
+
+    footer {
+      padding: 2.7rem 0 1.8rem;
+      border-top: 1px solid rgba(255, 255, 255, .05);
+      background: rgba(7, 13, 22, .76);
+      backdrop-filter: blur(12px);
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.14rem;
+      font-weight: 800;
+      color: var(--gold2)
+    }
+
+    .footer-sub {
+      margin-top: .25rem;
+      color: var(--txt2);
+      font-size: .77rem
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: .5rem;
+      color: var(--txt2);
+      font-size: .8rem
+    }
+
+    .footer-row i {
+      color: var(--gold)
+    }
+
+    .footer-copy {
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, .05);
+      text-align: center;
+      color: var(--txt3);
+      font-size: .72rem;
+    }
+
+    .footer-copy span {
+      color: var(--gold)
+    }
+
+    @media (max-width: 991px) {
+      .rc-left {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, .06)
+      }
+
+      .rc-right-wrap {
+        grid-template-columns: 1fr
+      }
+
+      .rc-pane+.rc-pane {
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, .06)
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero {
+        padding: 5.5rem 0 3.7rem
+      }
+
+      .rc-left,
+      .rc-pane {
+        padding: 1.8rem 1.5rem
+      }
+    }
+
+    @media (max-width: 575px) {
+      .hero-title {
+        font-size: clamp(2.1rem, 10vw, 3.2rem)
+      }
+
+      .composer-grid {
+        grid-template-columns: 1fr
+      }
+
+      .mc-body {
+        grid-template-columns: 1fr
+      }
+
+      .nav-logo-org {
+        letter-spacing: .12em
+      }
+
+      .section-head {
+        padding: 2.6rem 0 1.5rem
+      }
+
+      .composer-head {
+        align-items: flex-start;
+        flex-wrap: wrap
+      }
+
+      .composer-head-count {
+        margin-left: 0;
+        width: 100%
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="container app-shell py-4">
-
-    <header class="sticky-toolbar no-print" role="banner">
-      <div
-        class="toolbar soft-shadow rounded-4 p-3 d-flex flex-column flex-md-row gap-2 align-items-md-center justify-content-between">
-        <div class="d-flex align-items-center gap-2">
-          <span class="d-inline-flex align-items-center justify-content-center rounded-3 bg-primary-subtle text-primary"
-            style="width:40px;height:40px;" aria-hidden="true">
-            <i class="bi bi-music-note-beamed fs-5"></i>
-          </span>
+  <canvas id="bgCanvas"></canvas>
+  <div class="grain"></div>
+  <header class="nav-wrap z1">
+    <div class="container">
+      <div class="nav-inner">
+        <div class="nav-logo">
+          <div class="nav-logo-icon">
+            <i class="fa-solid fa-music" aria-hidden="true"></i>
+          </div>
           <div>
-            <h1 class="h6 fw-bold mb-0">Escalação (Flautas)</h1>
-            <p class="text-body-secondary small mb-0">Cards com música, compositor, instrumentação e PDFs</p>
+            <div class="nav-logo-name">Naipe de Flautas</div>
+            <div class="nav-logo-org">Orquestra Sinfônica Camargo Guarnieri</div>
           </div>
         </div>
-
-        <nav class="d-flex gap-2" aria-label="Ações">
-          <button id="copyBtn" class="btn btn-primary">
-            <i class="bi bi-clipboard-check me-1" aria-hidden="true"></i> Copiar
-          </button>
-          <!-- Se quiser imprimir, descomente:
-          <button class="btn btn-outline-secondary" onclick="window.print()">
-            <i class="bi bi-printer me-1" aria-hidden="true"></i> Imprimir
-          </button>
-          -->
-        </nav>
-      </div>
-    </header>
-
-    <!-- Card dinâmico do ensaio (hoje / próximo / último) -->
-    <section id="rehearsalSection" class="mt-3 no-print" aria-label="Ensaio (dinâmico)"></section>
-
-    <main role="main" class="mt-3">
-      <section aria-label="Resumo e legenda"
-        class="d-flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
-        <p class="small text-body-secondary mb-0" aria-live="polite">
-          <span class="mono" id="visibleCount">0</span> de <span class="mono" id="totalCount">0</span> músicas
-        </p>
-
-        <div class="d-flex flex-wrap gap-2" aria-label="Legenda">
-          <span class="badge text-bg-light badge-chip"><i class="bi bi-dot me-1" aria-hidden="true"></i>Flauta 1</span>
-          <span class="badge text-bg-light badge-chip"><i class="bi bi-dot me-1" aria-hidden="true"></i>Flauta 2</span>
-          <span class="badge text-bg-light badge-chip"><i class="bi bi-file-earmark-pdf me-1"
-              aria-hidden="true"></i>PDF</span>
-          <span class="badge rehearsal-badge badge-chip"><i class="bi bi-star-fill me-1"
-              aria-hidden="true"></i>Ensaio</span>
+        <div class="d-none d-sm-block">
+          <div class="nav-pill">Temporada Ativa</div>
         </div>
-      </section>
+      </div>
+    </div>
+  </header>
+  <section class="hero z1">
+    <div class="hero-ring"></div>
+    <div class="hero-aurora"></div>
+    <div class="container">
+      <div class="text-center mb-5">
+        <div class="hero-topline">Orquestra Sinfônica Camargo Guarnieri</div>
+        <h1 class="hero-title">
+          <span class="line1">Escalação do</span><br />
+          <span class="line2">Naipe de Flautas</span>
+        </h1>
 
-      <section aria-label="Lista de músicas">
-        <ul id="cardsGrid" class="row g-4 list-unstyled m-0 p-0"></ul>
-      </section>
-    </main>
+        <!-- <p class="hero-sub">
+          Agenda de ensaios, apresentação, repertório e links de PDFs construídos por arrays em JavaScript.
+          Basta atualizar os dados abaixo para a página inteira refletir automaticamente.
+        </p> -->
 
-    <footer class="text-center text-body-secondary small py-4" role="contentinfo"></footer>
+        <hr class="hero-sep" />
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="rehearsal-card glass" id="ensaioCard"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="search-zone z1">
+    <div class="container">
+      <div class="search-shell glass">
+        <div class="search-field">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input type="search" id="searchInput" placeholder="Buscar música ou compositor..."
+            aria-label="Buscar música ou compositor" autocomplete="off" spellcheck="false" />
+        </div>
+
+        <div id="composerChips"></div>
+        <div class="results-label" id="resultsLabel" aria-live="polite"></div>
+      </div>
+    </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <main class="z1">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head-text">Repertório completo</div>
+        <div class="section-head-line"></div>
+      </div>
+
+      <div id="musicGrid"></div>
+    </div>
+  </main>
+
+  <footer class="z1">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-6 mb-3 mb-md-0">
+          <div class="footer-brand">Naipe de Flautas · OSCG</div>
+          <div class="footer-sub">Orquestra Sinfônica Camargo Guarnieri</div>
+          <div class="footer-row">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            Escola de Música Camargo Guarnieri
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 text-md-end">
+          <div class="footer-row justify-content-md-end">
+            <i class="fa-solid fa-calendar-week" aria-hidden="true"></i>
+            Ensaios às <strong style="color:var(--jade);margin-left:.2rem;">Quintas-Feiras</strong>
+          </div>
+          <div class="footer-row justify-content-md-end mt-1">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            19:30 horas
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-copy">
+        © 2026 <span>Naipe de Flautas – OSCG</span> · Todos os direitos reservados
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    // =========================
-    // 1) TODAS AS MÚSICAS + PDFs
-    // =========================
-    const data = [
-       {
-        id: "Medley",
-        title: "Medley",
-        composer: "John Williams",
-        parts: [
-          {
-            label: "Flauta 1",
-            players: ["Renison", "Flávio"],
-            pdf: "pdf/Medley • John Williams • Flauta 1 • Renison • Flávio.pdf"
-          },
-          {
-            label: "Flauta 2",
-            players: ["Isabella", "Miguel"],
-            pdf: "pdf/Medley • John Williams • Flauta 2 • Isabella • Miguel.pdf"
-          },
-        ],
-      },
-      {
-        id: "forrest_gump",
-        title: "Forrest Gump",
-        composer: "Alan Silvestri",
-        parts: [
-          {
-            label: "Flauta 1",
-            players: ["Renison"],
-            pdf: "pdf/Forrest Gump • Alan Silvestri • Flauta 1 • Renison.pdf"
-          },
-          {
-            label: "Flauta 2",
-            players: ["Flávio", "Isabella", "Miguel"],
-            pdf: "pdf/Forrest Gump • Alan Silvestri • Flauta 2 • Flávio • Isabella • Miguel.pdf"
-          },
-        ],
-      },
-      {
-        id: "gabriels_oboe",
-        title: "Gabriel's Oboé",
-        composer: "Ennio Morricone",
-        parts: [
-          {
-            label: "Flauta 1",
-            players: ["Renison"],
-            pdf: "pdf/Gabriel's Oboé • Ennio Morricone • Ennio Morricone • Flauta 1 • Renison.pdf"
-          },
-          {
-            label: "Flauta 2",
-            players: ["Flávio", "Isabella", "Miguel"],
-            pdf: "pdf/Gabriel's Oboé • Ennio Morricone • Ennio Morricone • Flauta 2 • Flávio • Isabella • Miguel.pdf"
-          },
-        ],
-      },
-      {
-        id: "il_buono_il_brutto_il_cattivo",
-        title: "IL Buono, IL Brutto, IL Cattivo",
-        composer: "Ennio Morricone",
-        parts: [
-          {
-            label: "Flauta 1",
-            players: ["Renison", "Flávio"],
-            pdf: "pdf/IL Buono, IL Brutto, IL Cattivo • Ennio Morricone • Flauta 1 • Renison • Flávio.pdf"
-          },
-          {
-            label: "Flauta 2",
-            players: ["Isabella", "Miguel"],
-            pdf: "pdf/IL Buono, IL Brutto, IL Cattivo • Ennio Morricone • Flauta 2 • Isabella • Miguel.pdf"
-          },
-        ],
-      },
-      {
-        id: "imperial_march",
-        title: 'Imperial March ("From Star Wars")',
-        composer: "John Williams",
-        parts: [
-          {
-            label: "Flauta 1",
-            players: ["Renison", "Flávio"],
-            pdf: "pdf/Imperial March (_From Star Wars_) • John Williams • Flauta 1 • Renison • Flávio.pdf"
-          },
-          {
-            label: "Flauta 2",
-            players: ["Isabella", "Miguel"],
-            pdf: "pdf/Imperial March (_From Star Wars_) • John Williams • Flauta 2 • Isabella • Miguel.pdf"
-          },
-        ],
-      },
-      {
-        id: "cast_away",
-        title: 'Main Theme ("From Cast Away")',
-        composer: "Alan Silvestri",
-        parts: [
-          {
-            label: "Flauta 1",
-            players: ["Renison", "Flávio"],
-            pdf: "pdf/Main Theme (_From Cast Away_) • Alan Silvestri • Flauta 1 • Renison • Flávio.pdf"
-          },
-          {
-            label: "Flauta 2",
-            players: ["Isabella", "Miguel"],
-            pdf: "pdf/Main Theme (_From Cast Away_) • Alan Silvestri • Flauta 2 • Isabella • Miguel.pdf"
-          },
-        ],
-      },
-      {
-        id: "cinema_paradiso",
-        title: 'Main Theme ("From Cinema Paradiso")',
-        composer: "Ennio Morricone",
-        parts: [
-          {
-            label: "Flauta 1",
-            players: ["Renison", "Flávio"],
-            pdf: "pdf/Main Theme (_From Cinema Paradiso_) • Ennio Morricone • Flauta 1 • Renison • Flávio.pdf"
-          },
-          {
-            label: "Flauta 2",
-            players: ["Isabella", "Miguel"],
-            pdf: "pdf/Main Theme (_From Cinema Paradiso_) • Ennio Morricone • Flauta 2 • Isabella • Miguel.pdf"
-          },
-        ],
-      },
-      {
-        id: "interstellar",
-        title: 'Main Theme ("From Interstellar")',
-        composer: "Hans Zimmer",
-        parts: [
-          {
-            label: "Flauta 1",
-            players: ["Renison", "Flávio"],
-            pdf: "pdf/Main Theme (_From Interstellar_) • Hans Zimmer • Flauta 1 • Renison • Flávio.pdf"
-          },
-          {
-            label: "Flauta 2",
-            players: ["Isabella", "Miguel"],
-            // mantive como você mandou (sem .pdf). Se quiser, é só adicionar o .pdf.
-            pdf: "pdf/Main Theme (_From Interstellar_) • Hans Zimmer • Flauta 2 • Isabella • Miguel"
-          },
-        ],
-      },
-      {
-        id: "now_we_are_free",
-        title: 'Now We Are Free ("Fom Gladiator")',
-        composer: "Hans Zimmer",
-        parts: [
-          {
-            label: "Flauta 1",
-            players: ["Renison", "Flávio"],
-            pdf: "pdf/Now We Are Free (Fom Gladiator) • Hans Zimmer • Flauta 1 • Renison • Flávio.pdf"
-          },
-          {
-            label: "Flauta 2",
-            players: ["Isabella", "Miguel"],
-            pdf: "pdf/Now We Are Free (Fom Gladiator) • Hans Zimmer • Flauta 2 • Isabella • Miguel.pdf"
-          },
-        ],
-      },
-      {
-        id: "jurassic_park",
-        title: "Theme from Jurassic Park",
-        composer: "John Williams",
-        parts: [
-          {
-            label: "Flauta 1",
-            players: ["Renison", "Flávio"],
-            pdf: "pdf/Theme from Jurassic Park • John Williams • Flauta 1 • Renison • Flávio.pdf"
-          },
-          {
-            label: "Flauta 2",
-            players: ["Isabella", "Miguel"],
-            pdf: "pdf/Theme from Jurassic Park • John Williams • Flauta 2 • Isabella • Miguel.pdf"
-          },
-        ],
-      },
-      {
-        id: "schindlers_list",
-        title: `Three Pieces ("From Schindler's List")`,
-        composer: "John Williams",
-        parts: [
-          {
-            label: "Flauta 1",
-            players: ["Renison", "Flávio"],
-            pdf: "pdf/Three Pieces (_From Schindler's List_) • John Williams • Flauta 1 • Renison • Flávio.pdf"
-          },
-          {
-            label: "Flauta 2",
-            players: ["Isabella", "Miguel"],
-            pdf: "pdf/Three Pieces (_From Schindler's List_) • John Williams • Flauta 2 • Isabella • Miguel.pdf"
-          },
-        ],
-      },
-    ];
+    /* ─────────────────────────────────────────────      
+       - MUSICAS: repertório completo e PDFs
+       - ENSAIOS: agenda dos ensaios
+       - APRESENTACOES: agenda das apresentações
+       A página escolhe sozinha o próximo item pela data.
+    ───────────────────────────────────────────── */
+    const CONFIG = {
+      pastaPdf: 'pdf',
+      localEnsaioPadrao: 'Escola de Música Camargo Guarnieri',
+      localApresentacaoPadrao: 'Teatro Lauro Martins'
+    };
 
-    // =========================================
-    // 2) ENSAIOS
-    //    data no formato YYYY-MM-DD
-    // =========================================
-    const rehearsals = [
+    const CMAP = {
+      'John Williams': { stripe: 'jw', badge: 'bjw', dot: '#f0c96c', accent: '#f0c96c', accentRgb: '240, 201, 108' },
+      'Alan Silvestri': { stripe: 'as', badge: 'bas', dot: '#34d9c3', accent: '#71ebdc', accentRgb: '113, 235, 220' },
+      'Ennio Morricone': { stripe: 'em', badge: 'bem', dot: '#bcc1ff', accent: '#bcc1ff', accentRgb: '188, 193, 255' },
+      'Hans Zimmer': { stripe: 'hz', badge: 'bhz', dot: '#ffb1b1', accent: '#ffb1b1', accentRgb: '255, 177, 177' }
+    };
+
+    const MUSICAS = [
       {
-        date: "2026-04-09",
-        time: "19:30",
-        songs: ["forrest_gump"], // <- IDs daqui
+        id: 'forrest-gump',
+        titulo: 'Forrest Gump',
+        compositor: 'Alan Silvestri',
+        flauta1: ['Renison'],
+        flauta2: ['Flávio', 'Isabella', 'Miguel'],
+        pdfs: {
+          flauta1: 'Forrest Gump • Alan Silvestri • Flauta 1 • Renison.pdf',
+          flauta2: 'Forrest Gump • Alan Silvestri • Flauta 2 • Flávio • Isabella • Miguel.pdf'
+        }
+      },
+      {
+        id: 'gabriels-oboe',
+        titulo: "Gabriel's Oboe",
+        compositor: 'Ennio Morricone',
+        flauta1: ['Renison'],
+        flauta2: ['Flávio', 'Isabella', 'Miguel'],
+        pdfs: {
+          flauta1: "Gabriel's Oboé • Ennio Morricone • Flauta 1 • Renison.pdf",
+          flauta2: "Gabriel's Oboé • Ennio Morricone • Flauta 2 • Flávio • Isabella • Miguel.pdf"
+        }
+      },
+      {
+        id: 'il-buono',
+        titulo: 'Il Buono, Il Brutto, Il Cattivo',
+        compositor: 'Ennio Morricone',
+        flauta1: ['Renison', 'Flávio'],
+        flauta2: ['Isabella', 'Miguel'],
+        pdfs: {
+          flauta1: 'IL Buono, IL Brutto, IL Cattivo • Ennio Morricone • Flauta 1 • Renison • Flávio.pdf',
+          flauta2: 'IL Buono, IL Brutto, IL Cattivo • Ennio Morricone • Flauta 2 • Isabella • Miguel.pdf'
+        }
+      },
+      {
+        id: 'imperial-march',
+        titulo: 'Imperial March',
+        sub: '(From Star Wars)',
+        compositor: 'John Williams',
+        flauta1: ['Renison', 'Flávio'],
+        flauta2: ['Isabella', 'Miguel'],
+        pdfs: {
+          flauta1: 'Imperial March ( From Star Wars ) • John Williams • Flauta 1 • Renison • Flávio.pdf',
+          flauta2: 'Imperial March ( From Star Wars ) • John Williams • Flauta 2 • Isabella • Miguel.pdf'
+        }
+      },
+      {
+        id: 'cast-away',
+        titulo: 'Main Theme',
+        sub: '(From Cast Away)',
+        compositor: 'Alan Silvestri',
+        flauta1: ['Renison', 'Flávio'],
+        flauta2: ['Isabella', 'Miguel'],
+        pdfs: {
+          flauta1: 'Main Theme ( From Cast Away ) • Alan Silvestri • Flauta 1 • Renison • Flávio.pdf',
+          flauta2: 'Main Theme ( From Cast Away ) • Alan Silvestri • Flauta 2 • Isabella • Miguel.pdf'
+        }
+      },
+      {
+        id: 'cinema-paradiso',
+        titulo: 'Main Theme',
+        sub: '(From Cinema Paradiso)',
+        compositor: 'Ennio Morricone',
+        flauta1: ['Renison', 'Flávio'],
+        flauta2: ['Isabella', 'Miguel'],
+        pdfs: {
+          flauta1: 'Main Theme ( From Cinema Paradiso ) • Ennio Morricone • Flauta 1 • Renison • Flávio.pdf',
+          flauta2: 'Main Theme ( From Cinema Paradiso ) • Ennio Morricone • Flauta 2 • Isabella • Miguel.pdf'
+        }
+      },
+      {
+        id: 'interstellar',
+        titulo: 'Main Theme',
+        sub: '(From Interstellar)',
+        compositor: 'Hans Zimmer',
+        flauta1: ['Renison', 'Flávio'],
+        flauta2: ['Isabella', 'Miguel'],
+        pdfs: {
+          flauta1: 'Main Theme ( From Interstellar ) • Hans Zimmer • Flauta 1 • Renison • Flávio.pdf',
+          flauta2: 'Main Theme ( From Interstellar ) • Hans Zimmer • Flauta 2 • Isabella • Miguel.pdf'
+        }
+      },
+      {
+        id: 'medley',
+        titulo: 'Medley',
+        compositor: 'John Williams',
+        flauta1: ['Renison', 'Flávio'],
+        flauta2: ['Isabella', 'Miguel'],
+        pdfs: {
+          flauta1: 'Medley • John Williams • Flauta 1 • Renison • Flávio.pdf',
+          flauta2: 'Medley • John Williams • Flauta 2 • Isabella • Miguel.pdf'
+        }
+      },
+      {
+        id: 'gladiator',
+        titulo: 'Now We Are Free',
+        sub: '(From Gladiator)',
+        compositor: 'Hans Zimmer',
+        flauta1: ['Renison', 'Flávio'],
+        flauta2: ['Isabella', 'Miguel'],
+        pdfs: {
+          flauta1: 'Now We Are Free ( Fom Gladiator ) • Hans Zimmer • Flauta 1 • Renison • Flávio.pdf',
+          flauta2: 'Now We Are Free ( Fom Gladiator ) • Hans Zimmer • Flauta 2 • Isabella • Miguel.pdf'
+        }
+      },
+      {
+        id: 'jurassic-park',
+        titulo: 'Theme from Jurassic Park',
+        compositor: 'John Williams',
+        flauta1: ['Renison', 'Flávio'],
+        flauta2: ['Isabella', 'Miguel'],
+        pdfs: {
+          flauta1: 'Theme from Jurassic Park • John Williams • Flauta 1 • Renison • Flávio.pdf',
+          flauta2: 'Theme from Jurassic Park • John Williams • Flauta 2 • Isabella • Miguel.pdf'
+        }
+      },
+      {
+        id: 'schindlers-list',
+        titulo: 'Three Pieces',
+        sub: "(From Schindler's List)",
+        compositor: 'John Williams',
+        flauta1: ['Renison', 'Flávio'],
+        flauta2: ['Isabella', 'Miguel'],
+        pdfs: {
+          flauta1: "Three Pieces ( From Schindler's List ) • John Williams • Flauta 1 • Renison • Flávio.pdf",
+          flauta2: "Three Pieces ( From Schindler's List ) • John Williams • Flauta 2 • Isabella • Miguel.pdf"
+        }
       }
     ];
 
-    // as músicas do ensaio apareçam primeiro na lista:
-    const PIN_REHEARSAL_TO_TOP = true;
+    const ENSAIOS = [
+      {
+        id: 'ensaio-2026-04-09',
+        titulo: 'Próximo Ensaio',
+        dataHora: '2026-04-09T19:30:00',
+        local: CONFIG.localEnsaioPadrao,
+        /* repertorio: ['forrest-gump', 'gabriels-oboe', 'imperial-march', 'jurassic-park'] */
+        repertorio: ['forrest-gump', 'il-buono', 'jurassic-park']
+      },
+      {
+        id: 'ensaio-2026-04-16',
+        titulo: 'Próximo Ensaio',
+        dataHora: '2026-04-16T19:30:00',
+        local: CONFIG.localEnsaioPadrao,
+        /* repertorio: ['medley', 'interstellar', 'gladiator', 'schindlers-list'] */
+      },
+      {
+        id: 'ensaio-2026-04-23',
+        titulo: 'Próximo Ensaio',
+        dataHora: '2026-04-23T19:30:00',
+        local: CONFIG.localEnsaioPadrao,
+        /* repertorio: ['cast-away', 'cinema-paradiso', 'il-buono', 'imperial-march'] */
+      },
+      {
+        id: 'ensaio-2026-04-30',
+        titulo: 'Próximo Ensaio',
+        dataHora: '2026-04-30T19:30:00',
+        local: CONFIG.localEnsaioPadrao,
+        /* repertorio: ['forrest-gump', 'gabriels-oboe', 'medley', 'jurassic-park', 'gladiator'] */
+      }
+    ];
 
-    const grid = document.getElementById("cardsGrid");
-    const copyBtn = document.getElementById("copyBtn");
-    const visibleCount = document.getElementById("visibleCount");
-    const totalCount = document.getElementById("totalCount");
-    const rehearsalSection = document.getElementById("rehearsalSection");
+    const APRESENTACOES = [
+      {
+        id: 'apresentacao-2026-06-25',
+        titulo: 'Apresentação',
+        dataHora: '2026-06-25T19:30:00',
+        local: CONFIG.localApresentacaoPadrao,
+        /* repertorio: ['forrest-gump', 'gabriels-oboe', 'medley', 'interstellar', 'gladiator', 'jurassic-park'] */
+      },
+      {
+        id: 'apresentacao-2026-07-30',
+        titulo: 'Apresentação',
+        dataHora: '2026-07-30T19:30:00',
+        local: 'Auditório Principal',
+        /* repertorio: ['imperial-march', 'schindlers-list', 'cinema-paradiso', 'il-buono'] */
+      }
+    ];
 
-    function escapeHtml(str) {
-      return String(str)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
+    /* ── BACKGROUND CANVAS ── */
+    (function () {
+      const canvas = document.getElementById('bgCanvas');
+      const ctx = canvas.getContext('2d');
+      let W, H;
+      let particles = [];
 
-    function escapeAttr(str) {
-      return escapeHtml(str);
-    }
+      const SYMBOLS = ['♩', '♪', '♫', '♬', '𝄞'];
+      const COLORS = ['#d4a43a', '#f0c96c', '#34d9c3'];
 
-    function chip(name) {
-      const map = {
-        "Renison": "chip-renison",
-        "Flávio": "chip-flavio",
-        "Isabella": "chip-isabella",
-        "Miguel": "chip-miguel",
-      };
-      const cls = map[name] || "";
-      return `<span class="badge rounded-pill chip ${cls} badge-chip me-1 mb-1">${escapeHtml(name)}</span>`;
-    }
-
-    function pdfButtons(pdfUrl) {
-      if (!pdfUrl) {
-        return `
-          <div class="btn-group btn-group-sm pdf-actions" role="group" aria-label="PDF indisponível">
-            <button class="btn btn-outline-secondary" disabled title="PDF não informado">
-              <i class="bi bi-file-earmark-pdf" aria-hidden="true"></i>
-            </button>
-            <button class="btn btn-outline-secondary" disabled title="PDF não informado">
-              <i class="bi bi-download" aria-hidden="true"></i>
-            </button>
-          </div>
-        `;
+      function resize() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
       }
 
-      const url = escapeAttr(pdfUrl);
-      return `
-        <div class="btn-group btn-group-sm pdf-actions" role="group" aria-label="PDF da parte">
-          <a class="btn btn-outline-secondary"
-             href="${url}" target="_blank" rel="noopener"
-             title="Abrir PDF em nova aba" aria-label="Abrir PDF">
-            <i class="bi bi-file-earmark-pdf" aria-hidden="true"></i>
-          </a>
-          <a class="btn btn-outline-secondary"
-             href="${url}" download
-             title="Baixar PDF" aria-label="Baixar PDF">
-            <i class="bi bi-download" aria-hidden="true"></i>
-          </a>
-        </div>
-      `;
-    }
-
-    function partRow(part) {
-      const isF2 = part.label.toLowerCase().includes("2");
-      const icon = isF2 ? "bi-2-circle" : "bi-1-circle";
-      const players = part.players.map(chip).join("");
-      const actions = pdfButtons(part.pdf);
-
-      return `
-        <div class="d-flex align-items-start justify-content-between gap-3">
-          <div class="part-left">
-            <i class="bi ${icon} text-body-secondary" aria-hidden="true"></i>
-            <div class="fw-semibold">${escapeHtml(part.label)}</div>
-            ${actions}
-          </div>
-          <div class="text-end">${players}</div>
-        </div>
-      `;
-    }
-
-    function cardHtml(item, idx, isRehearsal) {
-      const partsHtml = item.parts.map(partRow).join(`<hr class="my-3">`);
-      const composerBadge = `
-        <span class="badge text-bg-light badge-chip">
-          <i class="bi bi-person-lines-fill me-1" aria-hidden="true"></i>${escapeHtml(item.composer)}
-        </span>`;
-      const numBadge = `<span class="badge text-bg-dark badge-chip mono">#${String(idx + 1).padStart(2, "0")}</span>`;
-      const rehearsalBadge = isRehearsal ?
-        `<span class="badge rehearsal-badge badge-chip"><i class="bi bi-star-fill me-1" aria-hidden="true"></i>Ensaio</span>` :
-        "";
-
-      return `
-        <li class="col-12 col-md-6">
-          <article class="card soft-shadow h-100 ${isRehearsal ? "is-rehearsal" : ""}" data-song-id="${escapeAttr(item.id)}">
-            <header class="card-header py-3 px-3 px-lg-4">
-              <div class="d-flex align-items-start justify-content-between gap-3">
-                <div>
-                  <h2 class="h6 fw-bold mb-1">${escapeHtml(item.title)}</h2>
-                  <div class="d-flex flex-wrap gap-2">
-                    ${composerBadge}
-                    ${rehearsalBadge}
-                  </div>
-                </div>
-                <div class="d-flex align-items-center gap-2">${numBadge}</div>
-              </div>
-            </header>
-
-            <div class="card-body px-3 px-lg-4 py-3">
-              <section aria-label="Instrumentação">
-                ${partsHtml}
-              </section>
-            </div>
-          </article>
-        </li>
-      `;
-    }
-
-    // ===== Ensaio: resolve automaticamente pelo "hoje" do navegador =====
-    function getTodayISO() {
-      const d = new Date();
-      const y = d.getFullYear();
-      const m = String(d.getMonth() + 1).padStart(2, "0");
-      const day = String(d.getDate()).padStart(2, "0");
-      return `${y}-${m}-${day}`;
-    }
-
-    function formatBRDate(isoDate) {
-      const [y, m, d] = isoDate.split("-").map(Number);
-      const dt = new Date(y, m - 1, d);
-      return new Intl.DateTimeFormat("pt-BR", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric"
-      }).format(dt);
-    }
-
-    function miniPdf(pdfUrl, label) {
-      const url = pdfUrl ? escapeAttr(pdfUrl) : null;
-
-      return `
-        <div class="btn-group btn-group-sm mini-pdf" role="group" aria-label="PDF ${escapeAttr(label)}">
-          <span class="btn btn-outline-secondary disabled" aria-hidden="true">${escapeHtml(label)}</span>
-          ${url ? `
-            <a class="btn btn-outline-secondary" href="${url}" target="_blank" rel="noopener" title="Abrir PDF">
-              <i class="bi bi-file-earmark-pdf" aria-hidden="true"></i>
-            </a>
-            <a class="btn btn-outline-secondary" href="${url}" download title="Baixar PDF">
-              <i class="bi bi-download" aria-hidden="true"></i>
-            </a>
-          ` : `
-            <button class="btn btn-outline-secondary" disabled title="PDF não informado">
-              <i class="bi bi-file-earmark-pdf" aria-hidden="true"></i>
-            </button>
-            <button class="btn btn-outline-secondary" disabled title="PDF não informado">
-              <i class="bi bi-download" aria-hidden="true"></i>
-            </button>
-          `}
-        </div>
-      `;
-    }
-
-    // ====== DINÂMICO (hoje / próximo / último) ======
-    const MS_DAY = 24 * 60 * 60 * 1000;
-
-    function parseISODateToLocal(isoDate) {
-      const [y, m, d] = isoDate.split("-").map(Number);
-      return new Date(y, m - 1, d);
-    }
-
-    function startOfDay(dt) {
-      return new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
-    }
-
-    function diffDays(a, b) {
-      const A = startOfDay(a).getTime();
-      const B = startOfDay(b).getTime();
-      return Math.round((B - A) / MS_DAY);
-    }
-
-    function humanDays(n) {
-      const abs = Math.abs(n);
-      return abs === 1 ? "1 dia" : `${abs} dias`;
-    }
-
-    function getRehearsalContext(todayISO) {
-      const today = parseISODateToLocal(todayISO);
-
-      const list = rehearsals
-        .map(r => ({ ...r, _dt: parseISODateToLocal(r.date) }))
-        .sort((a, b) => a._dt - b._dt);
-
-      if (!list.length) {
+      function createParticle(initial = false) {
         return {
-          hasAny: false,
-          today: null,
-          prev: null,
-          next: null,
-          focus: null,
-          title: "Nenhum ensaio cadastrado",
-          meta: "Cadastre datas no array rehearsals[] para ativar o card automaticamente."
+          x: Math.random() * W,
+          y: initial ? Math.random() * H : H + 40,
+          size: 12 + Math.random() * 20,
+          speed: .18 + Math.random() * .8,
+          drift: (Math.random() - .5) * .45,
+          opacity: .06 + Math.random() * .26,
+          rotation: Math.random() * Math.PI * 2,
+          rotationSpeed: (Math.random() - .5) * .01,
+          color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          symbol: SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)],
+          blur: 8 + Math.random() * 10
         };
       }
 
-      const todayReh = list.find(r => r.date === todayISO) || null;
-
-      let prev = null, next = null;
-      for (const r of list) {
-        if (r._dt < today) prev = r;
-        if (!next && r._dt > today) next = r;
+      function seed() {
+        particles = [];
+        const total = Math.max(58, Math.floor(W / 22));
+        for (let i = 0; i < total; i++) particles.push(createParticle(true));
       }
 
-      const focus = todayReh || next || prev;
-
-      let title = "Ensaio";
-      if (todayReh) {
-        title = "Ensaio de hoje";
-      } else if (next) {
-        title = `Próximo ensaio em ${humanDays(diffDays(today, next._dt))}`;
-      } else {
-        title = `Último ensaio foi há ${humanDays(diffDays(prev._dt, today))}`;
+      function drawParticle(p) {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.globalAlpha = p.opacity;
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = p.blur;
+        ctx.font = `700 ${p.size}px serif`;
+        ctx.fillText(p.symbol, 0, 0);
+        ctx.restore();
       }
 
-      let metaParts = [];
-      if (prev) metaParts.push(`Último: ${formatBRDate(prev.date)} (há ${humanDays(diffDays(prev._dt, today))})`);
-      if (next) metaParts.push(`Próximo: ${formatBRDate(next.date)} (em ${humanDays(diffDays(today, next._dt))})`);
+      function tick() {
+        ctx.clearRect(0, 0, W, H);
+        if (particles.length < 90 && Math.random() < .16) particles.push(createParticle(false));
+        particles = particles.filter(p => p.y > -120 && p.x > -140 && p.x < W + 140);
+        particles.forEach(p => {
+          p.y -= p.speed;
+          p.x += p.drift;
+          p.rotation += p.rotationSpeed;
+          drawParticle(p);
+        });
+        requestAnimationFrame(tick);
+      }
 
+      resize();
+      seed();
+      tick();
+      window.addEventListener('resize', () => { resize(); seed(); });
+    })();
+
+    /* ── HELPERS ── */
+    const musicasById = Object.fromEntries(MUSICAS.map(item => [item.id, item]));
+    const FILTER_ENSAIO = '__ensaio__';
+    let activeComp = '';
+
+    function sortByDateAsc(lista) {
+      return [...lista].sort((a, b) => new Date(a.dataHora) - new Date(b.dataHora));
+    }
+
+    function getNextScheduledItem(lista) {
+      const now = new Date();
+      const ordered = sortByDateAsc(lista);
+      const upcoming = ordered.find(item => new Date(item.dataHora).getTime() >= now.getTime());
+      return upcoming || ordered[ordered.length - 1] || null;
+    }
+
+    function getStatusLabel(lista, item) {
+      if (!item) return 'Sem agenda cadastrada';
+      const now = new Date();
+      return new Date(item.dataHora).getTime() >= now.getTime()
+        ? item.titulo
+        : `${item.titulo} cadastrado`;
+    }
+
+    function formatDateCard(dateIso) {
+      const date = new Date(dateIso);
       return {
-        hasAny: true,
-        today: todayReh,
-        prev,
-        next,
-        focus,
-        title,
-        meta: metaParts.join(" • ")
+        diaMes: new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit' }).format(date),
+        diaSemana: new Intl.DateTimeFormat('pt-BR', { weekday: 'long' }).format(date).replace(/^./, c => c.toUpperCase()),
+        horario: new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' }).format(date)
       };
     }
 
-    function renderRehearsal(todayISO, ctx, indexById) {
-      const r = ctx.focus;
+    function formatCountdown(targetIso) {
+      const now = new Date();
+      const target = new Date(targetIso);
+      const diff = target.getTime() - now.getTime();
 
-      const dateBR = r ? formatBRDate(r.date) : "";
-      const time = r?.time ? ` • ${escapeHtml(r.time)}h` : "";
-      const metaLine = ctx.meta ? `<div class="text-body-secondary small mt-1">${escapeHtml(ctx.meta)}</div>` : "";
+      if (diff <= 0) {
+        return { value: 'Encerrado', sub: 'Prazo concluído' };
+      }
 
-      const songsResolved = (r?.songs || [])
-        .map(id => indexById.get(id))
-        .filter(Boolean);
+      const oneDay = 24 * 60 * 60 * 1000;
+      if (diff > oneDay) {
+        const days = Math.floor(diff / oneDay);
+        return {
+          value: `${days} ${days === 1 ? 'dia' : 'dias'}`,
+          /* sub: 'Contagem regressiva em dias' */
+        };
+      }
 
-      const itemsHtml = songsResolved.map(song => {
-        const f1 = song.parts.find(p => p.label.toLowerCase().includes("1"));
-        const f2 = song.parts.find(p => p.label.toLowerCase().includes("2"));
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      const pad = (n) => String(n).padStart(2, '0');
 
-        return `
-          <div class="item">
-            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
-              <div>
-                <div class="fw-bold">${escapeHtml(song.title)}</div>
-                <div class="text-body-secondary small">${escapeHtml(song.composer)}</div>
-              </div>
+      return {
+        value: `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`,
+        /* sub: 'Últimas 24 horas' */
+      };
+    }
 
-              <div class="d-flex flex-wrap gap-2">
-                ${miniPdf(f1?.pdf, "Flauta 1")}
-                ${miniPdf(f2?.pdf, "Flauta 2")}
-              </div>
+    function buildPdfHref(fileName) {
+      if (!fileName) return '#';
+      return encodeURI(`${CONFIG.pastaPdf}/${fileName}`);
+    }
+
+    function getRepertorioByIds(ids = []) {
+      return ids.map(id => musicasById[id]).filter(Boolean);
+    }
+
+    function groupByComposer(lista) {
+      const groups = new Map();
+      lista.forEach(item => {
+        if (!groups.has(item.compositor)) groups.set(item.compositor, []);
+        groups.get(item.compositor).push(item);
+      });
+      return Array.from(groups.entries()).map(([compositor, items]) => ({ compositor, items }));
+    }
+
+    function getNextEnsaio() {
+      return getNextScheduledItem(ENSAIOS);
+    }
+
+    function getNextEnsaioIdsSet() {
+      const ensaio = getNextEnsaio();
+      return new Set(ensaio?.repertorio || []);
+    }
+
+    function isMusicaNoProximoEnsaio(musicId) {
+      return getNextEnsaioIdsSet().has(musicId);
+    }
+
+    function getActiveFilterLabel() {
+      if (activeComp === FILTER_ENSAIO) return 'Filtro: Ensaio';
+      return activeComp || 'Todos os compositores';
+    }
+
+    /* ── EVENT CARD ── */
+    function renderAgendaCard() {
+      const ensaio = getNextScheduledItem(ENSAIOS);
+      const apresentacao = getNextScheduledItem(APRESENTACOES);
+      const el = document.getElementById('ensaioCard');
+
+      if (!ensaio && !apresentacao) {
+        el.innerHTML = '<div class="p-4">Nenhuma agenda cadastrada.</div>';
+        return;
+      }
+
+      const ensaioInfo = ensaio ? formatDateCard(ensaio.dataHora) : null;
+      const apresentacaoInfo = apresentacao ? formatDateCard(apresentacao.dataHora) : null;
+      const repertorioEnsaio = ensaio ? getRepertorioByIds(ensaio.repertorio) : [];
+
+      const songs = repertorioEnsaio.length
+        ? repertorioEnsaio.map((m, i) => `
+            <div class="rc-song">
+              <span class="rc-song-num">${String(i + 1).padStart(2, '0')}.</span>
+              <span>
+                <span class="rc-song-name">${m.titulo}</span>
+                ${m.sub ? `<span class="rc-song-comp"> ${m.sub}</span>` : ''}
+                <span class="rc-song-comp"> · ${m.compositor}</span>
+              </span>
+            </div>
+          `).join('')
+        : '<div class="rc-song"><span class="rc-song-name">Sem repertório cadastrado.</span></div>';
+
+      el.innerHTML = `
+        <div class="row g-0">
+          <div class="col-12 col-lg-4 rc-left">
+            <div class="rc-badge">
+              <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>${getStatusLabel(ENSAIOS, ensaio)}
+            </div>
+
+            <div class="rc-date">${ensaioInfo ? ensaioInfo.diaMes : '--/--'}</div>
+            <div class="rc-weekday">
+              <i class="fa-solid fa-calendar-days me-1" aria-hidden="true"></i>${ensaioInfo ? ensaioInfo.diaSemana : 'Sem data'}
+            </div>
+
+            <div class="rc-meta mt-3">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+              <div><strong>${ensaio?.local || '-'}</strong></div>
+            </div>
+
+            <div class="rc-meta">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              <div><strong>${ensaioInfo ? `${ensaioInfo.horario} horas` : '-'}</strong></div>
+            </div>
+
+            <div class="rc-countdown is-gold">
+              <div class="rc-countdown-label">Contagem regressiva</div>
+              <div class="rc-countdown-value" id="ensaioCountdownValue" aria-live="polite">--</div>
+              <div class="rc-countdown-sub" id="ensaioCountdownSub">Carregando...</div>
             </div>
           </div>
-        `;
-      }).join("");
 
-      rehearsalSection.innerHTML = `
-        <div class="rehearsal-card soft-shadow p-3 p-lg-4">
-          <div class="d-flex flex-column flex-md-row gap-2 align-items-md-center justify-content-between">
-            <div class="title">
-              <i class="bi bi-calendar2-check text-primary" aria-hidden="true"></i>
-              <span>${escapeHtml(ctx.title)}</span>
-              ${r ? `<span class="badge rehearsal-badge badge-chip ms-1">${dateBR}${time}</span>` : ``}
+          <div class="col-12 col-lg-8 rc-right">
+            <div class="rc-right-wrap">
+              <div class="rc-pane rc-program-pane">
+                <div class="rc-list-head">
+                  <span><i class="fa-solid fa-list-ul me-1" aria-hidden="true"></i>Repertório do ensaio</span>
+                  <span class="rc-program-note">${repertorioEnsaio.length} item(ns)</span>
+                </div>
+                ${songs}
+              </div>
+
+              <div class="rc-pane rc-present-pane">
+                <div class="rc-badge is-jade">
+                  <i class="fa-solid fa-ticket-simple" aria-hidden="true"></i>${getStatusLabel(APRESENTACOES, apresentacao)}
+                </div>
+
+                <div class="rc-date">${apresentacaoInfo ? apresentacaoInfo.diaMes : '--/--'}</div>
+                <div class="rc-weekday">
+                  <i class="fa-solid fa-calendar-days me-1" aria-hidden="true"></i>${apresentacaoInfo ? apresentacaoInfo.diaSemana : 'Sem data'}
+                </div>
+
+                <div class="rc-meta mt-3">
+                  <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                  <div><strong>${apresentacao?.local || '-'}</strong></div>
+                </div>
+
+                <div class="rc-meta">
+                  <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                  <div><strong>${apresentacaoInfo ? `${apresentacaoInfo.horario} horas` : '-'}</strong></div>
+                </div>
+
+                <div class="rc-countdown is-jade">
+                  <div class="rc-countdown-label">Contagem regressiva</div>
+                  <div class="rc-countdown-value" id="apresentacaoCountdownValue" aria-live="polite">--</div>
+                  <div class="rc-countdown-sub" id="apresentacaoCountdownSub">Carregando...</div>
+                </div>
+              </div>
             </div>
-
-            <div class="text-body-secondary small">
-              PDFs prontos para abrir/baixar
-            </div>
-          </div>
-
-          ${metaLine}
-
-          <div class="rehearsal-list mt-2">
-            ${
-              r
-                ? (itemsHtml || `<div class="text-body-secondary small mt-2">Nenhuma música configurada para este ensaio.</div>`)
-                : `<div class="text-body-secondary small mt-2">Sem ensaio para mostrar.</div>`
-            }
           </div>
         </div>
       `;
+
+      updateCountdowns();
     }
 
-    function render() {
-      const todayISO = getTodayISO();
+    function updateCountdowns() {
+      const ensaio = getNextScheduledItem(ENSAIOS);
+      const apresentacao = getNextScheduledItem(APRESENTACOES);
 
-      // index por id
-      const indexById = new Map(data.map(x => [x.id, x]));
+      const ensaioCountdown = ensaio ? formatCountdown(ensaio.dataHora) : { value: '--', sub: 'Sem agenda' };
+      const apresentacaoCountdown = apresentacao ? formatCountdown(apresentacao.dataHora) : { value: '--', sub: 'Sem agenda' };
 
-      // contexto (hoje / próximo / último)
-      const ctx = getRehearsalContext(todayISO);
+      const ensaioValue = document.getElementById('ensaioCountdownValue');
+      const ensaioSub = document.getElementById('ensaioCountdownSub');
+      const apresentacaoValue = document.getElementById('apresentacaoCountdownValue');
+      const apresentacaoSub = document.getElementById('apresentacaoCountdownSub');
 
-      // ensaio “em foco” (hoje > próximo > último)
-      const focus = ctx.focus;
+      if (ensaioValue) ensaioValue.textContent = ensaioCountdown.value;
+      if (ensaioSub) ensaioSub.textContent = ensaioCountdown.sub;
+      if (apresentacaoValue) apresentacaoValue.textContent = apresentacaoCountdown.value;
+      if (apresentacaoSub) apresentacaoSub.textContent = apresentacaoCountdown.sub;
+    }
 
-      // set para pin + badge "Ensaio"
-      const rehearsalSet = new Set(focus ? focus.songs : []);
+    /* ── FILTER CHIPS ── */
+    function buildChips() {
+      const wrap = document.getElementById('composerChips');
+      wrap.innerHTML = '';
 
-      // seção do ensaio (dinâmica)
-      renderRehearsal(todayISO, ctx, indexById);
+      const composers = [...new Set(MUSICAS.map(m => m.compositor))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+      const items = [['', 'Todos'], [FILTER_ENSAIO, 'Ensaio'], ...composers.map(c => [c, c])];
 
-      // ordenação: músicas do ensaio em foco primeiro (se habilitado)
-      const list = [...data];
-      if (PIN_REHEARSAL_TO_TOP && focus) {
-        list.sort((a, b) => {
-          const ar = rehearsalSet.has(a.id) ? 0 : 1;
-          const br = rehearsalSet.has(b.id) ? 0 : 1;
-          if (ar !== br) return ar - br;
-          return a.title.localeCompare(b.title);
+      items.forEach(([value, label]) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'c-chip' + (value === activeComp ? ' active' : '');
+        btn.dataset.c = value;
+        btn.textContent = label;
+
+        btn.addEventListener('click', () => {
+          activeComp = value;
+          document.querySelectorAll('.c-chip').forEach(chip => {
+            chip.classList.toggle('active', chip.dataset.c === value);
+          });
+          applyFilters();
         });
-      }
 
-      grid.innerHTML = list
-        .map((item, idx) => cardHtml(item, idx, rehearsalSet.has(item.id)))
-        .join("");
-
-      visibleCount.textContent = list.length;
-      totalCount.textContent = data.length;
+        wrap.appendChild(btn);
+      });
     }
 
-    function toPlainText() {
-      return data.map(item => {
-        const lines = [];
-        lines.push(`Musica: ${item.title} • ${item.composer}`);
-        item.parts.forEach(p => lines.push(`${p.label} • ${p.players.join(" • ")}`));
-        lines.push("=".repeat(66));
-        return lines.join("\n");
-      }).join("\n");
+    /* ── MUSIC CARDS ── */
+    function renderCards(lista) {
+      const grid = document.getElementById('musicGrid');
+      const lbl = document.getElementById('resultsLabel');
+      grid.innerHTML = '';
+
+      const composerLabel = getActiveFilterLabel();
+      lbl.innerHTML = `<b>${lista.length}</b> música(s) · <b>${composerLabel}</b>`;
+
+      if (!lista.length) {
+        grid.innerHTML = `
+          <div class="no-results">
+            <i class="fa-solid fa-music" aria-hidden="true"></i>
+            <p>Nenhuma música encontrada.</p>
+            <small>Tente outro termo ou remova o filtro.</small>
+          </div>
+        `;
+        return;
+      }
+
+      const groups = groupByComposer(lista);
+
+      groups.forEach((group, groupIndex) => {
+        const palette = CMAP[group.compositor] || { stripe: 'jw', badge: 'bjw', dot: '#f0c96c' };
+        const block = document.createElement('section');
+        block.className = 'composer-block';
+        const proximoEnsaioInfo = formatDateCard(getNextEnsaio()?.dataHora || new Date().toISOString());
+
+        const cards = [...group.items]
+          .sort((a, b) => Number(isMusicaNoProximoEnsaio(b.id)) - Number(isMusicaNoProximoEnsaio(a.id)) || a.titulo.localeCompare(b.titulo, 'pt-BR'))
+          .map((m, i) => {
+          const sub = m.sub ? `<div class="mc-subtitle">${m.sub}</div>` : '';
+          const chips1 = m.flauta1.map(p => `<div class="pchip"><i class="fa-solid fa-user" aria-hidden="true"></i>${p}</div>`).join('');
+          const chips2 = m.flauta2.map(p => `<div class="pchip"><i class="fa-solid fa-user" aria-hidden="true"></i>${p}</div>`).join('');
+          const delay = ((groupIndex * 3) + (i % 6)) * .04;
+          const isEnsaio = isMusicaNoProximoEnsaio(m.id);
+          const ensaioBadge = isEnsaio
+            ? `<span class="mc-badge-ensaio"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Ensaio ${proximoEnsaioInfo.diaMes}</span>`
+            : '';
+
+          const pdf1 = buildPdfHref(m.pdfs?.flauta1);
+          const pdf2 = buildPdfHref(m.pdfs?.flauta2);
+          const btn1Disabled = m.pdfs?.flauta1 ? '' : ' is-disabled';
+          const btn1A11y = m.pdfs?.flauta1 ? '' : ' aria-disabled="true" tabindex="-1"';
+          const btn2Disabled = m.pdfs?.flauta2 ? '' : ' is-disabled';
+          const btn2A11y = m.pdfs?.flauta2 ? '' : ' aria-disabled="true" tabindex="-1"';
+
+          return `
+            <div class="mc${isEnsaio ? ' mc-is-ensaio' : ''}" style="--card-accent:${palette.accent};--card-accent-rgb:${palette.accentRgb};animation-delay:${delay}s">
+              <div class="mc-stripe ${palette.stripe}"></div>
+
+              <div class="mc-header">
+                <div class="mc-track">${m.id.toUpperCase().replaceAll('-', ' ')}</div>
+                <div class="mc-title"><i class="fa-solid fa-music me-3" aria-hidden="true"></i>${m.titulo}</div>
+                ${sub}
+                <span class="mc-badge ${palette.badge}">
+                  <i class="fa-solid fa-user" style="font-size:.65rem;" aria-hidden="true"></i>${m.compositor}
+                </span>
+                ${ensaioBadge}
+              </div>
+
+              <div class="mc-body">
+                <div class="naipe-col">
+                  <div class="naipe-head f1">
+                    <i class="fa-solid fa-music" aria-hidden="true"></i>I Flauta
+                  </div>
+
+                  <div class="chips-wrap">${chips1}</div>
+
+                  <a href="${pdf1}" target="_blank" rel="noopener noreferrer" class="col-btn col-btn-f1${btn1Disabled}" aria-label="Abrir PDF da I Flauta de ${m.titulo}"${btn1A11y}>
+                    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                    <span>Visualizar PDF</span>
+                  </a>
+                </div>
+
+                <div class="naipe-col">
+                  <div class="naipe-head f2">
+                    <i class="fa-solid fa-music" aria-hidden="true"></i>II Flauta
+                  </div>
+
+                  <div class="chips-wrap">${chips2}</div>
+
+                  <a href="${pdf2}" target="_blank" rel="noopener noreferrer" class="col-btn col-btn-f2${btn2Disabled}" aria-label="Abrir PDF da II Flauta de ${m.titulo}"${btn2A11y}>
+                    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                    <span>Visualizar PDF</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        block.innerHTML = `
+          <div class="composer-head">
+            <span class="composer-head-dot" style="background:${palette.dot}; color:${palette.dot};"></span>
+            <h3 class="composer-head-title">${group.compositor}</h3>
+            <div class="composer-head-count">${group.items.length} música(s)</div>
+          </div>
+          <div class="composer-grid">${cards}</div>
+        `;
+
+        grid.appendChild(block);
+      });
     }
 
-    copyBtn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(toPlainText());
-        copyBtn.classList.remove("btn-primary");
-        copyBtn.classList.add("btn-success");
-        copyBtn.innerHTML = `<i class="bi bi-check2-circle me-1" aria-hidden="true"></i> Copiado!`;
-        setTimeout(() => {
-          copyBtn.classList.remove("btn-success");
-          copyBtn.classList.add("btn-primary");
-          copyBtn.innerHTML = `<i class="bi bi-clipboard-check me-1" aria-hidden="true"></i> Copiar`;
-        }, 1200);
-      } catch (e) {
-        alert("Não consegui copiar automaticamente. (Permissão do navegador)");
-      }
-    });
+    /* ── FILTERS ── */
+    function applyFilters() {
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
 
-    render();
+      const filtered = MUSICAS.filter(m => {
+        const hay = `${m.titulo} ${m.compositor} ${m.sub || ''} ${m.flauta1.join(' ')} ${m.flauta2.join(' ')}`.toLowerCase();
+        const matchesText = !q || hay.includes(q);
+        const matchesComposer = !activeComp || activeComp === FILTER_ENSAIO || m.compositor === activeComp;
+        const matchesEnsaio = activeComp !== FILTER_ENSAIO || isMusicaNoProximoEnsaio(m.id);
+
+        return matchesText && matchesComposer && matchesEnsaio;
+      }).sort((a, b) => {
+        const ensaioDiff = Number(isMusicaNoProximoEnsaio(b.id)) - Number(isMusicaNoProximoEnsaio(a.id));
+        if (ensaioDiff) return ensaioDiff;
+        if (a.compositor !== b.compositor) return a.compositor.localeCompare(b.compositor, 'pt-BR');
+        return a.titulo.localeCompare(b.titulo, 'pt-BR');
+      });
+
+      renderCards(filtered);
+    }
+
+    /* ── INIT ── */
+    renderAgendaCard();
+    buildChips();
+    applyFilters();
+    updateCountdowns();
+    setInterval(updateCountdowns, 1000);
+    document.getElementById('searchInput').addEventListener('input', applyFilters);
   </script>
 </body>
 
 </html>
-
-
-
