@@ -7,8 +7,10 @@
   <title>Escalação · Naipe de Flautas · OSCG</title>
   <meta name="description"
     content="Escalação, agenda de ensaios e repertório do Naipe de Flautas da Orquestra Sinfônica Camargo Guarnieri." />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" rel="stylesheet" />
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
@@ -112,30 +114,20 @@
       }
     }
 
-    #bgCanvas {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-      opacity: .96;
-      mix-blend-mode: screen;
-      filter: drop-shadow(0 0 14px rgba(212, 164, 58, .18));
-    }
-
     .grain {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      opacity: .05;
+      opacity: .04;
+      will-change: transform;
+      transform: translateZ(0);
       background-image:
         radial-gradient(circle at 20% 20%, rgba(255, 255, 255, .6) 0 1px, transparent 1px),
         radial-gradient(circle at 80% 40%, rgba(255, 255, 255, .5) 0 1px, transparent 1px),
         radial-gradient(circle at 40% 80%, rgba(255, 255, 255, .4) 0 1px, transparent 1px);
       background-size: 140px 140px, 180px 180px, 220px 220px;
-      animation: grainShift 14s linear infinite;
+      animation: grainShift 32s linear infinite;
     }
 
     @keyframes grainShift {
@@ -1172,6 +1164,39 @@
       color: var(--gold)
     }
 
+
+
+    .col-btn .fa-file-pdf {
+      width: 1.15em;
+      text-align: center;
+      font-size: 1.08rem;
+      line-height: 1;
+      font-family: "Font Awesome 7 Free";
+      font-weight: 400;
+      font-display: block;
+    }
+
+    .composer-block {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 620px;
+    }
+
+    .mc,
+    .hero-ring,
+    .hero-aurora,
+    .nav-pill::before,
+    body::before,
+    body::after {
+      will-change: transform;
+      transform: translateZ(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
     @media (max-width: 991px) {
       .rc-left {
         border-right: none;
@@ -1234,7 +1259,6 @@
 </head>
 
 <body>
-  <canvas id="bgCanvas"></canvas>
   <div class="grain"></div>
   <header class="nav-wrap z1">
     <div class="container">
@@ -1337,7 +1361,7 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
   <script>
     /* ─────────────────────────────────────────────      
@@ -1349,6 +1373,7 @@
     const CONFIG = {
       pastaPdf: 'pdf',
       localEnsaioPadrao: 'Maple Bear',
+      localEnsaioEscola: 'Escola Camargo Guarnieri',
       localApresentacaoPadrao: 'Instituto Federal Goiano - IF'
     };
 
@@ -1488,7 +1513,6 @@
         }
       }
     ];
-
     const ENSAIOS = [
       {
         id: 'ensaio-2026-04-09',
@@ -1529,9 +1553,64 @@
         local: CONFIG.localEnsaioPadrao,
         repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
         /* repertorio: ['forrest-gump', 'gabriels-oboe', 'medley', 'jurassic-park', 'gladiator'] */
+      },
+      {
+        id: 'ensaio-2026-04-30',
+        titulo: 'Próximo Ensaio',
+        dataHora: '2026-04-30T19:30:00',
+        local: CONFIG.localEnsaioPadrao,
+        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+      },
+      {
+        id: 'ensaio-2026-05-07',
+        titulo: 'Próximo Ensaio',
+        dataHora: '2026-05-07T19:30:00',
+        local: CONFIG.localEnsaioPadrao,
+        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+      },
+      {
+        id: 'ensaio-2026-05-14',
+        titulo: 'Próximo Ensaio',
+        dataHora: '2026-05-14T19:30:00',
+        local: CONFIG.localEnsaioPadrao,
+        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+      },
+      {
+        id: 'ensaio-2026-05-21',
+        titulo: 'Próximo Ensaio',
+        dataHora: '2026-05-21T19:30:00',
+        local: CONFIG.localEnsaioPadrao,
+        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+      },
+      {
+        id: 'ensaio-2026-05-28',
+        titulo: 'Próximo Ensaio',
+        dataHora: '2026-05-28T19:30:00',
+        local: CONFIG.localEnsaioPadrao,
+        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+      },
+      {
+        id: 'ensaio-2026-06-04',
+        titulo: 'Próximo Ensaio',
+        dataHora: '2026-06-04T19:30:00',
+        local: CONFIG.localEnsaioPadrao,
+        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+      },
+      {
+        id: 'ensaio-2026-06-11',
+        titulo: 'Próximo Ensaio',
+        dataHora: '2026-06-11T19:30:00',
+        local: CONFIG.localEnsaioPadrao,
+        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+      },
+      {
+        id: 'ensaio-2026-06-18',
+        titulo: 'Próximo Ensaio',
+        dataHora: '2026-06-18T19:30:00',
+        local: CONFIG.localEnsaioPadrao,
+        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
       }
     ];
-
     const APRESENTACOES = [
       {
         id: 'apresentacao-2026-06-25',
@@ -1539,152 +1618,76 @@
         dataHora: '2026-06-25T19:30:00',
         local: CONFIG.localApresentacaoPadrao,
         /* repertorio: ['forrest-gump', 'gabriels-oboe', 'medley', 'interstellar', 'gladiator', 'jurassic-park'] */
-      },
-      {
-        id: 'apresentacao-2026-07-30',
-        titulo: 'Apresentação',
-        dataHora: '2026-07-30T19:30:00',
-        local: 'Auditório Principal',
-        /* repertorio: ['imperial-march', 'schindlers-list', 'cinema-paradiso', 'il-buono'] */
       }
     ];
-
-    /* ── BACKGROUND CANVAS ── */
-    (function () {
-      const canvas = document.getElementById('bgCanvas');
-      const ctx = canvas.getContext('2d');
-      let W, H;
-      let particles = [];
-
-      const SYMBOLS = ['♩', '♪', '♫', '♬', '𝄞'];
-      const COLORS = ['#d4a43a', '#f0c96c', '#34d9c3'];
-
-      function resize() {
-        W = canvas.width = window.innerWidth;
-        H = canvas.height = window.innerHeight;
-      }
-
-      function createParticle(initial = false) {
-        return {
-          x: Math.random() * W,
-          y: initial ? Math.random() * H : H + 40,
-          size: 12 + Math.random() * 20,
-          speed: .18 + Math.random() * .8,
-          drift: (Math.random() - .5) * .45,
-          opacity: .06 + Math.random() * .26,
-          rotation: Math.random() * Math.PI * 2,
-          rotationSpeed: (Math.random() - .5) * .01,
-          color: COLORS[Math.floor(Math.random() * COLORS.length)],
-          symbol: SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)],
-          blur: 8 + Math.random() * 10
-        };
-      }
-
-      function seed() {
-        particles = [];
-        const total = Math.max(58, Math.floor(W / 22));
-        for (let i = 0; i < total; i++) particles.push(createParticle(true));
-      }
-
-      function drawParticle(p) {
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rotation);
-        ctx.globalAlpha = p.opacity;
-        ctx.fillStyle = p.color;
-        ctx.shadowColor = p.color;
-        ctx.shadowBlur = p.blur;
-        ctx.font = `700 ${p.size}px serif`;
-        ctx.fillText(p.symbol, 0, 0);
-        ctx.restore();
-      }
-
-      function tick() {
-        ctx.clearRect(0, 0, W, H);
-        if (particles.length < 90 && Math.random() < .16) particles.push(createParticle(false));
-        particles = particles.filter(p => p.y > -120 && p.x > -140 && p.x < W + 140);
-        particles.forEach(p => {
-          p.y -= p.speed;
-          p.x += p.drift;
-          p.rotation += p.rotationSpeed;
-          drawParticle(p);
-        });
-        requestAnimationFrame(tick);
-      }
-
-      resize();
-      seed();
-      tick();
-      window.addEventListener('resize', () => { resize(); seed(); });
-    })();
-
-    /* ── HELPERS ── */
+    /* ── HELPERS E ÍNDICES ── */
     const musicasById = Object.fromEntries(MUSICAS.map(item => [item.id, item]));
     const FILTER_ENSAIO = '__ensaio__';
+    const DATE_COLLATOR = new Intl.Collator('pt-BR', { sensitivity: 'base' });
+    const dateCardFormatter = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit' });
+    const weekdayFormatter = new Intl.DateTimeFormat('pt-BR', { weekday: 'long' });
+    const timeFormatter = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' });
     let activeComp = '';
-
+    let cachedNextEnsaio = null;
+    let cachedNextApresentacao = null;
+    let cachedNextEnsaioIds = new Set();
+    let filterRaf = 0;
+    function normalizeText(value = '') {
+      return String(value)
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim();
+    }
+    const MUSIC_INDEX = MUSICAS.map(m => ({
+      ...m,
+      searchText: normalizeText(`${m.titulo} ${m.compositor} ${m.sub || ''} ${m.flauta1.join(' ')} ${m.flauta2.join(' ')}`)
+    }));
+    const ORDERED_ENSAIOS = sortByDateAsc(ENSAIOS);
+    const ORDERED_APRESENTACOES = sortByDateAsc(APRESENTACOES);
     function sortByDateAsc(lista) {
       return [...lista].sort((a, b) => new Date(a.dataHora) - new Date(b.dataHora));
     }
-
     function getNextScheduledItem(lista) {
-      const now = new Date();
-      const ordered = sortByDateAsc(lista);
-      const upcoming = ordered.find(item => new Date(item.dataHora).getTime() >= now.getTime());
-      return upcoming || ordered[ordered.length - 1] || null;
+      const now = Date.now();
+      const ordered = lista === ENSAIOS ? ORDERED_ENSAIOS : lista === APRESENTACOES ? ORDERED_APRESENTACOES : sortByDateAsc(lista);
+      return ordered.find(item => new Date(item.dataHora).getTime() >= now) || ordered.at(-1) || null;
     }
-
+    function refreshScheduleCache() {
+      cachedNextEnsaio = getNextScheduledItem(ENSAIOS);
+      cachedNextApresentacao = getNextScheduledItem(APRESENTACOES);
+      cachedNextEnsaioIds = new Set(cachedNextEnsaio?.repertorio || []);
+    }
     function getStatusLabel(lista, item) {
       if (!item) return 'Sem agenda cadastrada';
-      const now = new Date();
-      return new Date(item.dataHora).getTime() >= now.getTime()
-        ? item.titulo
-        : `${item.titulo} cadastrado`;
+      return new Date(item.dataHora).getTime() >= Date.now() ? item.titulo : `${item.titulo} cadastrado`;
     }
-
     function formatDateCard(dateIso) {
       const date = new Date(dateIso);
+      const diaSemana = weekdayFormatter.format(date);
       return {
-        diaMes: new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit' }).format(date),
-        diaSemana: new Intl.DateTimeFormat('pt-BR', { weekday: 'long' }).format(date).replace(/^./, c => c.toUpperCase()),
-        horario: new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' }).format(date)
+        diaMes: dateCardFormatter.format(date),
+        diaSemana: diaSemana.replace(/^./, c => c.toUpperCase()),
+        horario: timeFormatter.format(date)
       };
     }
-
     function formatCountdown(targetIso) {
-      const now = new Date();
-      const target = new Date(targetIso);
-      const diff = target.getTime() - now.getTime();
-
-      if (diff <= 0) {
-        return { value: 'Encerrado', sub: 'Prazo concluído' };
-      }
-
-      const oneDay = 24 * 60 * 60 * 1000;
+      const diff = new Date(targetIso).getTime() - Date.now();
+      if (diff <= 0) return { value: 'Encerrado', sub: 'Prazo concluído' };
+      const oneDay = 86400000;
       if (diff > oneDay) {
         const days = Math.floor(diff / oneDay);
-        return {
-          value: `${days} ${days === 1 ? 'dia' : 'dias'}`,
-          /* sub: 'Contagem regressiva em dias' */
-        };
+        return { value: `${days} ${days === 1 ? 'dia' : 'dias'}`, sub: 'Até o evento' };
       }
-
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      const pad = (n) => String(n).padStart(2, '0');
-
-      return {
-        value: `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`,
-        /* sub: 'Últimas 24 horas' */
-      };
+      const hours = Math.floor(diff / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+      const pad = n => String(n).padStart(2, '0');
+      return { value: `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`, sub: 'Últimas 24 horas' };
     }
-
     function buildPdfHref(fileName) {
-      if (!fileName) return '#';
-      return encodeURI(`${CONFIG.pastaPdf}/${fileName}`);
+      return fileName ? encodeURI(`${CONFIG.pastaPdf}/${fileName}`) : '#';
     }
-
     function getRepertorioByIds(ids = []) {
       return ids.map(id => musicasById[id]).filter(Boolean);
     }
@@ -1697,40 +1700,31 @@
       });
       return Array.from(groups.entries()).map(([compositor, items]) => ({ compositor, items }));
     }
-
     function getNextEnsaio() {
-      return getNextScheduledItem(ENSAIOS);
+      return cachedNextEnsaio;
     }
-
-    function getNextEnsaioIdsSet() {
-      const ensaio = getNextEnsaio();
-      return new Set(ensaio?.repertorio || []);
-    }
-
     function isMusicaNoProximoEnsaio(musicId) {
-      return getNextEnsaioIdsSet().has(musicId);
+      return cachedNextEnsaioIds.has(musicId);
     }
-
     function getActiveFilterLabel() {
-      if (activeComp === FILTER_ENSAIO) return 'Filtro: Ensaio';
-      return activeComp || 'Todos os compositores';
+      return activeComp === FILTER_ENSAIO ? 'Filtro: Ensaio' : activeComp || 'Todos os compositores';
     }
-
+    function scheduleFilters() {
+      cancelAnimationFrame(filterRaf);
+      filterRaf = requestAnimationFrame(applyFilters);
+    }
     /* ── EVENT CARD ── */
     function renderAgendaCard() {
-      const ensaio = getNextScheduledItem(ENSAIOS);
-      const apresentacao = getNextScheduledItem(APRESENTACOES);
+      const ensaio = cachedNextEnsaio;
+      const apresentacao = cachedNextApresentacao;
       const el = document.getElementById('ensaioCard');
-
       if (!ensaio && !apresentacao) {
         el.innerHTML = '<div class="p-4">Nenhuma agenda cadastrada.</div>';
         return;
       }
-
       const ensaioInfo = ensaio ? formatDateCard(ensaio.dataHora) : null;
       const apresentacaoInfo = apresentacao ? formatDateCard(apresentacao.dataHora) : null;
       const repertorioEnsaio = ensaio ? getRepertorioByIds(ensaio.repertorio) : [];
-
       const songs = repertorioEnsaio.length
         ? repertorioEnsaio.map((m, i) => `
             <div class="rc-song">
@@ -1743,36 +1737,30 @@
             </div>
           `).join('')
         : '<div class="rc-song"><span class="rc-song-name">Sem repertório cadastrado.</span></div>';
-
       el.innerHTML = `
         <div class="row g-0">
           <div class="col-12 col-lg-4 rc-left">
             <div class="rc-badge">
               <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>${getStatusLabel(ENSAIOS, ensaio)}
             </div>
-
             <div class="rc-date">${ensaioInfo ? ensaioInfo.diaMes : '--/--'}</div>
             <div class="rc-weekday">
               <i class="fa-solid fa-calendar-days me-1" aria-hidden="true"></i>${ensaioInfo ? ensaioInfo.diaSemana : 'Sem data'}
             </div>
-
             <div class="rc-meta mt-3">
               <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
               <div><strong>${ensaio?.local || '-'}</strong></div>
             </div>
-
             <div class="rc-meta">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
               <div><strong>${ensaioInfo ? `${ensaioInfo.horario} horas` : '-'}</strong></div>
             </div>
-
             <div class="rc-countdown is-gold">
               <div class="rc-countdown-label">Contagem regressiva</div>
               <div class="rc-countdown-value" id="ensaioCountdownValue" aria-live="polite">--</div>
               <div class="rc-countdown-sub" id="ensaioCountdownSub">Carregando...</div>
             </div>
           </div>
-
           <div class="col-12 col-lg-8 rc-right">
             <div class="rc-right-wrap">
               <div class="rc-pane rc-program-pane">
@@ -1782,27 +1770,22 @@
                 </div>
                 ${songs}
               </div>
-
               <div class="rc-pane rc-present-pane">
                 <div class="rc-badge is-jade">
                   <i class="fa-solid fa-ticket-simple" aria-hidden="true"></i>${getStatusLabel(APRESENTACOES, apresentacao)}
                 </div>
-
                 <div class="rc-date">${apresentacaoInfo ? apresentacaoInfo.diaMes : '--/--'}</div>
                 <div class="rc-weekday">
                   <i class="fa-solid fa-calendar-days me-1" aria-hidden="true"></i>${apresentacaoInfo ? apresentacaoInfo.diaSemana : 'Sem data'}
                 </div>
-
                 <div class="rc-meta mt-3">
                   <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
                   <div><strong>${apresentacao?.local || '-'}</strong></div>
                 </div>
-
                 <div class="rc-meta">
                   <i class="fa-solid fa-clock" aria-hidden="true"></i>
                   <div><strong>${apresentacaoInfo ? `${apresentacaoInfo.horario} horas` : '-'}</strong></div>
                 </div>
-
                 <div class="rc-countdown is-jade">
                   <div class="rc-countdown-label">Contagem regressiva</div>
                   <div class="rc-countdown-value" id="apresentacaoCountdownValue" aria-live="polite">--</div>
@@ -1813,64 +1796,51 @@
           </div>
         </div>
       `;
-
       updateCountdowns();
     }
-
     function updateCountdowns() {
-      const ensaio = getNextScheduledItem(ENSAIOS);
-      const apresentacao = getNextScheduledItem(APRESENTACOES);
-
+      const ensaio = cachedNextEnsaio;
+      const apresentacao = cachedNextApresentacao;
       const ensaioCountdown = ensaio ? formatCountdown(ensaio.dataHora) : { value: '--', sub: 'Sem agenda' };
       const apresentacaoCountdown = apresentacao ? formatCountdown(apresentacao.dataHora) : { value: '--', sub: 'Sem agenda' };
-
       const ensaioValue = document.getElementById('ensaioCountdownValue');
       const ensaioSub = document.getElementById('ensaioCountdownSub');
       const apresentacaoValue = document.getElementById('apresentacaoCountdownValue');
       const apresentacaoSub = document.getElementById('apresentacaoCountdownSub');
-
       if (ensaioValue) ensaioValue.textContent = ensaioCountdown.value;
       if (ensaioSub) ensaioSub.textContent = ensaioCountdown.sub;
       if (apresentacaoValue) apresentacaoValue.textContent = apresentacaoCountdown.value;
       if (apresentacaoSub) apresentacaoSub.textContent = apresentacaoCountdown.sub;
     }
-
     /* ── FILTER CHIPS ── */
     function buildChips() {
       const wrap = document.getElementById('composerChips');
       wrap.innerHTML = '';
-
       const composers = [...new Set(MUSICAS.map(m => m.compositor))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
       const items = [['', 'Todos'], [FILTER_ENSAIO, 'Ensaio'], ...composers.map(c => [c, c])];
-
       items.forEach(([value, label]) => {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'c-chip' + (value === activeComp ? ' active' : '');
         btn.dataset.c = value;
         btn.textContent = label;
-
         btn.addEventListener('click', () => {
           activeComp = value;
           document.querySelectorAll('.c-chip').forEach(chip => {
             chip.classList.toggle('active', chip.dataset.c === value);
           });
-          applyFilters();
+          scheduleFilters();
         });
-
         wrap.appendChild(btn);
       });
     }
-
     /* ── MUSIC CARDS ── */
     function renderCards(lista) {
       const grid = document.getElementById('musicGrid');
       const lbl = document.getElementById('resultsLabel');
       grid.innerHTML = '';
-
       const composerLabel = getActiveFilterLabel();
       lbl.innerHTML = `<b>${lista.length}</b> música(s) · <b>${composerLabel}</b>`;
-
       if (!lista.length) {
         grid.innerHTML = `
           <div class="no-results">
@@ -1881,15 +1851,12 @@
         `;
         return;
       }
-
       const groups = groupByComposer(lista);
-
       groups.forEach((group, groupIndex) => {
         const palette = CMAP[group.compositor] || { stripe: 'jw', badge: 'bjw', dot: '#f0c96c' };
         const block = document.createElement('section');
         block.className = 'composer-block';
         const proximoEnsaioInfo = formatDateCard(getNextEnsaio()?.dataHora || new Date().toISOString());
-
         const cards = [...group.items]
           .sort((a, b) => Number(isMusicaNoProximoEnsaio(b.id)) - Number(isMusicaNoProximoEnsaio(a.id)) || a.titulo.localeCompare(b.titulo, 'pt-BR'))
           .map((m, i) => {
@@ -1901,18 +1868,15 @@
           const ensaioBadge = isEnsaio
             ? `<span class="mc-badge-ensaio"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Ensaio ${proximoEnsaioInfo.diaMes}</span>`
             : '';
-
           const pdf1 = buildPdfHref(m.pdfs?.flauta1);
           const pdf2 = buildPdfHref(m.pdfs?.flauta2);
           const btn1Disabled = m.pdfs?.flauta1 ? '' : ' is-disabled';
           const btn1A11y = m.pdfs?.flauta1 ? '' : ' aria-disabled="true" tabindex="-1"';
           const btn2Disabled = m.pdfs?.flauta2 ? '' : ' is-disabled';
           const btn2A11y = m.pdfs?.flauta2 ? '' : ' aria-disabled="true" tabindex="-1"';
-
           return `
             <div class="mc${isEnsaio ? ' mc-is-ensaio' : ''}" style="--card-accent:${palette.accent};--card-accent-rgb:${palette.accentRgb};animation-delay:${delay}s">
               <div class="mc-stripe ${palette.stripe}"></div>
-
               <div class="mc-header">
                 <div class="mc-track">${m.id.toUpperCase().replaceAll('-', ' ')}</div>
                 <div class="mc-title"><i class="fa-solid fa-music me-3" aria-hidden="true"></i>${m.titulo}</div>
@@ -1922,30 +1886,24 @@
                 </span>
                 ${ensaioBadge}
               </div>
-
               <div class="mc-body">
                 <div class="naipe-col">
                   <div class="naipe-head f1">
                     <i class="fa-solid fa-music" aria-hidden="true"></i>I Flauta
                   </div>
-
                   <div class="chips-wrap">${chips1}</div>
-
                   <a href="${pdf1}" target="_blank" rel="noopener noreferrer" class="col-btn col-btn-f1${btn1Disabled}" aria-label="Abrir PDF da I Flauta de ${m.titulo}"${btn1A11y}>
-                    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                    <i class="fa-regular fa-file-pdf" aria-hidden="true"></i>
                     <span>Visualizar PDF</span>
                   </a>
                 </div>
-
                 <div class="naipe-col">
                   <div class="naipe-head f2">
                     <i class="fa-solid fa-music" aria-hidden="true"></i>II Flauta
                   </div>
-
                   <div class="chips-wrap">${chips2}</div>
-
                   <a href="${pdf2}" target="_blank" rel="noopener noreferrer" class="col-btn col-btn-f2${btn2Disabled}" aria-label="Abrir PDF da II Flauta de ${m.titulo}"${btn2A11y}>
-                    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                    <i class="fa-regular fa-file-pdf" aria-hidden="true"></i>
                     <span>Visualizar PDF</span>
                   </a>
                 </div>
@@ -1953,7 +1911,6 @@
             </div>
           `;
         }).join('');
-
         block.innerHTML = `
           <div class="composer-head">
             <span class="composer-head-dot" style="background:${palette.dot}; color:${palette.dot};"></span>
@@ -1962,40 +1919,42 @@
           </div>
           <div class="composer-grid">${cards}</div>
         `;
-
         grid.appendChild(block);
       });
     }
-
     /* ── FILTERS ── */
     function applyFilters() {
-      const q = document.getElementById('searchInput').value.trim().toLowerCase();
-
-      const filtered = MUSICAS.filter(m => {
-        const hay = `${m.titulo} ${m.compositor} ${m.sub || ''} ${m.flauta1.join(' ')} ${m.flauta2.join(' ')}`.toLowerCase();
-        const matchesText = !q || hay.includes(q);
+      const q = normalizeText(document.getElementById('searchInput').value);
+      const filtered = MUSIC_INDEX.filter(m => {
+        const matchesText = !q || m.searchText.includes(q);
         const matchesComposer = !activeComp || activeComp === FILTER_ENSAIO || m.compositor === activeComp;
         const matchesEnsaio = activeComp !== FILTER_ENSAIO || isMusicaNoProximoEnsaio(m.id);
-
         return matchesText && matchesComposer && matchesEnsaio;
       }).sort((a, b) => {
         const ensaioDiff = Number(isMusicaNoProximoEnsaio(b.id)) - Number(isMusicaNoProximoEnsaio(a.id));
         if (ensaioDiff) return ensaioDiff;
-        if (a.compositor !== b.compositor) return a.compositor.localeCompare(b.compositor, 'pt-BR');
-        return a.titulo.localeCompare(b.titulo, 'pt-BR');
+        if (a.compositor !== b.compositor) return DATE_COLLATOR.compare(a.compositor, b.compositor);
+        return DATE_COLLATOR.compare(a.titulo, b.titulo);
       });
-
       renderCards(filtered);
     }
-
     /* ── INIT ── */
+    const searchInput = document.getElementById('searchInput');
+    refreshScheduleCache();
     renderAgendaCard();
     buildChips();
     applyFilters();
     updateCountdowns();
-    setInterval(updateCountdowns, 1000);
-    document.getElementById('searchInput').addEventListener('input', applyFilters);
+    window.setInterval(updateCountdowns, 1000);
+    window.setInterval(() => {
+      const before = cachedNextEnsaio?.id;
+      refreshScheduleCache();
+      if (before !== cachedNextEnsaio?.id) {
+        renderAgendaCard();
+        scheduleFilters();
+      }
+    }, 60000);
+    searchInput.addEventListener('input', scheduleFilters, { passive: true });
   </script>
 </body>
-
 </html>
