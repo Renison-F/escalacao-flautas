@@ -2,1743 +2,2068 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Escalação · Naipe de Flautas · OSCG</title>
-  <meta name="description"
-    content="Escalação, agenda de ensaios e repertório do Naipe de Flautas da Orquestra Sinfônica Camargo Guarnieri." />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"
-    rel="stylesheet" />
-  <style>
-    :root {
-      --ink: #04070d;
-      --ink2: #08111d;
-      --surface: #0f1828;
-      --card: #131f31;
-      --card-2: #162538;
-      --gold: #d4a43a;
-      --gold2: #f0c96c;
-      --jade: #34d9c3;
-      --txt: #e3ebf8;
-      --txt2: #93a4bc;
-      --txt3: #6f8099;
-      --bdr: rgba(212, 164, 58, .16);
-      --bdr2: rgba(255, 255, 255, .07);
-      --shadow: 0 24px 70px rgba(0, 0, 0, .45);
-      --ease: cubic-bezier(.22, .61, .36, 1);
-      --radius: 22px;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escalação · Naipe de Flautas · OSCG</title>
+    <meta name="description"
+        content="Escalação, agenda de ensaios e repertório do Naipe de Flautas da Orquestra Sinfônica Camargo Guarnieri." />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --ink: #04070d;
+            --ink2: #08111d;
+            --surface: #0f1828;
+            --card: #131f31;
+            --card-2: #162538;
+            --gold: #d4a43a;
+            --gold2: #f0c96c;
+            --jade: #34d9c3;
+            --txt: #e3ebf8;
+            --txt2: #93a4bc;
+            --txt3: #6f8099;
+            --bdr: rgba(212, 164, 58, .16);
+            --bdr2: rgba(255, 255, 255, .07);
+            --shadow: 0 24px 70px rgba(0, 0, 0, .45);
+            --ease: cubic-bezier(.22, .61, .36, 1);
+            --radius: 22px;
+        }
 
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0
-    }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
 
-    html {
-      scroll-behavior: smooth
-    }
+        html {
+            scroll-behavior: smooth
+        }
 
-    body {
-      min-height: 100vh;
-      overflow-x: hidden;
-      color: var(--txt);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(212, 164, 58, .11) 0%, transparent 28%),
-        radial-gradient(circle at 88% 18%, rgba(52, 217, 195, .08) 0%, transparent 24%),
-        radial-gradient(circle at 50% 120%, rgba(44, 79, 136, .18) 0%, transparent 36%),
-        linear-gradient(180deg, #03050a 0%, #07101b 38%, #05080f 100%);
-      position: relative;
-      isolation: isolate;
-    }
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--txt);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(212, 164, 58, .11) 0%, transparent 28%),
+                radial-gradient(circle at 88% 18%, rgba(52, 217, 195, .08) 0%, transparent 24%),
+                radial-gradient(circle at 50% 120%, rgba(44, 79, 136, .18) 0%, transparent 36%),
+                linear-gradient(180deg, #03050a 0%, #07101b 38%, #05080f 100%);
+            position: relative;
+            isolation: isolate;
+        }
 
-    body::before,
-    body::after {
-      content: '';
-      position: fixed;
-      inset: auto;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 0;
-      filter: blur(22px);
-      opacity: .9;
-    }
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            inset: auto;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(22px);
+            opacity: .9;
+        }
 
-    body::before {
-      width: 42rem;
-      height: 42rem;
-      left: -12rem;
-      top: 6vh;
-      background: radial-gradient(circle, rgba(212, 164, 58, .18) 0%, rgba(212, 164, 58, .07) 34%, transparent 74%);
-      animation: ambientGold 18s ease-in-out infinite;
-    }
+        body::before {
+            width: 42rem;
+            height: 42rem;
+            left: -12rem;
+            top: 6vh;
+            background: radial-gradient(circle, rgba(212, 164, 58, .18) 0%, rgba(212, 164, 58, .07) 34%, transparent 74%);
+            animation: ambientGold 18s ease-in-out infinite;
+        }
 
-    body::after {
-      width: 34rem;
-      height: 34rem;
-      right: -9rem;
-      top: 44vh;
-      background: radial-gradient(circle, rgba(52, 217, 195, .15) 0%, rgba(52, 217, 195, .05) 34%, transparent 74%);
-      animation: ambientJade 22s ease-in-out infinite;
-    }
+        body::after {
+            width: 34rem;
+            height: 34rem;
+            right: -9rem;
+            top: 44vh;
+            background: radial-gradient(circle, rgba(52, 217, 195, .15) 0%, rgba(52, 217, 195, .05) 34%, transparent 74%);
+            animation: ambientJade 22s ease-in-out infinite;
+        }
 
-    @keyframes ambientGold {
+        @keyframes ambientGold {
 
-      0%,
-      100% {
-        transform: translate3d(0, 0, 0) scale(1)
-      }
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0) scale(1)
+            }
 
-      50% {
-        transform: translate3d(42px, 26px, 0) scale(1.09)
-      }
-    }
+            50% {
+                transform: translate3d(42px, 26px, 0) scale(1.09)
+            }
+        }
 
-    @keyframes ambientJade {
+        @keyframes ambientJade {
 
-      0%,
-      100% {
-        transform: translate3d(0, 0, 0) scale(1)
-      }
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0) scale(1)
+            }
 
-      50% {
-        transform: translate3d(-30px, -24px, 0) scale(1.11)
-      }
-    }
+            50% {
+                transform: translate3d(-30px, -24px, 0) scale(1.11)
+            }
+        }
 
-    .grain {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      opacity: .04;
-      will-change: transform;
-      transform: translateZ(0);
-      background-image:
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, .6) 0 1px, transparent 1px),
-        radial-gradient(circle at 80% 40%, rgba(255, 255, 255, .5) 0 1px, transparent 1px),
-        radial-gradient(circle at 40% 80%, rgba(255, 255, 255, .4) 0 1px, transparent 1px);
-      background-size: 140px 140px, 180px 180px, 220px 220px;
-      animation: grainShift 32s linear infinite;
-    }
+        .grain {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: .04;
+            will-change: transform;
+            transform: translateZ(0);
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, .6) 0 1px, transparent 1px),
+                radial-gradient(circle at 80% 40%, rgba(255, 255, 255, .5) 0 1px, transparent 1px),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, .4) 0 1px, transparent 1px);
+            background-size: 140px 140px, 180px 180px, 220px 220px;
+            animation: grainShift 32s linear infinite;
+        }
 
-    @keyframes grainShift {
-      from {
-        transform: translate3d(0, 0, 0)
-      }
+        @keyframes grainShift {
+            from {
+                transform: translate3d(0, 0, 0)
+            }
 
-      to {
-        transform: translate3d(-30px, 20px, 0)
-      }
-    }
+            to {
+                transform: translate3d(-30px, 20px, 0)
+            }
+        }
 
-    .z1 {
-      position: relative;
-      z-index: 1
-    }
+        .z1 {
+            position: relative;
+            z-index: 1
+        }
 
-    .glass {
-      background: linear-gradient(180deg, rgba(17, 29, 47, .74), rgba(10, 18, 30, .82));
-      border: 1px solid var(--bdr2);
-      backdrop-filter: blur(18px) saturate(150%);
-      -webkit-backdrop-filter: blur(18px) saturate(150%);
-    }
+        .glass {
+            background: linear-gradient(180deg, rgba(17, 29, 47, .74), rgba(10, 18, 30, .82));
+            border: 1px solid var(--bdr2);
+            backdrop-filter: blur(18px) saturate(150%);
+            -webkit-backdrop-filter: blur(18px) saturate(150%);
+        }
 
-    .nav-wrap {
-      position: sticky;
-      top: 0;
-      z-index: 240;
-      background: rgba(4, 7, 13, .72);
-      border-bottom: 1px solid rgba(212, 164, 58, .11);
-      backdrop-filter: blur(18px) saturate(170%);
-    }
+        .nav-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 240;
+            background: rgba(4, 7, 13, .72);
+            border-bottom: 1px solid rgba(212, 164, 58, .11);
+            backdrop-filter: blur(18px) saturate(170%);
+        }
 
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: .95rem 0;
-    }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: .95rem 0;
+        }
 
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: .9rem;
-    }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: .9rem;
+        }
 
-    .nav-logo-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      /* background:
+        .nav-logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* background:
         linear-gradient(135deg, rgba(240, 201, 108, .12), rgba(52, 217, 195, .08)),
         linear-gradient(180deg, #15253d, #0d1728); */
-      border: 2px solid rgba(212, 164, 58, .28);
-      box-shadow: 0 0 22px rgba(212, 164, 58, .10);
-      color: var(--gold2);
-      font-size: 1.15rem;
-      flex-shrink: 0;
-    }
-
-    .nav-logo-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(.84rem, 1.6vw, .98rem);
-      font-weight: 800;
-      color: var(--gold2);
-      line-height: 1.15;
-      letter-spacing: .01em;
-    }
-
-    .nav-logo-org {
-      font-size: .63rem;
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      color: var(--txt3);
-      margin-top: .18rem;
-    }
-
-    .nav-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: .45rem;
-      padding: .35rem .95rem;
-      border-radius: 999px;
-      border: 1px solid rgba(52, 217, 195, .24);
-      background: rgba(52, 217, 195, .08);
-      color: var(--jade);
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .nav-pill::before {
-      content: '';
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--jade);
-      box-shadow: 0 0 10px rgba(52, 217, 195, .55);
-      animation: pulseDot 2s ease-in-out infinite;
-    }
-
-    @keyframes pulseDot {
-
-      0%,
-      100% {
-        transform: scale(1);
-        opacity: 1
-      }
-
-      50% {
-        transform: scale(.72);
-        opacity: .42
-      }
-    }
-
-    .hero {
-      position: relative;
-      padding: 1rem 0 4.2rem;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255, 255, 255, .025) 0%, transparent 36%, rgba(255, 255, 255, .015) 100%);
-      pointer-events: none;
-    }
-
-    .hero-ring {
-      position: absolute;
-      left: 50%;
-      top: -340px;
-      transform: translateX(-50%);
-      width: 1040px;
-      height: 1040px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(212, 164, 58, .16) 0%, rgba(212, 164, 58, .07) 26%, transparent 66%);
-      filter: blur(8px);
-      pointer-events: none;
-      animation: heroRing 10s ease-in-out infinite;
-    }
-
-    .hero-ring::after {
-      content: '';
-      position: absolute;
-      inset: 18%;
-      border-radius: 50%;
-      border: 1px solid rgba(240, 201, 108, .08);
-      box-shadow: 0 0 40px rgba(212, 164, 58, .08) inset;
-    }
-
-    .hero-aurora {
-      position: absolute;
-      width: 520px;
-      height: 520px;
-      right: -90px;
-      bottom: -120px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(52, 217, 195, .14) 0%, rgba(52, 217, 195, .06) 30%, transparent 72%);
-      pointer-events: none;
-      animation: heroAurora 12s ease-in-out infinite;
-    }
-
-    @keyframes heroRing {
-
-      0%,
-      100% {
-        transform: translateX(-50%) scale(1);
-        opacity: .82
-      }
-
-      50% {
-        transform: translateX(-50%) scale(1.1);
-        opacity: 1
-      }
-    }
-
-    @keyframes heroAurora {
-
-      0%,
-      100% {
-        transform: translateY(0) scale(1)
-      }
-
-      50% {
-        transform: translateY(-16px) scale(1.08)
-      }
-    }
-
-    .hero-topline {
-      display: inline-flex;
-      align-items: center;
-      gap: .75rem;
-      font-size: .7rem;
-      font-weight: 800;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--jade);
-      margin-bottom: 1.15rem;
-    }
-
-    .hero-topline::before,
-    .hero-topline::after {
-      content: '';
-      display: block;
-      width: 38px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--jade));
-    }
-
-    .hero-topline::after {
-      background: linear-gradient(90deg, var(--jade), transparent);
-    }
-
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.35rem, 6vw, 4.9rem);
-      line-height: 1.02;
-      font-weight: 900;
-      letter-spacing: -.03em;
-      text-shadow: 0 0 28px rgba(212, 164, 58, .08);
-      margin-bottom: 1rem;
-    }
-
-    .hero-title .line1 {
-      background: linear-gradient(100deg, #f8deb0 0%, var(--gold2) 30%, var(--gold) 68%, #9d6915 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-title .line2 {
-      color: var(--txt);
-      font-style: italic;
-    }
-
-    .hero-sub {
-      max-width: 780px;
-      margin: 0 auto;
-      color: var(--txt2);
-      font-size: .98rem;
-      line-height: 1.75;
-    }
-
-    .hero-sep {
-      width: 78px;
-      height: 3px;
-      border: none;
-      border-radius: 999px;
-      margin: 2rem auto 0;
-      background: linear-gradient(90deg, var(--gold), var(--jade));
-      opacity: 1;
-      box-shadow: 0 0 20px rgba(212, 164, 58, .18);
-    }
-
-    .rehearsal-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 28px;
-      box-shadow: 0 26px 70px rgba(0, 0, 0, .42), 0 0 0 1px rgba(255, 255, 255, .02) inset;
-    }
-
-    .rehearsal-card::before {
-      content: '';
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold2) 38%, var(--jade) 62%, transparent);
-      z-index: 1;
-    }
-
-    .rehearsal-card::after {
-      content: '';
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      right: -70px;
-      top: -90px;
-      background: radial-gradient(circle, rgba(212, 164, 58, .08) 0%, transparent 72%);
-      pointer-events: none;
-    }
-
-    .rc-left,
-    .rc-right {
-      position: relative;
-      z-index: 1;
-      padding: 2.4rem 2.55rem;
-    }
-
-    .rc-left {
-      border-right: 1px solid var(--bdr2)
-    }
-
-    .rc-right {
-      padding: 0
-    }
-
-    .rc-right-wrap {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(290px, .85fr);
-      min-height: 100%;
-    }
-
-    .rc-pane {
-      position: relative;
-      z-index: 1;
-      padding: 2.4rem 2.3rem;
-      min-width: 0;
-    }
-
-    .rc-pane+.rc-pane {
-      border-left: 1px solid var(--bdr2)
-    }
-
-    .rc-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .45rem;
-      padding: .32rem .92rem;
-      border-radius: 999px;
-      background: rgba(212, 164, 58, .10);
-      border: 1px solid rgba(212, 164, 58, .24);
-      color: var(--gold2);
-      font-size: .66rem;
-      font-weight: 800;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      margin-bottom: 1.25rem;
-    }
-
-    .rc-badge.is-jade {
-      background: rgba(52, 217, 195, .08);
-      border-color: rgba(52, 217, 195, .22);
-      color: var(--jade);
-    }
-
-    .rc-date {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.9rem, 6vw, 4.2rem);
-      line-height: .95;
-      color: var(--gold2);
-      font-weight: 900;
-      letter-spacing: -.04em;
-      text-shadow: 0 0 20px rgba(212, 164, 58, .10);
-    }
-
-    .rc-present-pane .rc-date {
-      font-size: clamp(2.5rem, 4vw, 3.7rem)
-    }
-
-    .rc-weekday {
-      font-size: .95rem;
-      color: var(--jade);
-      font-weight: 700;
-      letter-spacing: .04em;
-      margin-top: .5rem;
-    }
-
-    .rc-meta {
-      display: flex;
-      align-items: flex-start;
-      gap: .72rem;
-      margin-top: .95rem;
-      color: var(--txt2);
-      font-size: .85rem;
-      line-height: 1.55;
-    }
-
-    .rc-meta i {
-      color: var(--gold);
-      margin-top: .14rem;
-      flex-shrink: 0
-    }
-
-    .rc-meta strong {
-      color: var(--txt);
-      font-weight: 600;
-      display: block
-    }
-
-    .rc-list-head {
-      padding-bottom: .78rem;
-      margin-bottom: .5rem;
-      border-bottom: 1px solid var(--bdr2);
-      font-size: .64rem;
-      font-weight: 800;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--jade);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .rc-program-note {
-      color: var(--txt3);
-      font-size: .72rem;
-      letter-spacing: normal;
-      text-transform: none;
-      font-weight: 600;
-    }
-
-    .rc-song {
-      display: flex;
-      align-items: baseline;
-      gap: .7rem;
-      padding: .48rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, .035);
-      font-size: .83rem;
-    }
-
-    .rc-song:last-child {
-      border-bottom: none
-    }
-
-    .rc-song-num {
-      min-width: 1.75rem;
-      font-family: 'DM Mono', monospace;
-      font-size: .67rem;
-      color: var(--gold);
-      flex-shrink: 0;
-    }
-
-    .rc-song-name {
-      color: var(--txt);
-      font-weight: 600
-    }
-
-    .rc-song-comp {
-      color: var(--txt2);
-      font-size: .77rem
-    }
-
-    .rc-countdown {
-      margin-top: 1.15rem;
-      padding: 1rem 1.05rem;
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
-      border: 1px solid rgba(255, 255, 255, .08);
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, .015) inset;
-    }
-
-    .rc-countdown.is-gold {
-      border-color: rgba(212, 164, 58, .18)
-    }
-
-    .rc-countdown.is-jade {
-      border-color: rgba(52, 217, 195, .18)
-    }
-
-    .rc-countdown-label {
-      font-size: .62rem;
-      font-weight: 800;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--txt3);
-    }
-
-    .rc-countdown-value {
-      margin-top: .45rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 1.08rem;
-      line-height: 1.1;
-    }
-
-    .rc-countdown.is-gold .rc-countdown-value {
-      color: var(--gold2)
-    }
-
-    .rc-countdown.is-jade .rc-countdown-value {
-      color: var(--jade)
-    }
-
-    .rc-countdown-sub {
-      margin-top: .32rem;
-      font-size: .74rem;
-      color: var(--txt2)
-    }
-
-    .search-zone {
-      position: relative;
-      z-index: 1;
-      padding: 1.25rem 0 1.1rem;
-      border-top: 1px solid rgba(255, 255, 255, .04);
-      border-bottom: 1px solid rgba(255, 255, 255, .05);
-      background: rgba(8, 14, 24, .68);
-      backdrop-filter: blur(18px) saturate(160%);
-    }
-
-    .search-shell {
-      border-radius: 20px;
-      padding: 1rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .18)
-    }
-
-    .search-field {
-      position: relative;
-      width: 100%
-    }
-
-    .search-field i {
-      position: absolute;
-      left: 1.08rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1rem;
-      color: var(--txt3);
-      pointer-events: none;
-    }
-
-    .search-field input {
-      width: 100%;
-      min-height: 58px;
-      border-radius: 16px;
-      padding: .9rem 1.1rem .9rem 3.1rem;
-      border: 1px solid rgba(212, 164, 58, .18);
-      background: linear-gradient(180deg, rgba(15, 24, 39, .92), rgba(11, 19, 32, .95));
-      color: var(--txt);
-      font-size: .98rem;
-      font-weight: 500;
-      transition: .25s var(--ease);
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, .015) inset;
-    }
-
-    .search-field input::placeholder {
-      color: var(--txt3)
-    }
-
-    .search-field input:focus {
-      outline: none;
-      border-color: rgba(212, 164, 58, .46);
-      box-shadow: 0 0 0 4px rgba(212, 164, 58, .10), 0 0 30px rgba(212, 164, 58, .08);
-      background: linear-gradient(180deg, rgba(17, 28, 45, .96), rgba(13, 21, 34, .98));
-    }
-
-    #composerChips {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      gap: .55rem;
-      margin-top: .95rem;
-    }
-
-    .c-chip {
-      appearance: none;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: .35rem;
-      padding: .48rem .92rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, .035);
-      border: 1px solid rgba(255, 255, 255, .06);
-      color: var(--txt2);
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .01em;
-      transition: .22s var(--ease);
-      cursor: pointer;
-    }
-
-    .c-chip:hover {
-      color: var(--txt);
-      border-color: rgba(212, 164, 58, .18);
-      transform: translateY(-1px)
-    }
-
-    .c-chip.active {
-      color: var(--gold2);
-      background: rgba(212, 164, 58, .10);
-      border-color: rgba(212, 164, 58, .34);
-      box-shadow: 0 0 18px rgba(212, 164, 58, .07);
-    }
-
-    .results-label {
-      margin-top: .78rem;
-      font-size: .75rem;
-      color: var(--txt2)
-    }
-
-    .results-label b {
-      color: var(--gold2)
-    }
-
-    .section-head {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 3.2rem 0 1.85rem;
-    }
-
-    .section-head-text {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.05rem, 2vw, 1.34rem);
-      color: #d1dced;
-      letter-spacing: .02em;
-      white-space: nowrap;
-    }
-
-    .section-head-line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(212, 164, 58, .18), transparent)
-    }
-
-    #musicGrid {
-      display: grid;
-      gap: 2rem;
-      padding-bottom: 4rem
-    }
-
-    .composer-block {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .composer-head {
-      display: flex;
-      align-items: center;
-      gap: .85rem;
-      padding: .95rem 1.1rem;
-      border-radius: 8px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .02));
-      border: 1px solid rgba(255, 255, 255, .06);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .14);
-    }
-
-    .composer-head-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      box-shadow: 0 0 16px currentColor;
-      flex-shrink: 0;
-    }
-
-    .composer-head-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      color: var(--txt);
-      margin: 0;
-    }
-
-    .composer-head-count {
-      margin-left: auto;
-      font-size: .75rem;
-      color: var(--txt2);
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .composer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.35rem;
-    }
-
-    .mc {
-      --card-accent: #f0c96c;
-      --card-accent-rgb: 240, 201, 108;
-      position: relative;
-      border-radius: 0px;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(20, 31, 49, .88), rgba(13, 22, 36, .94));
-      border: 1px solid rgba(255, 255, 255, .06);
-      box-shadow: 0 20px 54px rgba(0, 0, 0, .34), 0 0 0 1px rgba(255, 255, 255, .015) inset;
-      backdrop-filter: blur(14px);
-      transition: transform .32s var(--ease), box-shadow .32s var(--ease), border-color .32s var(--ease);
-      animation: cardRise .5s var(--ease) both;
-      isolation: isolate;
-    }
-
-    .mc::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top right, rgba(var(--card-accent-rgb), .08), transparent 40%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .mc:hover {
-      transform: translateY(-7px);
-      border-color: rgba(var(--card-accent-rgb), .34);
-      box-shadow: 0 28px 64px rgba(0, 0, 0, .42), 0 0 36px rgba(var(--card-accent-rgb), .12);
-    }
-
-    .mc.mc-is-ensaio {
-      border-color: rgba(var(--card-accent-rgb), .50);
-      box-shadow: 0 24px 62px rgba(0, 0, 0, .38), 0 0 0 1px rgba(var(--card-accent-rgb), .16) inset, 0 0 30px rgba(var(--card-accent-rgb), .18);
-    }
-
-    .mc.mc-is-ensaio:hover {
-      border-color: rgba(var(--card-accent-rgb), .64);
-      box-shadow: 0 30px 72px rgba(0, 0, 0, .44), 0 0 0 1px rgba(var(--card-accent-rgb), .18) inset, 0 0 42px rgba(var(--card-accent-rgb), .24);
-    }
-
-    .mc.mc-is-ensaio::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(var(--card-accent-rgb), .12), transparent 30%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .mc-badge-ensaio {
-      display: inline-flex;
-      align-items: center;
-      gap: .36rem;
-      margin-top: .76rem;
-      margin-left: .55rem;
-      padding: .28rem .72rem;
-      border-radius: 999px;
-      font-size: .7rem;
-      font-weight: 800;
-      letter-spacing: .01em;
-      color: var(--card-accent);
-      background: rgba(var(--card-accent-rgb), .12);
-      border: 1px solid rgba(var(--card-accent-rgb), .30);
-      box-shadow: 0 0 18px rgba(var(--card-accent-rgb), .10);
-    }
-
-    @keyframes cardRise {
-      from {
-        opacity: 0;
-        transform: translateY(18px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
-    .mc-stripe {
-      position: relative;
-      z-index: 1;
-      height: 3px
-    }
-
-    .jw {
-      background: linear-gradient(90deg, #d4a43a, #f0c96c)
-    }
-
-    .as {
-      background: linear-gradient(90deg, #34d9c3, #71ebdc)
-    }
-
-    .em {
-      background: linear-gradient(90deg, #8890ff, #bcc1ff)
-    }
-
-    .hz {
-      background: linear-gradient(90deg, #df6e6e, #ffb1b1)
-    }
-
-    .mc-header,
-    .mc-body {
-      position: relative;
-      z-index: 1
-    }
-
-    .mc-header {
-      padding: 1.24rem 1.42rem .95rem;
-      border-bottom: 1px solid rgba(255, 255, 255, .05);
-    }
-
-    .mc-track {
-      font-family: 'DM Mono', monospace;
-      font-size: .64rem;
-      letter-spacing: .16em;
-      color: var(--txt3);
-      margin-bottom: .4rem;
-    }
-
-    .mc-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.18rem;
-      line-height: 1.24;
-      font-weight: 800;
-      color: var(--txt);
-      letter-spacing: -.015em;
-    }
-
-    .mc-subtitle {
-      margin-top: .18rem;
-      color: #9aacbf;
-      font-size: .79rem;
-      font-style: italic;
-      line-height: 1.5;
-    }
-
-    .mc-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .34rem;
-      margin-top: .76rem;
-      padding: .28rem .72rem;
-      border-radius: 999px;
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .01em;
-      border: 1px solid transparent;
-    }
-
-    .bjw {
-      background: rgba(212, 164, 58, .10);
-      color: #f0c96c;
-      border-color: rgba(212, 164, 58, .2)
-    }
-
-    .bas {
-      background: rgba(52, 217, 195, .10);
-      color: #65f2e0;
-      border-color: rgba(52, 217, 195, .18)
-    }
-
-    .bem {
-      background: rgba(136, 144, 255, .11);
-      color: #c5c9ff;
-      border-color: rgba(136, 144, 255, .2)
-    }
-
-    .bhz {
-      background: rgba(223, 110, 110, .11);
-      color: #ffbaba;
-      border-color: rgba(223, 110, 110, .2)
-    }
-
-    .mc-body {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      padding: 1.12rem 1.42rem 1.35rem;
-    }
-
-    .naipe-col {
-      min-width: 0;
-      display: flex;
-      flex-direction: column
-    }
-
-    .naipe-head {
-      display: flex;
-      align-items: center;
-      gap: .42rem;
-      padding-bottom: .48rem;
-      margin-bottom: .58rem;
-      border-bottom: 1px solid rgba(255, 255, 255, .06);
-      font-size: .66rem;
-      font-weight: 800;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-
-    .naipe-head.f1 {
-      color: var(--gold2)
-    }
-
-    .naipe-head.f2 {
-      color: var(--jade)
-    }
-
-    .chips-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: .36rem;
-      margin-bottom: .92rem
-    }
-
-    .pchip {
-      display: flex;
-      align-items: center;
-      gap: .38rem;
-      padding: .42rem .62rem;
-      border-radius: 5px;
-      background: rgba(255, 255, 255, .035);
-      border: 1px solid rgba(255, 255, 255, .06);
-      color: var(--txt);
-      font-size: .8rem;
-      font-weight: 600;
-      line-height: 1.35;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .pchip i {
-      font-size: .64rem;
-      color: var(--txt3);
-      flex-shrink: 0
-    }
-
-    .col-btn {
-      position: relative;
-      overflow: hidden;
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: .45rem;
-      min-height: 44px;
-      border-radius: 8px;
-      padding: .66rem .8rem;
-      text-decoration: none;
-      font-size: .77rem;
-      font-weight: 800;
-      letter-spacing: .01em;
-      border: 1px solid;
-      transition: .24s var(--ease);
-      white-space: nowrap;
-      isolation: isolate;
-    }
-
-    .col-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, .14) 50%, transparent 80%);
-      transform: translateX(-120%);
-      transition: transform .55s var(--ease);
-      z-index: 0;
-    }
-
-    .col-btn:hover::before {
-      transform: translateX(120%)
-    }
-
-    .col-btn>* {
-      position: relative;
-      z-index: 1
-    }
-
-    .col-btn-f1 {
-      color: #ffe6aa;
-      background: rgba(212, 164, 58, .08);
-      border-color: rgba(212, 164, 58, .24)
-    }
-
-    .col-btn-f1:hover {
-      color: #fff2d2;
-      background: rgba(212, 164, 58, .15);
-      border-color: rgba(212, 164, 58, .46);
-      box-shadow: 0 10px 24px rgba(212, 164, 58, .14)
-    }
-
-    .col-btn-f2 {
-      color: #aaf7ee;
-      background: rgba(52, 217, 195, .08);
-      border-color: rgba(52, 217, 195, .22)
-    }
-
-    .col-btn-f2:hover {
-      color: #d9fffb;
-      background: rgba(52, 217, 195, .14);
-      border-color: rgba(52, 217, 195, .42);
-      box-shadow: 0 10px 24px rgba(52, 217, 195, .12)
-    }
-
-    .col-btn.is-disabled {
-      pointer-events: none;
-      opacity: .48;
-      filter: grayscale(.2);
-    }
-
-    .no-results {
-      text-align: center;
-      padding: 5rem 1rem;
-      color: var(--txt2);
-      border-radius: 24px;
-      border: 1px dashed rgba(255, 255, 255, .08);
-      background: rgba(255, 255, 255, .02);
-    }
-
-    .no-results i {
-      display: block;
-      font-size: 3rem;
-      color: rgba(255, 255, 255, .08);
-      margin-bottom: 1rem
-    }
-
-    footer {
-      padding: 2.7rem 0 1.8rem;
-      border-top: 1px solid rgba(255, 255, 255, .05);
-      background: rgba(7, 13, 22, .76);
-      backdrop-filter: blur(12px);
-    }
-
-    .footer-brand {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.14rem;
-      font-weight: 800;
-      color: var(--gold2)
-    }
-
-    .footer-sub {
-      margin-top: .25rem;
-      color: var(--txt2);
-      font-size: .77rem
-    }
-
-    .footer-row {
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      margin-top: .5rem;
-      color: var(--txt2);
-      font-size: .8rem
-    }
-
-    .footer-row i {
-      color: var(--gold)
-    }
-
-    .footer-copy {
-      margin-top: 1.5rem;
-      padding-top: 1.2rem;
-      border-top: 1px solid rgba(255, 255, 255, .05);
-      text-align: center;
-      color: var(--txt3);
-      font-size: .72rem;
-    }
-
-    .footer-copy span {
-      color: var(--gold)
-    }
-
-
-
-    .col-btn .fa-file-pdf {
-      width: 1.15em;
-      text-align: center;
-      font-size: 1.08rem;
-      line-height: 1;
-      font-family: "Font Awesome 7 Free";
-      font-weight: 400;
-      font-display: block;
-    }
-
-    .composer-block {
-      content-visibility: auto;
-      contain-intrinsic-size: 1px 620px;
-    }
-
-    .mc,
-    .hero-ring,
-    .hero-aurora,
-    .nav-pill::before,
-    body::before,
-    body::after {
-      will-change: transform;
-      transform: translateZ(0);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-    }
-
-    @media (max-width: 991px) {
-      .rc-left {
-        border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, .06)
-      }
-
-      .rc-right-wrap {
-        grid-template-columns: 1fr
-      }
-
-      .rc-pane+.rc-pane {
-        border-left: none;
-        border-top: 1px solid rgba(255, 255, 255, .06)
-      }
-    }
-
-    @media (max-width: 767px) {
-      .hero {
-        padding: 5.5rem 0 3.7rem
-      }
-
-      .rc-left,
-      .rc-pane {
-        padding: 1.8rem 1.5rem
-      }
-    }
-
-    @media (max-width: 575px) {
-      .hero-title {
-        font-size: clamp(2.1rem, 10vw, 3.2rem)
-      }
-
-      .composer-grid {
-        grid-template-columns: 1fr
-      }
-
-      .mc-body {
-        grid-template-columns: 1fr
-      }
-
-      .nav-logo-org {
-        letter-spacing: .12em
-      }
-
-      .section-head {
-        padding: 2.6rem 0 1.5rem
-      }
-
-      .composer-head {
-        align-items: flex-start;
-        flex-wrap: wrap
-      }
-
-      .composer-head-count {
-        margin-left: 0;
-        width: 100%
-      }
-    }
-  </style>
+            border: 2px solid rgba(212, 164, 58, .28);
+            box-shadow: 0 0 22px rgba(212, 164, 58, .10);
+            color: var(--gold2);
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .nav-logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(.84rem, 1.6vw, .98rem);
+            font-weight: 800;
+            color: var(--gold2);
+            line-height: 1.15;
+            letter-spacing: .01em;
+        }
+
+        .nav-logo-org {
+            font-size: .63rem;
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            color: var(--txt3);
+            margin-top: .18rem;
+        }
+
+        .nav-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            padding: .35rem .95rem;
+            border-radius: 999px;
+            border: 1px solid rgba(52, 217, 195, .24);
+            background: rgba(52, 217, 195, .08);
+            color: var(--jade);
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .nav-pill::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--jade);
+            box-shadow: 0 0 10px rgba(52, 217, 195, .55);
+            animation: pulseDot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseDot {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            50% {
+                transform: scale(.72);
+                opacity: .42
+            }
+        }
+
+        .hero {
+            position: relative;
+            padding: 1rem 0 4.2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .025) 0%, transparent 36%, rgba(255, 255, 255, .015) 100%);
+            pointer-events: none;
+        }
+
+        .hero-ring {
+            position: absolute;
+            left: 50%;
+            top: -340px;
+            transform: translateX(-50%);
+            width: 1040px;
+            height: 1040px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 164, 58, .16) 0%, rgba(212, 164, 58, .07) 26%, transparent 66%);
+            filter: blur(8px);
+            pointer-events: none;
+            animation: heroRing 10s ease-in-out infinite;
+        }
+
+        .hero-ring::after {
+            content: '';
+            position: absolute;
+            inset: 18%;
+            border-radius: 50%;
+            border: 1px solid rgba(240, 201, 108, .08);
+            box-shadow: 0 0 40px rgba(212, 164, 58, .08) inset;
+        }
+
+        .hero-aurora {
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            right: -90px;
+            bottom: -120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(52, 217, 195, .14) 0%, rgba(52, 217, 195, .06) 30%, transparent 72%);
+            pointer-events: none;
+            animation: heroAurora 12s ease-in-out infinite;
+        }
+
+        @keyframes heroRing {
+
+            0%,
+            100% {
+                transform: translateX(-50%) scale(1);
+                opacity: .82
+            }
+
+            50% {
+                transform: translateX(-50%) scale(1.1);
+                opacity: 1
+            }
+        }
+
+        @keyframes heroAurora {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1)
+            }
+
+            50% {
+                transform: translateY(-16px) scale(1.08)
+            }
+        }
+
+        .hero-topline {
+            display: inline-flex;
+            align-items: center;
+            gap: .75rem;
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--jade);
+            margin-bottom: 1.15rem;
+        }
+
+        .hero-topline::before,
+        .hero-topline::after {
+            content: '';
+            display: block;
+            width: 38px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--jade));
+        }
+
+        .hero-topline::after {
+            background: linear-gradient(90deg, var(--jade), transparent);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.35rem, 6vw, 4.9rem);
+            line-height: 1.02;
+            font-weight: 900;
+            letter-spacing: -.03em;
+            text-shadow: 0 0 28px rgba(212, 164, 58, .08);
+            margin-bottom: 1rem;
+        }
+
+        .hero-title .line1 {
+            background: linear-gradient(100deg, #f8deb0 0%, var(--gold2) 30%, var(--gold) 68%, #9d6915 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-title .line2 {
+            color: var(--txt);
+            font-style: italic;
+        }
+
+        .hero-sub {
+            max-width: 780px;
+            margin: 0 auto;
+            color: var(--txt2);
+            font-size: .98rem;
+            line-height: 1.75;
+        }
+
+        .hero-sep {
+            width: 78px;
+            height: 3px;
+            border: none;
+            border-radius: 999px;
+            margin: 2rem auto 0;
+            background: linear-gradient(90deg, var(--gold), var(--jade));
+            opacity: 1;
+            box-shadow: 0 0 20px rgba(212, 164, 58, .18);
+        }
+
+        .rehearsal-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            box-shadow: 0 26px 70px rgba(0, 0, 0, .42), 0 0 0 1px rgba(255, 255, 255, .02) inset;
+        }
+
+        .rehearsal-card::before {
+            content: '';
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold2) 38%, var(--jade) 62%, transparent);
+            z-index: 1;
+        }
+
+        .rehearsal-card::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            right: -70px;
+            top: -90px;
+            background: radial-gradient(circle, rgba(212, 164, 58, .08) 0%, transparent 72%);
+            pointer-events: none;
+        }
+
+        .rc-left,
+        .rc-right {
+            position: relative;
+            z-index: 1;
+            padding: 2.4rem 2.55rem;
+        }
+
+        .rc-left {
+            border-right: 1px solid var(--bdr2)
+        }
+
+        .rc-right {
+            padding: 0
+        }
+
+        .rc-right-wrap {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(290px, .85fr);
+            min-height: 100%;
+        }
+
+        .rc-pane {
+            position: relative;
+            z-index: 1;
+            padding: 2.4rem 2.3rem;
+            min-width: 0;
+        }
+
+        .rc-pane+.rc-pane {
+            border-left: 1px solid var(--bdr2)
+        }
+
+        .rc-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            padding: .32rem .92rem;
+            border-radius: 999px;
+            background: rgba(212, 164, 58, .10);
+            border: 1px solid rgba(212, 164, 58, .24);
+            color: var(--gold2);
+            font-size: .66rem;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+
+        .rc-badge.is-jade {
+            background: rgba(52, 217, 195, .08);
+            border-color: rgba(52, 217, 195, .22);
+            color: var(--jade);
+        }
+
+        .rc-date {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.9rem, 6vw, 4.2rem);
+            line-height: .95;
+            color: var(--gold2);
+            font-weight: 900;
+            letter-spacing: -.04em;
+            text-shadow: 0 0 20px rgba(212, 164, 58, .10);
+        }
+
+        .rc-present-pane .rc-date {
+            font-size: clamp(2.5rem, 4vw, 3.7rem)
+        }
+
+        .rc-weekday {
+            font-size: .95rem;
+            color: var(--jade);
+            font-weight: 700;
+            letter-spacing: .04em;
+            margin-top: .5rem;
+        }
+
+        .rc-meta {
+            display: flex;
+            align-items: flex-start;
+            gap: .72rem;
+            margin-top: .95rem;
+            color: var(--txt2);
+            font-size: .85rem;
+            line-height: 1.55;
+        }
+
+        .rc-meta i {
+            color: var(--gold);
+            margin-top: .14rem;
+            flex-shrink: 0
+        }
+
+        .rc-meta strong {
+            color: var(--txt);
+            font-weight: 600;
+            display: block
+        }
+
+        .rc-list-head {
+            padding-bottom: .78rem;
+            margin-bottom: .5rem;
+            border-bottom: 1px solid var(--bdr2);
+            font-size: .64rem;
+            font-weight: 800;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--jade);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .rc-program-note {
+            color: var(--txt3);
+            font-size: .72rem;
+            letter-spacing: normal;
+            text-transform: none;
+            font-weight: 600;
+        }
+
+        .rc-song {
+            display: flex;
+            align-items: baseline;
+            gap: .7rem;
+            padding: .48rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .035);
+            font-size: .83rem;
+        }
+
+        .rc-song:last-child {
+            border-bottom: none
+        }
+
+        .rc-song-num {
+            min-width: 1.75rem;
+            font-family: 'DM Mono', monospace;
+            font-size: .67rem;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .rc-song-name {
+            color: var(--txt);
+            font-weight: 600
+        }
+
+        .rc-song-comp {
+            color: var(--txt2);
+            font-size: .77rem
+        }
+
+        .rc-countdown {
+            margin-top: 1.15rem;
+            padding: 1rem 1.05rem;
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
+            border: 1px solid rgba(255, 255, 255, .08);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, .015) inset;
+        }
+
+        .rc-countdown.is-gold {
+            border-color: rgba(212, 164, 58, .18)
+        }
+
+        .rc-countdown.is-jade {
+            border-color: rgba(52, 217, 195, .18)
+        }
+
+        .rc-countdown-label {
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--txt3);
+        }
+
+        .rc-countdown-value {
+            margin-top: .45rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 1.08rem;
+            line-height: 1.1;
+        }
+
+        .rc-countdown.is-gold .rc-countdown-value {
+            color: var(--gold2)
+        }
+
+        .rc-countdown.is-jade .rc-countdown-value {
+            color: var(--jade)
+        }
+
+        .rc-countdown-sub {
+            margin-top: .32rem;
+            font-size: .74rem;
+            color: var(--txt2)
+        }
+
+        .search-zone {
+            position: relative;
+            z-index: 1;
+            padding: 1.25rem 0 1.1rem;
+            border-top: 1px solid rgba(255, 255, 255, .04);
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+            background: rgba(8, 14, 24, .68);
+            backdrop-filter: blur(18px) saturate(160%);
+        }
+
+        .search-shell {
+            border-radius: 20px;
+            padding: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .18)
+        }
+
+        .search-field {
+            position: relative;
+            width: 100%
+        }
+
+        .search-field i {
+            position: absolute;
+            left: 1.08rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: var(--txt3);
+            pointer-events: none;
+        }
+
+        .search-field input {
+            width: 100%;
+            min-height: 58px;
+            border-radius: 16px;
+            padding: .9rem 1.1rem .9rem 3.1rem;
+            border: 1px solid rgba(212, 164, 58, .18);
+            background: linear-gradient(180deg, rgba(15, 24, 39, .92), rgba(11, 19, 32, .95));
+            color: var(--txt);
+            font-size: .98rem;
+            font-weight: 500;
+            transition: .25s var(--ease);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, .015) inset;
+        }
+
+        .search-field input::placeholder {
+            color: var(--txt3)
+        }
+
+        .search-field input:focus {
+            outline: none;
+            border-color: rgba(212, 164, 58, .46);
+            box-shadow: 0 0 0 4px rgba(212, 164, 58, .10), 0 0 30px rgba(212, 164, 58, .08);
+            background: linear-gradient(180deg, rgba(17, 28, 45, .96), rgba(13, 21, 34, .98));
+        }
+
+        #composerChips {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .55rem;
+            margin-top: .95rem;
+        }
+
+        .c-chip {
+            appearance: none;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .35rem;
+            padding: .48rem .92rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .035);
+            border: 1px solid rgba(255, 255, 255, .06);
+            color: var(--txt2);
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .01em;
+            transition: .22s var(--ease);
+            cursor: pointer;
+        }
+
+        .c-chip:hover {
+            color: var(--txt);
+            border-color: rgba(212, 164, 58, .18);
+            transform: translateY(-1px)
+        }
+
+        .c-chip.active {
+            color: var(--gold2);
+            background: rgba(212, 164, 58, .10);
+            border-color: rgba(212, 164, 58, .34);
+            box-shadow: 0 0 18px rgba(212, 164, 58, .07);
+        }
+
+        .results-label {
+            margin-top: .78rem;
+            font-size: .75rem;
+            color: var(--txt2)
+        }
+
+        .results-label b {
+            color: var(--gold2)
+        }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 3.2rem 0 1.85rem;
+        }
+
+        .section-head-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.05rem, 2vw, 1.34rem);
+            color: #d1dced;
+            letter-spacing: .02em;
+            white-space: nowrap;
+        }
+
+        .section-head-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(212, 164, 58, .18), transparent)
+        }
+
+        #musicGrid {
+            display: grid;
+            gap: 2rem;
+            padding-bottom: 4rem
+        }
+
+        .composer-block {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .composer-head {
+            display: flex;
+            align-items: center;
+            gap: .85rem;
+            padding: .95rem 1.1rem;
+            border-radius: 8px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .02));
+            border: 1px solid rgba(255, 255, 255, .06);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .14);
+        }
+
+        .composer-head-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            box-shadow: 0 0 16px currentColor;
+            flex-shrink: 0;
+        }
+
+        .composer-head-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--txt);
+            margin: 0;
+        }
+
+        .composer-head-count {
+            margin-left: auto;
+            font-size: .75rem;
+            color: var(--txt2);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .composer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.35rem;
+        }
+
+        .mc {
+            --card-accent: #f0c96c;
+            --card-accent-rgb: 240, 201, 108;
+            position: relative;
+            border-radius: 0px;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(20, 31, 49, .88), rgba(13, 22, 36, .94));
+            border: 1px solid rgba(255, 255, 255, .06);
+            box-shadow: 0 20px 54px rgba(0, 0, 0, .34), 0 0 0 1px rgba(255, 255, 255, .015) inset;
+            backdrop-filter: blur(14px);
+            transition: transform .32s var(--ease), box-shadow .32s var(--ease), border-color .32s var(--ease);
+            animation: cardRise .5s var(--ease) both;
+            isolation: isolate;
+        }
+
+        .mc::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(var(--card-accent-rgb), .08), transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .mc:hover {
+            transform: translateY(-7px);
+            border-color: rgba(var(--card-accent-rgb), .34);
+            box-shadow: 0 28px 64px rgba(0, 0, 0, .42), 0 0 36px rgba(var(--card-accent-rgb), .12);
+        }
+
+        .mc.mc-is-ensaio {
+            border-color: rgba(var(--card-accent-rgb), .50);
+            box-shadow: 0 24px 62px rgba(0, 0, 0, .38), 0 0 0 1px rgba(var(--card-accent-rgb), .16) inset, 0 0 30px rgba(var(--card-accent-rgb), .18);
+        }
+
+        .mc.mc-is-ensaio:hover {
+            border-color: rgba(var(--card-accent-rgb), .64);
+            box-shadow: 0 30px 72px rgba(0, 0, 0, .44), 0 0 0 1px rgba(var(--card-accent-rgb), .18) inset, 0 0 42px rgba(var(--card-accent-rgb), .24);
+        }
+
+        .mc.mc-is-ensaio::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(var(--card-accent-rgb), .12), transparent 30%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .mc-badge-ensaio {
+            display: inline-flex;
+            align-items: center;
+            gap: .36rem;
+            margin-top: .76rem;
+            margin-left: .55rem;
+            padding: .28rem .72rem;
+            border-radius: 999px;
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .01em;
+            color: var(--card-accent);
+            background: rgba(var(--card-accent-rgb), .12);
+            border: 1px solid rgba(var(--card-accent-rgb), .30);
+            box-shadow: 0 0 18px rgba(var(--card-accent-rgb), .10);
+        }
+
+        @keyframes cardRise {
+            from {
+                opacity: 0;
+                transform: translateY(18px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .mc-stripe {
+            position: relative;
+            z-index: 1;
+            height: 3px
+        }
+
+        .jw {
+            background: linear-gradient(90deg, #d4a43a, #f0c96c)
+        }
+
+        .as {
+            background: linear-gradient(90deg, #34d9c3, #71ebdc)
+        }
+
+        .em {
+            background: linear-gradient(90deg, #8890ff, #bcc1ff)
+        }
+
+        .hz {
+            background: linear-gradient(90deg, #df6e6e, #ffb1b1)
+        }
+
+        .mc-header,
+        .mc-body {
+            position: relative;
+            z-index: 1
+        }
+
+        .mc-header {
+            padding: 1.24rem 1.42rem .95rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .mc-track {
+            font-family: 'DM Mono', monospace;
+            font-size: .64rem;
+            letter-spacing: .16em;
+            color: var(--txt3);
+            margin-bottom: .4rem;
+        }
+
+        .mc-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.18rem;
+            line-height: 1.24;
+            font-weight: 800;
+            color: var(--txt);
+            letter-spacing: -.015em;
+        }
+
+        .mc-subtitle {
+            margin-top: .18rem;
+            color: #9aacbf;
+            font-size: .79rem;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .mc-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .34rem;
+            margin-top: .76rem;
+            padding: .28rem .72rem;
+            border-radius: 999px;
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .01em;
+            border: 1px solid transparent;
+        }
+
+        .bjw {
+            background: rgba(212, 164, 58, .10);
+            color: #f0c96c;
+            border-color: rgba(212, 164, 58, .2)
+        }
+
+        .bas {
+            background: rgba(52, 217, 195, .10);
+            color: #65f2e0;
+            border-color: rgba(52, 217, 195, .18)
+        }
+
+        .bem {
+            background: rgba(136, 144, 255, .11);
+            color: #c5c9ff;
+            border-color: rgba(136, 144, 255, .2)
+        }
+
+        .bhz {
+            background: rgba(223, 110, 110, .11);
+            color: #ffbaba;
+            border-color: rgba(223, 110, 110, .2)
+        }
+
+        .mc-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding: 1.12rem 1.42rem 1.35rem;
+        }
+
+        .naipe-col {
+            min-width: 0;
+            display: flex;
+            flex-direction: column
+        }
+
+        .naipe-head {
+            display: flex;
+            align-items: center;
+            gap: .42rem;
+            padding-bottom: .48rem;
+            margin-bottom: .58rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            font-size: .66rem;
+            font-weight: 800;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        .naipe-head.f1 {
+            color: var(--gold2)
+        }
+
+        .naipe-head.f2 {
+            color: var(--jade)
+        }
+
+        .chips-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: .36rem;
+            margin-bottom: .92rem
+        }
+
+        .pchip {
+            display: flex;
+            align-items: center;
+            gap: .38rem;
+            padding: .42rem .62rem;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, .035);
+            border: 1px solid rgba(255, 255, 255, .06);
+            color: var(--txt);
+            font-size: .8rem;
+            font-weight: 600;
+            line-height: 1.35;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .pchip i {
+            font-size: .64rem;
+            color: var(--txt3);
+            flex-shrink: 0
+        }
+
+        .col-btn {
+            position: relative;
+            overflow: hidden;
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .45rem;
+            min-height: 44px;
+            border-radius: 8px;
+            padding: .66rem .8rem;
+            text-decoration: none;
+            font-size: .77rem;
+            font-weight: 800;
+            letter-spacing: .01em;
+            border: 1px solid;
+            transition: .24s var(--ease);
+            white-space: nowrap;
+            isolation: isolate;
+        }
+
+        .col-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, .14) 50%, transparent 80%);
+            transform: translateX(-120%);
+            transition: transform .55s var(--ease);
+            z-index: 0;
+        }
+
+        .col-btn:hover::before {
+            transform: translateX(120%)
+        }
+
+        .col-btn>* {
+            position: relative;
+            z-index: 1
+        }
+
+        .col-btn-f1 {
+            color: #ffe6aa;
+            background: rgba(212, 164, 58, .08);
+            border-color: rgba(212, 164, 58, .24)
+        }
+
+        .col-btn-f1:hover {
+            color: #fff2d2;
+            background: rgba(212, 164, 58, .15);
+            border-color: rgba(212, 164, 58, .46);
+            box-shadow: 0 10px 24px rgba(212, 164, 58, .14)
+        }
+
+        .col-btn-f2 {
+            color: #aaf7ee;
+            background: rgba(52, 217, 195, .08);
+            border-color: rgba(52, 217, 195, .22)
+        }
+
+        .col-btn-f2:hover {
+            color: #d9fffb;
+            background: rgba(52, 217, 195, .14);
+            border-color: rgba(52, 217, 195, .42);
+            box-shadow: 0 10px 24px rgba(52, 217, 195, .12)
+        }
+
+        .col-btn.is-disabled {
+            pointer-events: none;
+            opacity: .48;
+            filter: grayscale(.2);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 5rem 1rem;
+            color: var(--txt2);
+            border-radius: 24px;
+            border: 1px dashed rgba(255, 255, 255, .08);
+            background: rgba(255, 255, 255, .02);
+        }
+
+        .no-results i {
+            display: block;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, .08);
+            margin-bottom: 1rem
+        }
+
+
+        .rc-order-btn {
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            min-height: 46px;
+            margin-top: 1rem;
+            border-radius: 14px;
+            padding: .75rem .95rem;
+            border: 1px solid rgba(52, 217, 195, .28);
+            background: linear-gradient(180deg, rgba(52, 217, 195, .10), rgba(52, 217, 195, .055));
+            color: var(--jade);
+            font-size: .76rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            transition: .24s var(--ease);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, .018) inset;
+        }
+
+        .rc-order-btn:hover,
+        .rc-order-btn:focus {
+            color: #d9fffb;
+            border-color: rgba(52, 217, 195, .48);
+            background: linear-gradient(180deg, rgba(52, 217, 195, .16), rgba(52, 217, 195, .08));
+            box-shadow: 0 12px 28px rgba(52, 217, 195, .11), 0 0 0 4px rgba(52, 217, 195, .075);
+            transform: translateY(-1px);
+            outline: none;
+        }
+
+        .rc-order-btn:disabled {
+            cursor: not-allowed;
+            opacity: .5;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .repertorio-modal .modal-dialog {
+            max-width: 780px;
+        }
+
+        .repertorio-modal .modal-content {
+            overflow: hidden;
+            border-radius: 26px;
+            color: var(--txt);
+            background:
+                radial-gradient(circle at 94% 0%, rgba(52, 217, 195, .12), transparent 34%),
+                radial-gradient(circle at 0% 100%, rgba(212, 164, 58, .10), transparent 38%),
+                linear-gradient(180deg, rgba(17, 29, 47, .96), rgba(8, 15, 26, .98));
+            border: 1px solid rgba(255, 255, 255, .08);
+            box-shadow: 0 32px 90px rgba(0, 0, 0, .62), 0 0 0 1px rgba(255, 255, 255, .025) inset;
+            backdrop-filter: blur(18px) saturate(155%);
+            -webkit-backdrop-filter: blur(18px) saturate(155%);
+        }
+
+        .repertorio-modal .modal-content::before {
+            content: '';
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold2) 36%, var(--jade) 64%, transparent);
+            pointer-events: none;
+        }
+
+        .repertorio-modal .modal-header,
+        .repertorio-modal .modal-footer {
+            border-color: rgba(255, 255, 255, .07);
+        }
+
+        .repertorio-modal .modal-header {
+            align-items: flex-start;
+            padding: 1.45rem 1.55rem 1.1rem;
+        }
+
+        .repertorio-modal .modal-body {
+            padding: 1.15rem 1.55rem 1.55rem;
+        }
+
+        .repertorio-modal .modal-footer {
+            padding: 1rem 1.55rem 1.35rem;
+        }
+
+        .repertorio-modal .btn-close {
+            filter: invert(1) grayscale(1);
+            opacity: .78;
+            box-shadow: none;
+        }
+
+        .repertorio-modal .btn-close:hover {
+            opacity: 1;
+        }
+
+        .repertorio-modal-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            padding: .32rem .82rem;
+            border-radius: 999px;
+            background: rgba(52, 217, 195, .08);
+            border: 1px solid rgba(52, 217, 195, .22);
+            color: var(--jade);
+            font-size: .66rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+
+        .repertorio-modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.45rem, 4vw, 2.1rem);
+            font-weight: 900;
+            line-height: 1.08;
+            letter-spacing: -.02em;
+            margin: 0;
+            color: var(--txt);
+        }
+
+        .repertorio-modal-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .52rem .95rem;
+            margin-top: .82rem;
+            color: var(--txt2);
+            font-size: .82rem;
+            line-height: 1.45;
+        }
+
+        .repertorio-modal-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        .repertorio-modal-meta i {
+            color: var(--gold);
+        }
+
+        .repertorio-order-list {
+            display: grid;
+            gap: .7rem;
+        }
+
+        .repertorio-order-item {
+            display: grid;
+            grid-template-columns: 4.25rem 1fr;
+            gap: .9rem;
+            align-items: center;
+            padding: .92rem 1rem;
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .022));
+            border: 1px solid rgba(255, 255, 255, .07);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, .015) inset;
+        }
+
+        .repertorio-order-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            border-radius: 12px;
+            font-family: 'DM Mono', monospace;
+            font-size: .95rem;
+            font-weight: 800;
+            color: var(--gold2);
+            background: rgba(212, 164, 58, .10);
+            border: 1px solid rgba(212, 164, 58, .22);
+        }
+
+        .repertorio-order-title {
+            color: var(--txt);
+            font-weight: 800;
+            line-height: 1.25;
+        }
+
+        .repertorio-order-sub {
+            margin-top: .16rem;
+            color: var(--txt2);
+            font-size: .78rem;
+            line-height: 1.45;
+        }
+
+        .repertorio-close-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .45rem;
+            min-height: 42px;
+            padding: .58rem 1.05rem;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 164, 58, .28);
+            background: rgba(212, 164, 58, .08);
+            color: var(--gold2);
+            font-size: .74rem;
+            font-weight: 800;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            transition: .22s var(--ease);
+        }
+
+        .repertorio-close-btn:hover,
+        .repertorio-close-btn:focus {
+            color: #fff2d2;
+            border-color: rgba(212, 164, 58, .44);
+            background: rgba(212, 164, 58, .14);
+            outline: none;
+        }
+
+        .modal-backdrop.show {
+            opacity: .76;
+        }
+
+        @media (max-width: 575px) {
+            .repertorio-order-item {
+                grid-template-columns: 1fr;
+            }
+
+            .repertorio-order-num {
+                justify-content: flex-start;
+                padding: 0 .8rem;
+            }
+        }
+
+
+        footer {
+            padding: 2.7rem 0 1.8rem;
+            border-top: 1px solid rgba(255, 255, 255, .05);
+            background: rgba(7, 13, 22, .76);
+            backdrop-filter: blur(12px);
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.14rem;
+            font-weight: 800;
+            color: var(--gold2)
+        }
+
+        .footer-sub {
+            margin-top: .25rem;
+            color: var(--txt2);
+            font-size: .77rem
+        }
+
+        .footer-row {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            margin-top: .5rem;
+            color: var(--txt2);
+            font-size: .8rem
+        }
+
+        .footer-row i {
+            color: var(--gold)
+        }
+
+        .footer-copy {
+            margin-top: 1.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid rgba(255, 255, 255, .05);
+            text-align: center;
+            color: var(--txt3);
+            font-size: .72rem;
+        }
+
+        .footer-copy span {
+            color: var(--gold)
+        }
+
+
+
+        .col-btn .fa-file-pdf {
+            width: 1.15em;
+            text-align: center;
+            font-size: 1.08rem;
+            line-height: 1;
+            font-family: "Font Awesome 7 Free";
+            font-weight: 400;
+            font-display: block;
+        }
+
+        .composer-block {
+            content-visibility: auto;
+            contain-intrinsic-size: 1px 620px;
+        }
+
+        .mc,
+        .hero-ring,
+        .hero-aurora,
+        .nav-pill::before,
+        body::before,
+        body::after {
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .rc-left {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, .06)
+            }
+
+            .rc-right-wrap {
+                grid-template-columns: 1fr
+            }
+
+            .rc-pane+.rc-pane {
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, .06)
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero {
+                padding: 5.5rem 0 3.7rem
+            }
+
+            .rc-left,
+            .rc-pane {
+                padding: 1.8rem 1.5rem
+            }
+        }
+
+        @media (max-width: 575px) {
+            .hero-title {
+                font-size: clamp(2.1rem, 10vw, 3.2rem)
+            }
+
+            .composer-grid {
+                grid-template-columns: 1fr
+            }
+
+            .mc-body {
+                grid-template-columns: 1fr
+            }
+
+            .nav-logo-org {
+                letter-spacing: .12em
+            }
+
+            .section-head {
+                padding: 2.6rem 0 1.5rem
+            }
+
+            .composer-head {
+                align-items: flex-start;
+                flex-wrap: wrap
+            }
+
+            .composer-head-count {
+                margin-left: 0;
+                width: 100%
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <div class="grain"></div>
-  <header class="nav-wrap z1">
-    <div class="container">
-      <div class="nav-inner">
-        <div class="nav-logo">
-          <div class="nav-logo-icon">
-            <i class="fa-solid fa-music" aria-hidden="true"></i>
-          </div>
-          <div>
-            <div class="nav-logo-name">Naipe de Flautas</div>
-            <div class="nav-logo-org">Orquestra Sinfônica Camargo Guarnieri</div>
-          </div>
+    <div class="grain"></div>
+    <header class="nav-wrap z1">
+        <div class="container">
+            <div class="nav-inner">
+                <div class="nav-logo">
+                    <div class="nav-logo-icon">
+                        <i class="fa-solid fa-music" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <div class="nav-logo-name">Naipe de Flautas</div>
+                        <div class="nav-logo-org">Orquestra Sinfônica Camargo Guarnieri</div>
+                    </div>
+                </div>
+                <div class="d-none d-sm-block">
+                    <div class="nav-pill">Temporada Ativa</div>
+                </div>
+            </div>
         </div>
-        <div class="d-none d-sm-block">
-          <div class="nav-pill">Temporada Ativa</div>
-        </div>
-      </div>
-    </div>
-  </header>
-  <section class="hero z1">
-    <div class="hero-ring"></div>
-    <div class="hero-aurora"></div>
-    <div class="container">
-      <div class="text-center mb-5">
-        <div class="hero-topline">Orquestra Sinfônica Camargo Guarnieri</div>
-        <h1 class="hero-title">
-          <span class="line1">Escalação do</span><br />
-          <span class="line2">Naipe de Flautas</span>
-        </h1>
+    </header>
+    <section class="hero z1">
+        <div class="hero-ring"></div>
+        <div class="hero-aurora"></div>
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="hero-topline">Orquestra Sinfônica Camargo Guarnieri</div>
+                <h1 class="hero-title">
+                    <span class="line1">Escalação do</span><br />
+                    <span class="line2">Naipe de Flautas</span>
+                </h1>
 
-        <!-- <p class="hero-sub">
+                <!-- <p class="hero-sub">
           Agenda de ensaios, apresentação, repertório e links de PDFs construídos por arrays em JavaScript.
           Basta atualizar os dados abaixo para a página inteira refletir automaticamente.
         </p> -->
 
-        <hr class="hero-sep" />
-      </div>
+                <hr class="hero-sep" />
+            </div>
 
-      <div class="row justify-content-center">
-        <div class="col-12">
-          <div class="rehearsal-card glass" id="ensaioCard"></div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="rehearsal-card glass" id="ensaioCard"></div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="search-zone z1">
-    <div class="container">
-      <div class="search-shell glass">
-        <div class="search-field">
-          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-          <input type="search" id="searchInput" placeholder="Buscar música ou compositor..."
-            aria-label="Buscar música ou compositor" autocomplete="off" spellcheck="false" />
+    <div class="search-zone z1">
+        <div class="container">
+            <div class="search-shell glass">
+                <div class="search-field">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input type="search" id="searchInput" placeholder="Buscar música ou compositor..."
+                        aria-label="Buscar música ou compositor" autocomplete="off" spellcheck="false" />
+                </div>
+
+                <div id="composerChips"></div>
+                <div class="results-label" id="resultsLabel" aria-live="polite"></div>
+            </div>
         </div>
-
-        <div id="composerChips"></div>
-        <div class="results-label" id="resultsLabel" aria-live="polite"></div>
-      </div>
     </div>
-  </div>
 
-  <main class="z1">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-head-text">Repertório completo</div>
-        <div class="section-head-line"></div>
-      </div>
+    <main class="z1">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-head-text">Repertório completo</div>
+                <div class="section-head-line"></div>
+            </div>
 
-      <div id="musicGrid"></div>
-    </div>
-  </main>
-
-  <footer class="z1">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-12 col-md-6 mb-3 mb-md-0">
-          <div class="footer-brand">Naipe de Flautas · OSCG</div>
-          <div class="footer-sub">Orquestra Sinfônica Camargo Guarnieri</div>
-          <div class="footer-row">
-            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-            Escola de Música Camargo Guarnieri
-          </div>
+            <div id="musicGrid"></div>
         </div>
+    </main>
 
-        <div class="col-12 col-md-6 text-md-end">
-          <div class="footer-row justify-content-md-end">
-            <i class="fa-solid fa-calendar-week" aria-hidden="true"></i>
-            Ensaios às <strong style="color:var(--jade);margin-left:.2rem;">Quintas-Feiras</strong>
-          </div>
-          <div class="footer-row justify-content-md-end mt-1">
-            <i class="fa-solid fa-clock" aria-hidden="true"></i>
-            19:30 horas
-          </div>
+
+    <div class="modal fade repertorio-modal" id="apresentacaoRepertorioModal" tabindex="-1"
+        aria-labelledby="apresentacaoRepertorioModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content glass">
+                <div class="modal-header">
+                    <div>
+                        <div class="repertorio-modal-kicker">
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                            Ordem da apresentação
+                        </div>
+                        <h2 class="repertorio-modal-title" id="apresentacaoRepertorioModalLabel">
+                            Repertório da apresentação
+                        </h2>
+                        <div class="repertorio-modal-meta" id="apresentacaoRepertorioMeta"></div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="repertorio-order-list" id="apresentacaoRepertorioLista"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="repertorio-close-btn" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                        Fechar
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="footer-copy">
-        © 2026 <span>Naipe de Flautas – OSCG</span> · Todos os direitos reservados
-      </div>
     </div>
-  </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <footer class="z1">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6 mb-3 mb-md-0">
+                    <div class="footer-brand">Naipe de Flautas · OSCG</div>
+                    <div class="footer-sub">Orquestra Sinfônica Camargo Guarnieri</div>
+                    <div class="footer-row">
+                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                        Escola de Música Camargo Guarnieri
+                    </div>
+                </div>
 
-  <script>
-    /* ─────────────────────────────────────────────      
-       - MUSICAS: repertório completo e PDFs
-       - ENSAIOS: agenda dos ensaios
-       - APRESENTACOES: agenda das apresentações
-       A página escolhe sozinha o próximo item pela data.
-    ───────────────────────────────────────────── */
-    const CONFIG = {
-      pastaPdf: 'pdf',
-      localEnsaioPadrao: 'Maple Bear',
-      localEnsaioEscola: 'Escola Camargo Guarnieri',
-      localApresentacaoPadrao: 'Instituto Federal Goiano - IF'
-    };
+                <div class="col-12 col-md-6 text-md-end">
+                    <div class="footer-row justify-content-md-end">
+                        <i class="fa-solid fa-calendar-week" aria-hidden="true"></i>
+                        Ensaios às <strong style="color:var(--jade);margin-left:.2rem;">Terças e Quintas-Feiras</strong>
+                    </div>
+                    <div class="footer-row justify-content-md-end mt-1">
+                        <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                        19:30 horas
+                    </div>
+                </div>
+            </div>
 
-    const CMAP = {
-      'John Williams': { stripe: 'jw', badge: 'bjw', dot: '#f0c96c', accent: '#f0c96c', accentRgb: '240, 201, 108' },
-      'Alan Silvestri': { stripe: 'as', badge: 'bas', dot: '#34d9c3', accent: '#71ebdc', accentRgb: '113, 235, 220' },
-      'Ennio Morricone': { stripe: 'em', badge: 'bem', dot: '#bcc1ff', accent: '#bcc1ff', accentRgb: '188, 193, 255' },
-      'Hans Zimmer': { stripe: 'hz', badge: 'bhz', dot: '#ffb1b1', accent: '#ffb1b1', accentRgb: '255, 177, 177' }
-    };
+            <div class="footer-copy">
+                © 2026 <span>Naipe de Flautas – OSCG</span> · Todos os direitos reservados
+            </div>
+        </div>
+    </footer>
 
-    const MUSICAS = [
-      {
-        id: 'forrest-gump',
-        titulo: 'Forrest Gump',
-        compositor: 'Alan Silvestri',
-        flauta1: ['Renison'],
-        flauta2: ['Flávio', 'Isabella', 'Miguel'],
-        pdfs: {
-          flauta1: 'Forrest Gump • Alan Silvestri • Flauta 1 • Renison.pdf',
-          flauta2: 'Forrest Gump • Alan Silvestri • Flauta 2 • Flávio • Isabella • Miguel.pdf'
-        }
-      },
-      {
-        id: 'avengers',
-        titulo: 'Avengers Theme',
-        sub: '("From The Avengers")',
-        compositor: 'Alan Silvestri',
-        flauta1: ['Renison', 'Flávio'],
-        flauta2: ['Isabella', 'Miguel'],
-        pdfs: {
-          flauta1: 'Avengers Theme (From The Avengers) • Alan Silvestri • Flauta 1 • Renison • Flávio.pdf',
-          flauta2: 'Avengers Theme (From The Avengers) • Alan Silvestri • Flauta 2 • Isabella • Miguel.pdf'
-        }
-      },
-      {
-        id: 'gabriels-oboe',
-        titulo: "Gabriel's Oboe",
-        compositor: 'Ennio Morricone',
-        flauta1: ['Renison'],
-        flauta2: ['Flávio', 'Isabella', 'Miguel'],
-        pdfs: {
-          flauta1: "Gabriel's Oboé • Ennio Morricone • Flauta 1 • Renison.pdf",
-          flauta2: "Gabriel's Oboé • Ennio Morricone • Flauta 2 • Flávio • Isabella • Miguel.pdf"
-        }
-      },
-      {
-        id: 'il-buono',
-        titulo: 'Il Buono, Il Brutto, Il Cattivo',
-        compositor: 'Ennio Morricone',
-        flauta1: ['Renison', 'Flávio'],
-        flauta2: ['Isabella', 'Miguel'],
-        pdfs: {
-          flauta1: 'IL Buono, IL Brutto, IL Cattivo • Ennio Morricone • Flauta 1 • Renison • Flávio.pdf',
-          flauta2: 'IL Buono, IL Brutto, IL Cattivo • Ennio Morricone • Flauta 2 • Isabella • Miguel.pdf'
-        }
-      },
-      {
-        id: 'imperial-march',
-        titulo: 'Imperial March',
-        sub: '(From Star Wars)',
-        compositor: 'John Williams',
-        flauta1: ['Renison', 'Flávio'],
-        flauta2: ['Isabella', 'Miguel'],
-        pdfs: {
-          flauta1: 'Imperial March ( From Star Wars ) • John Williams • Flauta 1 • Renison • Flávio.pdf',
-          flauta2: 'Imperial March ( From Star Wars ) • John Williams • Flauta 2 • Isabella • Miguel.pdf'
-        }
-      },
-      {
-        id: 'cast-away',
-        titulo: 'Main Theme',
-        sub: '(From Cast Away)',
-        compositor: 'Alan Silvestri',
-        flauta1: ['Renison', 'Flávio'],
-        flauta2: ['Isabella', 'Miguel'],
-        pdfs: {
-          flauta1: 'Main Theme ( From Cast Away ) • Alan Silvestri • Flauta 1 • Renison • Flávio.pdf',
-          flauta2: 'Main Theme ( From Cast Away ) • Alan Silvestri • Flauta 2 • Isabella • Miguel.pdf'
-        }
-      },
-      {
-        id: 'cinema-paradiso',
-        titulo: 'Main Theme',
-        sub: '(From Cinema Paradiso)',
-        compositor: 'Ennio Morricone',
-        flauta1: ['Renison', 'Flávio'],
-        flauta2: ['Isabella', 'Miguel'],
-        pdfs: {
-          flauta1: 'Main Theme ( From Cinema Paradiso ) • Ennio Morricone • Flauta 1 • Renison • Flávio.pdf',
-          flauta2: 'Main Theme ( From Cinema Paradiso ) • Ennio Morricone • Flauta 2 • Isabella • Miguel.pdf'
-        }
-      },
-      {
-        id: 'interstellar',
-        titulo: 'Main Theme',
-        sub: '(From Interstellar)',
-        compositor: 'Hans Zimmer',
-        flauta1: ['Renison', 'Flávio'],
-        flauta2: ['Isabella', 'Miguel'],
-        pdfs: {
-          flauta1: 'Main Theme ( From Interstellar ) • Hans Zimmer • Flauta 1 • Renison • Flávio.pdf',
-          flauta2: 'Main Theme ( From Interstellar ) • Hans Zimmer • Flauta 2 • Isabella • Miguel.pdf'
-        }
-      },
-      {
-        id: 'medley',
-        titulo: 'Medley',
-        compositor: 'John Williams',
-        flauta1: ['Renison', 'Flávio'],
-        flauta2: ['Isabella', 'Miguel'],
-        pdfs: {
-          flauta1: 'Medley • John Williams • Flauta 1 • Renison • Flávio.pdf',
-          flauta2: 'Medley • John Williams • Flauta 2 • Isabella • Miguel.pdf'
-        }
-      },
-      {
-        id: 'gladiator',
-        titulo: 'Now We Are Free',
-        sub: '(From Gladiator)',
-        compositor: 'Hans Zimmer',
-        flauta1: ['Renison', 'Flávio'],
-        flauta2: ['Isabella', 'Miguel'],
-        pdfs: {
-          flauta1: 'Now We Are Free ( Fom Gladiator ) • Hans Zimmer • Flauta 1 • Renison • Flávio.pdf',
-          flauta2: 'Now We Are Free ( Fom Gladiator ) • Hans Zimmer • Flauta 2 • Isabella • Miguel.pdf'
-        }
-      },
-      {
-        id: 'jurassic-park',
-        titulo: 'Theme from Jurassic Park',
-        compositor: 'John Williams',
-        flauta1: ['Renison', 'Flávio'],
-        flauta2: ['Isabella', 'Miguel'],
-        pdfs: {
-          flauta1: 'Theme from Jurassic Park • John Williams • Flauta 1 • Renison • Flávio.pdf',
-          flauta2: 'Theme from Jurassic Park • John Williams • Flauta 2 • Isabella • Miguel.pdf'
-        }
-      },
-      {
-        id: 'schindlers-list',
-        titulo: 'Three Pieces',
-        sub: "(From Schindler's List)",
-        compositor: 'John Williams',
-        flauta1: ['Renison', 'Flávio'],
-        flauta2: ['Isabella', 'Miguel'],
-        pdfs: {
-          flauta1: "Three Pieces ( From Schindler's List ) • John Williams • Flauta 1 • Renison • Flávio.pdf",
-          flauta2: "Three Pieces ( From Schindler's List ) • John Williams • Flauta 2 • Isabella • Miguel.pdf"
-        }
-      }
-    ];
-    const ENSAIOS = [
-      {
-        id: 'ensaio-2026-04-09',
-        titulo: 'Próximo Ensaio',
-        dataHora: '2026-04-09T19:30:00',
-        local: CONFIG.localEnsaioPadrao,
-        /* repertorio: ['forrest-gump', 'gabriels-oboe', 'imperial-march', 'jurassic-park'] */
-        repertorio: ['forrest-gump', 'il-buono', 'jurassic-park']
-      },
-      {
-        id: 'ensaio-2026-04-16',
-        titulo: 'Próximo Ensaio',
-        dataHora: '2026-04-16T19:30:00',
-        local: CONFIG.localEnsaioPadrao,
-        /* repertorio: ['medley', 'interstellar', 'gladiator', 'schindlers-list'] */
-        repertorio: ['il-buono']
-      },
-      {
-        id: 'ensaio-2026-04-23',
-        titulo: 'Próximo Ensaio',
-        dataHora: '2026-04-23T19:30:00',
-        local: CONFIG.localEnsaioPadrao,
-        repertorio: ['forrest-gump', 'il-buono', 'jurassic-park']
-        /* repertorio: ['cast-away', 'cinema-paradiso', 'il-buono', 'imperial-march'] */
-      },
-       {
-        id: 'ensaio-2026-04-29',
-        titulo: 'Próximo Ensaio',
-        dataHora: '2026-04-23T19:30:00',
-        local: CONFIG.localEnsaioPadrao,
-        repertorio: ['jurassic-park', 'gladiator']
-        /* repertorio: ['cast-away', 'cinema-paradiso', 'il-buono', 'imperial-march'] */
-      },
-      {
-        id: 'ensaio-2026-04-30',
-        titulo: 'Próximo Ensaio',
-        dataHora: '2026-04-30T19:30:00',
-        local: CONFIG.localEnsaioPadrao,
-        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
-        /* repertorio: ['forrest-gump', 'gabriels-oboe', 'medley', 'jurassic-park', 'gladiator'] */
-      },
-      {
-        id: 'ensaio-2026-04-30',
-        titulo: 'Próximo Ensaio',
-        dataHora: '2026-04-30T19:30:00',
-        local: CONFIG.localEnsaioPadrao,
-        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
-      },
-      {
-        id: 'ensaio-2026-05-07',
-        titulo: 'Próximo Ensaio',
-        dataHora: '2026-05-07T19:30:00',
-        local: CONFIG.localEnsaioPadrao,
-        repertorio: ['gabriels-oboe', 'avengers', 'imperial-march']
-      },
-      {
-        id: 'ensaio-2026-05-14',
-        titulo: 'Próximo Ensaio',
-        dataHora: '2026-05-14T19:30:00',
-        local: CONFIG.localEnsaioPadrao,
-        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
-      },
-      {
-        id: 'ensaio-2026-05-21',
-        titulo: 'Próximo Ensaio',
-        dataHora: '2026-05-21T19:30:00',
-        local: CONFIG.localEnsaioPadrao,
-        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
-      },
-      {
-        id: 'ensaio-2026-05-28',
-        titulo: 'Próximo Ensaio',
-        dataHora: '2026-05-28T19:30:00',
-        local: CONFIG.localEnsaioPadrao,
-        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
-      },
-      {
-        id: 'ensaio-2026-06-04',
-        titulo: 'Próximo Ensaio',
-        dataHora: '2026-06-04T19:30:00',
-        local: CONFIG.localEnsaioPadrao,
-        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
-      },
-      {
-        id: 'ensaio-2026-06-11',
-        titulo: 'Próximo Ensaio',
-        dataHora: '2026-06-11T19:30:00',
-        local: CONFIG.localEnsaioPadrao,
-        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
-      },
-      {
-        id: 'ensaio-2026-06-18',
-        titulo: 'Próximo Ensaio',
-        dataHora: '2026-06-18T19:30:00',
-        local: CONFIG.localEnsaioPadrao,
-        repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
-      }
-    ];
-    const APRESENTACOES = [
-      {
-        id: 'apresentacao-2026-06-25',
-        titulo: 'Apresentação',
-        dataHora: '2026-06-25T19:30:00',
-        local: CONFIG.localApresentacaoPadrao,
-        /* repertorio: ['forrest-gump', 'gabriels-oboe', 'medley', 'interstellar', 'gladiator', 'jurassic-park'] */
-      }
-    ];
-    /* ── HELPERS E ÍNDICES ── */
-    const musicasById = Object.fromEntries(MUSICAS.map(item => [item.id, item]));
-    const FILTER_ENSAIO = '__ensaio__';
-    const DATE_COLLATOR = new Intl.Collator('pt-BR', { sensitivity: 'base' });
-    const dateCardFormatter = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit' });
-    const weekdayFormatter = new Intl.DateTimeFormat('pt-BR', { weekday: 'long' });
-    const timeFormatter = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' });
-    let activeComp = '';
-    let cachedNextEnsaio = null;
-    let cachedNextApresentacao = null;
-    let cachedNextEnsaioIds = new Set();
-    let filterRaf = 0;
-    function normalizeText(value = '') {
-      return String(value)
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLowerCase()
-        .trim();
-    }
-    const MUSIC_INDEX = MUSICAS.map(m => ({
-      ...m,
-      searchText: normalizeText(`${m.titulo} ${m.compositor} ${m.sub || ''} ${m.flauta1.join(' ')} ${m.flauta2.join(' ')}`)
-    }));
-    const ORDERED_ENSAIOS = sortByDateAsc(ENSAIOS);
-    const ORDERED_APRESENTACOES = sortByDateAsc(APRESENTACOES);
-    function sortByDateAsc(lista) {
-      return [...lista].sort((a, b) => new Date(a.dataHora) - new Date(b.dataHora));
-    }
-    function getNextScheduledItem(lista) {
-      const now = Date.now();
-      const ordered = lista === ENSAIOS ? ORDERED_ENSAIOS : lista === APRESENTACOES ? ORDERED_APRESENTACOES : sortByDateAsc(lista);
-      return ordered.find(item => new Date(item.dataHora).getTime() >= now) || ordered.at(-1) || null;
-    }
-    function refreshScheduleCache() {
-      cachedNextEnsaio = getNextScheduledItem(ENSAIOS);
-      cachedNextApresentacao = getNextScheduledItem(APRESENTACOES);
-      cachedNextEnsaioIds = new Set(cachedNextEnsaio?.repertorio || []);
-    }
-    function getStatusLabel(lista, item) {
-      if (!item) return 'Sem agenda cadastrada';
-      return new Date(item.dataHora).getTime() >= Date.now() ? item.titulo : `${item.titulo} cadastrado`;
-    }
-    function formatDateCard(dateIso) {
-      const date = new Date(dateIso);
-      const diaSemana = weekdayFormatter.format(date);
-      return {
-        diaMes: dateCardFormatter.format(date),
-        diaSemana: diaSemana.replace(/^./, c => c.toUpperCase()),
-        horario: timeFormatter.format(date)
-      };
-    }
-    function formatCountdown(targetIso) {
-      const diff = new Date(targetIso).getTime() - Date.now();
-      if (diff <= 0) return { value: 'Encerrado', sub: 'Prazo concluído' };
-      const oneDay = 86400000;
-      if (diff > oneDay) {
-        const days = Math.floor(diff / oneDay);
-        return { value: `${days} ${days === 1 ? 'dia' : 'dias'}`, sub: 'Até o evento' };
-      }
-      const hours = Math.floor(diff / 3600000);
-      const minutes = Math.floor((diff % 3600000) / 60000);
-      const seconds = Math.floor((diff % 60000) / 1000);
-      const pad = n => String(n).padStart(2, '0');
-      return { value: `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`, sub: 'Últimas 24 horas' };
-    }
-    function buildPdfHref(fileName) {
-      return fileName ? encodeURI(`${CONFIG.pastaPdf}/${fileName}`) : '#';
-    }
-    function getRepertorioByIds(ids = []) {
-      return ids.map(id => musicasById[id]).filter(Boolean);
-    }
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 
-    function groupByComposer(lista) {
-      const groups = new Map();
-      lista.forEach(item => {
-        if (!groups.has(item.compositor)) groups.set(item.compositor, []);
-        groups.get(item.compositor).push(item);
-      });
-      return Array.from(groups.entries()).map(([compositor, items]) => ({ compositor, items }));
-    }
-    function getNextEnsaio() {
-      return cachedNextEnsaio;
-    }
-    function isMusicaNoProximoEnsaio(musicId) {
-      return cachedNextEnsaioIds.has(musicId);
-    }
-    function getActiveFilterLabel() {
-      return activeComp === FILTER_ENSAIO ? 'Filtro: Ensaio' : activeComp || 'Todos os compositores';
-    }
-    function scheduleFilters() {
-      cancelAnimationFrame(filterRaf);
-      filterRaf = requestAnimationFrame(applyFilters);
-    }
-    /* ── EVENT CARD ── */
-    function renderAgendaCard() {
-      const ensaio = cachedNextEnsaio;
-      const apresentacao = cachedNextApresentacao;
-      const el = document.getElementById('ensaioCard');
-      if (!ensaio && !apresentacao) {
-        el.innerHTML = '<div class="p-4">Nenhuma agenda cadastrada.</div>';
-        return;
-      }
-      const ensaioInfo = ensaio ? formatDateCard(ensaio.dataHora) : null;
-      const apresentacaoInfo = apresentacao ? formatDateCard(apresentacao.dataHora) : null;
-      const repertorioEnsaio = ensaio ? getRepertorioByIds(ensaio.repertorio) : [];
-      const songs = repertorioEnsaio.length
-        ? repertorioEnsaio.map((m, i) => `
+    <script>
+        /* ─────────────────────────────────────────────      
+           - MUSICAS: repertório completo e PDFs
+           - ENSAIOS: agenda dos ensaios
+           - APRESENTACOES: agenda das apresentações
+           A página escolhe sozinha o próximo item pela data.
+           // id's das músicas
+           forrest-gump
+           avengers
+           gabriels-oboe
+           il-buono
+           imperial-march
+           cast-away
+           cinema-paradiso
+           interstellar
+           medley
+           gladiator
+           jurassic-park
+           schindlers-list
+        ───────────────────────────────────────────── */
+        const CONFIG = {
+            pastaPdf: 'pdf',
+            localEnsaioPadrao: 'Maple Bear',
+            localEnsaioEscola: 'Escola Camargo Guarnieri',
+            localApresentacaoPadrao: 'Instituto Federal Goiano - IF'
+        };
+
+        const CMAP = {
+            'John Williams': { stripe: 'jw', badge: 'bjw', dot: '#f0c96c', accent: '#f0c96c', accentRgb: '240, 201, 108' },
+            'Alan Silvestri': { stripe: 'as', badge: 'bas', dot: '#34d9c3', accent: '#71ebdc', accentRgb: '113, 235, 220' },
+            'Ennio Morricone': { stripe: 'em', badge: 'bem', dot: '#bcc1ff', accent: '#bcc1ff', accentRgb: '188, 193, 255' },
+            'Hans Zimmer': { stripe: 'hz', badge: 'bhz', dot: '#ffb1b1', accent: '#ffb1b1', accentRgb: '255, 177, 177' }
+        };
+
+        const MUSICAS = [
+            {
+                id: 'forrest-gump',
+                titulo: 'Forrest Gump',
+                compositor: 'Alan Silvestri',
+                flauta1: ['Renison'],
+                flauta2: ['Flávio', 'Isabella', 'Miguel'],
+                pdfs: {
+                    flauta1: 'Forrest Gump • Alan Silvestri • Flauta 1 • Renison.pdf',
+                    flauta2: 'Forrest Gump • Alan Silvestri • Flauta 2 • Flávio • Isabella • Miguel.pdf'
+                }
+            },
+            {
+                id: 'avengers',
+                titulo: 'Avengers Theme',
+                sub: '("From The Avengers")',
+                compositor: 'Alan Silvestri',
+                flauta1: ['Renison', 'Flávio'],
+                flauta2: ['Isabella', 'Miguel'],
+                pdfs: {
+                    flauta1: 'Avengers Theme (From The Avengers) • Alan Silvestri • Flauta 1 • Renison • Flávio.pdf',
+                    flauta2: 'Avengers Theme (From The Avengers) • Alan Silvestri • Flauta 2 • Isabella • Miguel.pdf'
+                }
+            },
+            {
+                id: 'gabriels-oboe',
+                titulo: "Gabriel's Oboe",
+                compositor: 'Ennio Morricone',
+                flauta1: ['Renison'],
+                flauta2: ['Flávio', 'Isabella', 'Miguel'],
+                pdfs: {
+                    flauta1: "Gabriel's Oboé • Ennio Morricone • Flauta 1 • Renison.pdf",
+                    flauta2: "Gabriel's Oboé • Ennio Morricone • Flauta 2 • Flávio • Isabella • Miguel.pdf"
+                }
+            },
+            {
+                id: 'il-buono',
+                titulo: 'Il Buono, Il Brutto, Il Cattivo',
+                compositor: 'Ennio Morricone',
+                flauta1: ['Renison', 'Flávio'],
+                flauta2: ['Isabella', 'Miguel'],
+                pdfs: {
+                    flauta1: 'IL Buono, IL Brutto, IL Cattivo • Ennio Morricone • Flauta 1 • Renison • Flávio.pdf',
+                    flauta2: 'IL Buono, IL Brutto, IL Cattivo • Ennio Morricone • Flauta 2 • Isabella • Miguel.pdf'
+                }
+            },
+            {
+                id: 'imperial-march',
+                titulo: 'Imperial March',
+                sub: '(From Star Wars)',
+                compositor: 'John Williams',
+                flauta1: ['Renison', 'Flávio'],
+                flauta2: ['Isabella', 'Miguel'],
+                pdfs: {
+                    flauta1: 'Imperial March ( From Star Wars ) • John Williams • Flauta 1 • Renison • Flávio.pdf',
+                    flauta2: 'Imperial March ( From Star Wars ) • John Williams • Flauta 2 • Isabella • Miguel.pdf'
+                }
+            },
+            {
+                id: 'cast-away',
+                titulo: 'Main Theme',
+                sub: '(From Cast Away)',
+                compositor: 'Alan Silvestri',
+                flauta1: ['Renison', 'Flávio'],
+                flauta2: ['Isabella', 'Miguel'],
+                pdfs: {
+                    flauta1: 'Main Theme ( From Cast Away ) • Alan Silvestri • Flauta 1 • Renison • Flávio.pdf',
+                    flauta2: 'Main Theme ( From Cast Away ) • Alan Silvestri • Flauta 2 • Isabella • Miguel.pdf'
+                }
+            },
+            {
+                id: 'cinema-paradiso',
+                titulo: 'Main Theme',
+                sub: '(From Cinema Paradiso)',
+                compositor: 'Ennio Morricone',
+                flauta1: ['Renison', 'Flávio'],
+                flauta2: ['Isabella', 'Miguel'],
+                pdfs: {
+                    flauta1: 'Main Theme ( From Cinema Paradiso ) • Ennio Morricone • Flauta 1 • Renison • Flávio.pdf',
+                    flauta2: 'Main Theme ( From Cinema Paradiso ) • Ennio Morricone • Flauta 2 • Isabella • Miguel.pdf'
+                }
+            },
+            {
+                id: 'interstellar',
+                titulo: 'Main Theme',
+                sub: '(From Interstellar)',
+                compositor: 'Hans Zimmer',
+                flauta1: ['Renison', 'Flávio'],
+                flauta2: ['Isabella', 'Miguel'],
+                pdfs: {
+                    flauta1: 'Main Theme ( From Interstellar ) • Hans Zimmer • Flauta 1 • Renison • Flávio.pdf',
+                    flauta2: 'Main Theme ( From Interstellar ) • Hans Zimmer • Flauta 2 • Isabella • Miguel.pdf'
+                }
+            },
+            {
+                id: 'medley',
+                titulo: 'Medley',
+                compositor: 'John Williams',
+                flauta1: ['Renison', 'Flávio'],
+                flauta2: ['Isabella', 'Miguel'],
+                pdfs: {
+                    flauta1: 'Medley • John Williams • Flauta 1 • Renison • Flávio.pdf',
+                    flauta2: 'Medley • John Williams • Flauta 2 • Isabella • Miguel.pdf'
+                }
+            },
+            {
+                id: 'gladiator',
+                titulo: 'Now We Are Free',
+                sub: '(From Gladiator)',
+                compositor: 'Hans Zimmer',
+                flauta1: ['Renison', 'Flávio'],
+                flauta2: ['Isabella', 'Miguel'],
+                pdfs: {
+                    flauta1: 'Now We Are Free ( Fom Gladiator ) • Hans Zimmer • Flauta 1 • Renison • Flávio.pdf',
+                    flauta2: 'Now We Are Free ( Fom Gladiator ) • Hans Zimmer • Flauta 2 • Isabella • Miguel.pdf'
+                }
+            },
+            {
+                id: 'jurassic-park',
+                titulo: 'Theme from Jurassic Park',
+                compositor: 'John Williams',
+                flauta1: ['Renison', 'Flávio'],
+                flauta2: ['Isabella', 'Miguel'],
+                pdfs: {
+                    flauta1: 'Theme from Jurassic Park • John Williams • Flauta 1 • Renison • Flávio.pdf',
+                    flauta2: 'Theme from Jurassic Park • John Williams • Flauta 2 • Isabella • Miguel.pdf'
+                }
+            },
+            {
+                id: 'schindlers-list',
+                titulo: 'Three Pieces',
+                sub: "(From Schindler's List)",
+                compositor: 'John Williams',
+                flauta1: ['Renison', 'Flávio'],
+                flauta2: ['Isabella', 'Miguel'],
+                pdfs: {
+                    flauta1: "Three Pieces ( From Schindler's List ) • John Williams • Flauta 1 • Renison • Flávio.pdf",
+                    flauta2: "Three Pieces ( From Schindler's List ) • John Williams • Flauta 2 • Isabella • Miguel.pdf"
+                }
+            }
+        ];
+        const ENSAIOS = [
+            {
+                id: 'ensaio-2026-05-12',
+                titulo: 'Próximo Ensaio',
+                dataHora: '2026-05-12T19:30:00',
+                local: CONFIG.localEnsaioEscola,
+                repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+            },
+            {
+                id: 'ensaio-2026-05-14',
+                titulo: 'Próximo Ensaio',
+                dataHora: '2026-05-14T19:30:00',
+                local: CONFIG.localEnsaioPadrao,
+                repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+            },
+            {
+                id: 'ensaio-2026-05-19',
+                titulo: 'Próximo Ensaio',
+                dataHora: '2026-05-19T19:30:00',
+                local: CONFIG.localEnsaioEscola,
+                repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+            },
+            {
+                id: 'ensaio-2026-05-21',
+                titulo: 'Próximo Ensaio',
+                dataHora: '2026-05-21T19:30:00',
+                local: CONFIG.localEnsaioPadrao,
+                repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+            },
+            {
+                id: 'ensaio-2026-05-26',
+                titulo: 'Próximo Ensaio',
+                dataHora: '2026-05-26T19:30:00',
+                local: CONFIG.localEnsaioEscola,
+                repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+            },
+            {
+                id: 'ensaio-2026-05-28',
+                titulo: 'Próximo Ensaio',
+                dataHora: '2026-05-28T19:30:00',
+                local: CONFIG.localEnsaioPadrao,
+                repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+            },
+            {
+                id: 'ensaio-2026-06-02',
+                titulo: 'Próximo Ensaio',
+                dataHora: '2026-06-02T19:30:00',
+                local: CONFIG.localEnsaioEscola,
+                repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+            },
+            {
+                id: 'ensaio-2026-06-04',
+                titulo: 'Próximo Ensaio',
+                dataHora: '2026-06-04T19:30:00',
+                local: CONFIG.localEnsaioPadrao,
+                repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+            },
+            {
+                id: 'ensaio-2026-06-09',
+                titulo: 'Próximo Ensaio',
+                dataHora: '2026-06-09T19:30:00',
+                local: CONFIG.localEnsaioEscola,
+                repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+            },
+            {
+                id: 'ensaio-2026-06-11',
+                titulo: 'Próximo Ensaio',
+                dataHora: '2026-06-11T19:30:00',
+                local: CONFIG.localEnsaioPadrao,
+                repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+            },
+            {
+                id: 'ensaio-2026-06-16',
+                titulo: 'Próximo Ensaio',
+                dataHora: '2026-06-16T19:30:00',
+                local: CONFIG.localEnsaioEscola,
+                repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+            },
+            {
+                id: 'ensaio-2026-06-18',
+                titulo: 'Próximo Ensaio',
+                dataHora: '2026-06-18T19:30:00',
+                local: CONFIG.localEnsaioPadrao,
+                repertorio: ['forrest-gump', 'il-buono', 'cast-away', 'interstellar', 'jurassic-park', 'gladiator']
+            }
+        ];
+        const APRESENTACOES = [
+            {
+                id: 'apresentacao-2026-06-25',
+                titulo: 'Apresentação',
+                dataHora: '2026-06-25T19:30:00',
+                local: CONFIG.localApresentacaoPadrao,
+                repertorio: ['forrest-gump', 'avengers', 'gabriels-oboe', 'il-buono', 'imperial-march', 'cast-away', 'cinema-paradiso', 'interstellar', 'medley', 'gladiator', 'jurassic-park', 'schindlers-list']
+            }
+        ];
+        /* ── HELPERS E ÍNDICES ── */
+        const musicasById = Object.fromEntries(MUSICAS.map(item => [item.id, item]));
+        const FILTER_ENSAIO = '__ensaio__';
+        const DATE_COLLATOR = new Intl.Collator('pt-BR', { sensitivity: 'base' });
+        const dateCardFormatter = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit' });
+        const weekdayFormatter = new Intl.DateTimeFormat('pt-BR', { weekday: 'long' });
+        const timeFormatter = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        let activeComp = '';
+        let cachedNextEnsaio = null;
+        let cachedNextApresentacao = null;
+        let cachedNextEnsaioIds = new Set();
+        let filterRaf = 0;
+        function normalizeText(value = '') {
+            return String(value)
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .trim();
+        }
+        const MUSIC_INDEX = MUSICAS.map(m => ({
+            ...m,
+            searchText: normalizeText(`${m.titulo} ${m.compositor} ${m.sub || ''} ${m.flauta1.join(' ')} ${m.flauta2.join(' ')}`)
+        }));
+        const ORDERED_ENSAIOS = sortByDateAsc(ENSAIOS);
+        const ORDERED_APRESENTACOES = sortByDateAsc(APRESENTACOES);
+        function sortByDateAsc(lista) {
+            return [...lista].sort((a, b) => new Date(a.dataHora) - new Date(b.dataHora));
+        }
+        function getNextScheduledItem(lista) {
+            const now = Date.now();
+            const ordered = lista === ENSAIOS ? ORDERED_ENSAIOS : lista === APRESENTACOES ? ORDERED_APRESENTACOES : sortByDateAsc(lista);
+            return ordered.find(item => new Date(item.dataHora).getTime() >= now) || ordered.at(-1) || null;
+        }
+        function refreshScheduleCache() {
+            cachedNextEnsaio = getNextScheduledItem(ENSAIOS);
+            cachedNextApresentacao = getNextScheduledItem(APRESENTACOES);
+            cachedNextEnsaioIds = new Set(cachedNextEnsaio?.repertorio || []);
+        }
+        function getStatusLabel(lista, item) {
+            if (!item) return 'Sem agenda cadastrada';
+            return new Date(item.dataHora).getTime() >= Date.now() ? item.titulo : `${item.titulo} cadastrado`;
+        }
+        function formatDateCard(dateIso) {
+            const date = new Date(dateIso);
+            const diaSemana = weekdayFormatter.format(date);
+            return {
+                diaMes: dateCardFormatter.format(date),
+                diaSemana: diaSemana.replace(/^./, c => c.toUpperCase()),
+                horario: timeFormatter.format(date)
+            };
+        }
+        function formatCountdown(targetIso) {
+            const diff = new Date(targetIso).getTime() - Date.now();
+            if (diff <= 0) return { value: 'Encerrado', sub: 'Prazo concluído' };
+            const oneDay = 86400000;
+            if (diff > oneDay) {
+                const days = Math.floor(diff / oneDay);
+                return { value: `${days} ${days === 1 ? 'dia' : 'dias'}`, sub: 'Até o evento' };
+            }
+            const hours = Math.floor(diff / 3600000);
+            const minutes = Math.floor((diff % 3600000) / 60000);
+            const seconds = Math.floor((diff % 60000) / 1000);
+            const pad = n => String(n).padStart(2, '0');
+            return { value: `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`, sub: 'Últimas 24 horas' };
+        }
+        function buildPdfHref(fileName) {
+            return fileName ? encodeURI(`${CONFIG.pastaPdf}/${fileName}`) : '#';
+        }
+        function getRepertorioByIds(ids = []) {
+            return ids.map(id => musicasById[id]).filter(Boolean);
+        }
+
+
+        function getOrdinalLabel(index) {
+            return `${index + 1}º`;
+        }
+
+        function renderApresentacaoOrderModal() {
+            const apresentacao = cachedNextApresentacao;
+            const titleEl = document.getElementById('apresentacaoRepertorioModalLabel');
+            const metaEl = document.getElementById('apresentacaoRepertorioMeta');
+            const listEl = document.getElementById('apresentacaoRepertorioLista');
+
+            if (!titleEl || !metaEl || !listEl) return;
+
+            if (!apresentacao) {
+                titleEl.textContent = 'Repertório da apresentação';
+                metaEl.innerHTML = '<span><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Sem apresentação cadastrada.</span>';
+                listEl.innerHTML = `
+                    <div class="repertorio-order-item">
+                        <div class="repertorio-order-num">--</div>
+                        <div>
+                            <div class="repertorio-order-title">Nenhuma apresentação encontrada.</div>
+                            <div class="repertorio-order-sub">Cadastre uma apresentação no array APRESENTACOES.</div>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            const info = formatDateCard(apresentacao.dataHora);
+            const repertorioIds = apresentacao.repertorio || [];
+            const repertorio = repertorioIds
+                .map(id => musicasById[id])
+                .filter(Boolean);
+
+            titleEl.textContent = `Repertório da ${apresentacao.titulo}`;
+            metaEl.innerHTML = `
+                <span><i class="fa-solid fa-calendar-days" aria-hidden="true"></i>${info.diaMes} · ${info.diaSemana}</span>
+                <span><i class="fa-solid fa-clock" aria-hidden="true"></i>${info.horario} horas</span>
+                <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>${apresentacao.local || '-'}</span>
+                <span><i class="fa-solid fa-list-ol" aria-hidden="true"></i>${repertorio.length} música(s)</span>
+            `;
+
+            listEl.innerHTML = repertorio.length
+                ? repertorio.map((m, i) => `
+                    <div class="repertorio-order-item">
+                        <div class="repertorio-order-num">${getOrdinalLabel(i)}</div>
+                        <div>
+                            <div class="repertorio-order-title">${m.titulo}</div>
+                            <div class="repertorio-order-sub">
+                                ${m.sub ? `${m.sub} · ` : ''}${m.compositor}
+                            </div>
+                        </div>
+                    </div>
+                `).join('')
+                : `
+                    <div class="repertorio-order-item">
+                        <div class="repertorio-order-num">--</div>
+                        <div>
+                            <div class="repertorio-order-title">Sem repertório cadastrado.</div>
+                            <div class="repertorio-order-sub">Adicione os IDs das músicas em APRESENTACOES[0].repertorio.</div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        function groupByComposer(lista) {
+            const groups = new Map();
+            lista.forEach(item => {
+                if (!groups.has(item.compositor)) groups.set(item.compositor, []);
+                groups.get(item.compositor).push(item);
+            });
+            return Array.from(groups.entries()).map(([compositor, items]) => ({ compositor, items }));
+        }
+        function getNextEnsaio() {
+            return cachedNextEnsaio;
+        }
+        function isMusicaNoProximoEnsaio(musicId) {
+            return cachedNextEnsaioIds.has(musicId);
+        }
+        function getActiveFilterLabel() {
+            return activeComp === FILTER_ENSAIO ? 'Filtro: Ensaio' : activeComp || 'Todos os compositores';
+        }
+        function scheduleFilters() {
+            cancelAnimationFrame(filterRaf);
+            filterRaf = requestAnimationFrame(applyFilters);
+        }
+        /* ── EVENT CARD ── */
+        function renderAgendaCard() {
+            const ensaio = cachedNextEnsaio;
+            const apresentacao = cachedNextApresentacao;
+            const el = document.getElementById('ensaioCard');
+            if (!ensaio && !apresentacao) {
+                el.innerHTML = '<div class="p-4">Nenhuma agenda cadastrada.</div>';
+                return;
+            }
+            const ensaioInfo = ensaio ? formatDateCard(ensaio.dataHora) : null;
+            const apresentacaoInfo = apresentacao ? formatDateCard(apresentacao.dataHora) : null;
+            const repertorioEnsaio = ensaio ? getRepertorioByIds(ensaio.repertorio) : [];
+            const songs = repertorioEnsaio.length
+                ? repertorioEnsaio.map((m, i) => `
             <div class="rc-song">
               <span class="rc-song-num">${String(i + 1).padStart(2, '0')}.</span>
               <span>
@@ -1748,8 +2073,8 @@
               </span>
             </div>
           `).join('')
-        : '<div class="rc-song"><span class="rc-song-name">Sem repertório cadastrado.</span></div>';
-      el.innerHTML = `
+                : '<div class="rc-song"><span class="rc-song-name">Sem repertório cadastrado.</span></div>';
+            el.innerHTML = `
         <div class="row g-0">
           <div class="col-12 col-lg-4 rc-left">
             <div class="rc-badge">
@@ -1803,90 +2128,96 @@
                   <div class="rc-countdown-value" id="apresentacaoCountdownValue" aria-live="polite">--</div>
                   <div class="rc-countdown-sub" id="apresentacaoCountdownSub">Carregando...</div>
                 </div>
+                <button type="button" class="rc-order-btn" data-bs-toggle="modal"
+                  data-bs-target="#apresentacaoRepertorioModal" ${apresentacao?.repertorio?.length ? '' : 'disabled'}>
+                  <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                  <span>Visualizar ordem do repertório</span>
+                </button>
               </div>
             </div>
           </div>
         </div>
       `;
-      updateCountdowns();
-    }
-    function updateCountdowns() {
-      const ensaio = cachedNextEnsaio;
-      const apresentacao = cachedNextApresentacao;
-      const ensaioCountdown = ensaio ? formatCountdown(ensaio.dataHora) : { value: '--', sub: 'Sem agenda' };
-      const apresentacaoCountdown = apresentacao ? formatCountdown(apresentacao.dataHora) : { value: '--', sub: 'Sem agenda' };
-      const ensaioValue = document.getElementById('ensaioCountdownValue');
-      const ensaioSub = document.getElementById('ensaioCountdownSub');
-      const apresentacaoValue = document.getElementById('apresentacaoCountdownValue');
-      const apresentacaoSub = document.getElementById('apresentacaoCountdownSub');
-      if (ensaioValue) ensaioValue.textContent = ensaioCountdown.value;
-      if (ensaioSub) ensaioSub.textContent = ensaioCountdown.sub;
-      if (apresentacaoValue) apresentacaoValue.textContent = apresentacaoCountdown.value;
-      if (apresentacaoSub) apresentacaoSub.textContent = apresentacaoCountdown.sub;
-    }
-    /* ── FILTER CHIPS ── */
-    function buildChips() {
-      const wrap = document.getElementById('composerChips');
-      wrap.innerHTML = '';
-      const composers = [...new Set(MUSICAS.map(m => m.compositor))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
-      const items = [['', 'Todos'], [FILTER_ENSAIO, 'Ensaio'], ...composers.map(c => [c, c])];
-      items.forEach(([value, label]) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'c-chip' + (value === activeComp ? ' active' : '');
-        btn.dataset.c = value;
-        btn.textContent = label;
-        btn.addEventListener('click', () => {
-          activeComp = value;
-          document.querySelectorAll('.c-chip').forEach(chip => {
-            chip.classList.toggle('active', chip.dataset.c === value);
-          });
-          scheduleFilters();
-        });
-        wrap.appendChild(btn);
-      });
-    }
-    /* ── MUSIC CARDS ── */
-    function renderCards(lista) {
-      const grid = document.getElementById('musicGrid');
-      const lbl = document.getElementById('resultsLabel');
-      grid.innerHTML = '';
-      const composerLabel = getActiveFilterLabel();
-      lbl.innerHTML = `<b>${lista.length}</b> música(s) · <b>${composerLabel}</b>`;
-      if (!lista.length) {
-        grid.innerHTML = `
+            updateCountdowns();
+            renderApresentacaoOrderModal();
+        }
+        function updateCountdowns() {
+            const ensaio = cachedNextEnsaio;
+            const apresentacao = cachedNextApresentacao;
+            const ensaioCountdown = ensaio ? formatCountdown(ensaio.dataHora) : { value: '--', sub: 'Sem agenda' };
+            const apresentacaoCountdown = apresentacao ? formatCountdown(apresentacao.dataHora) : { value: '--', sub: 'Sem agenda' };
+            const ensaioValue = document.getElementById('ensaioCountdownValue');
+            const ensaioSub = document.getElementById('ensaioCountdownSub');
+            const apresentacaoValue = document.getElementById('apresentacaoCountdownValue');
+            const apresentacaoSub = document.getElementById('apresentacaoCountdownSub');
+            if (ensaioValue) ensaioValue.textContent = ensaioCountdown.value;
+            if (ensaioSub) ensaioSub.textContent = ensaioCountdown.sub;
+            if (apresentacaoValue) apresentacaoValue.textContent = apresentacaoCountdown.value;
+            if (apresentacaoSub) apresentacaoSub.textContent = apresentacaoCountdown.sub;
+        }
+        /* ── FILTER CHIPS ── */
+        function buildChips() {
+            const wrap = document.getElementById('composerChips');
+            wrap.innerHTML = '';
+            const composers = [...new Set(MUSICAS.map(m => m.compositor))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+            const items = [['', 'Todos'], [FILTER_ENSAIO, 'Ensaio'], ...composers.map(c => [c, c])];
+            items.forEach(([value, label]) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'c-chip' + (value === activeComp ? ' active' : '');
+                btn.dataset.c = value;
+                btn.textContent = label;
+                btn.addEventListener('click', () => {
+                    activeComp = value;
+                    document.querySelectorAll('.c-chip').forEach(chip => {
+                        chip.classList.toggle('active', chip.dataset.c === value);
+                    });
+                    scheduleFilters();
+                });
+                wrap.appendChild(btn);
+            });
+        }
+        /* ── MUSIC CARDS ── */
+        function renderCards(lista) {
+            const grid = document.getElementById('musicGrid');
+            const lbl = document.getElementById('resultsLabel');
+            grid.innerHTML = '';
+            const composerLabel = getActiveFilterLabel();
+            lbl.innerHTML = `<b>${lista.length}</b> música(s) · <b>${composerLabel}</b>`;
+            if (!lista.length) {
+                grid.innerHTML = `
           <div class="no-results">
             <i class="fa-solid fa-music" aria-hidden="true"></i>
             <p>Nenhuma música encontrada.</p>
             <small>Tente outro termo ou remova o filtro.</small>
           </div>
         `;
-        return;
-      }
-      const groups = groupByComposer(lista);
-      groups.forEach((group, groupIndex) => {
-        const palette = CMAP[group.compositor] || { stripe: 'jw', badge: 'bjw', dot: '#f0c96c' };
-        const block = document.createElement('section');
-        block.className = 'composer-block';
-        const proximoEnsaioInfo = formatDateCard(getNextEnsaio()?.dataHora || new Date().toISOString());
-        const cards = [...group.items]
-          .sort((a, b) => Number(isMusicaNoProximoEnsaio(b.id)) - Number(isMusicaNoProximoEnsaio(a.id)) || a.titulo.localeCompare(b.titulo, 'pt-BR'))
-          .map((m, i) => {
-          const sub = m.sub ? `<div class="mc-subtitle">${m.sub}</div>` : '';
-          const chips1 = m.flauta1.map(p => `<div class="pchip"><i class="fa-solid fa-user" aria-hidden="true"></i>${p}</div>`).join('');
-          const chips2 = m.flauta2.map(p => `<div class="pchip"><i class="fa-solid fa-user" aria-hidden="true"></i>${p}</div>`).join('');
-          const delay = ((groupIndex * 3) + (i % 6)) * .04;
-          const isEnsaio = isMusicaNoProximoEnsaio(m.id);
-          const ensaioBadge = isEnsaio
-            ? `<span class="mc-badge-ensaio"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Ensaio ${proximoEnsaioInfo.diaMes}</span>`
-            : '';
-          const pdf1 = buildPdfHref(m.pdfs?.flauta1);
-          const pdf2 = buildPdfHref(m.pdfs?.flauta2);
-          const btn1Disabled = m.pdfs?.flauta1 ? '' : ' is-disabled';
-          const btn1A11y = m.pdfs?.flauta1 ? '' : ' aria-disabled="true" tabindex="-1"';
-          const btn2Disabled = m.pdfs?.flauta2 ? '' : ' is-disabled';
-          const btn2A11y = m.pdfs?.flauta2 ? '' : ' aria-disabled="true" tabindex="-1"';
-          return `
+                return;
+            }
+            const groups = groupByComposer(lista);
+            groups.forEach((group, groupIndex) => {
+                const palette = CMAP[group.compositor] || { stripe: 'jw', badge: 'bjw', dot: '#f0c96c' };
+                const block = document.createElement('section');
+                block.className = 'composer-block';
+                const proximoEnsaioInfo = formatDateCard(getNextEnsaio()?.dataHora || new Date().toISOString());
+                const cards = [...group.items]
+                    .sort((a, b) => Number(isMusicaNoProximoEnsaio(b.id)) - Number(isMusicaNoProximoEnsaio(a.id)) || a.titulo.localeCompare(b.titulo, 'pt-BR'))
+                    .map((m, i) => {
+                        const sub = m.sub ? `<div class="mc-subtitle">${m.sub}</div>` : '';
+                        const chips1 = m.flauta1.map(p => `<div class="pchip"><i class="fa-solid fa-user" aria-hidden="true"></i>${p}</div>`).join('');
+                        const chips2 = m.flauta2.map(p => `<div class="pchip"><i class="fa-solid fa-user" aria-hidden="true"></i>${p}</div>`).join('');
+                        const delay = ((groupIndex * 3) + (i % 6)) * .04;
+                        const isEnsaio = isMusicaNoProximoEnsaio(m.id);
+                        const ensaioBadge = isEnsaio
+                            ? `<span class="mc-badge-ensaio"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Ensaio ${proximoEnsaioInfo.diaMes}</span>`
+                            : '';
+                        const pdf1 = buildPdfHref(m.pdfs?.flauta1);
+                        const pdf2 = buildPdfHref(m.pdfs?.flauta2);
+                        const btn1Disabled = m.pdfs?.flauta1 ? '' : ' is-disabled';
+                        const btn1A11y = m.pdfs?.flauta1 ? '' : ' aria-disabled="true" tabindex="-1"';
+                        const btn2Disabled = m.pdfs?.flauta2 ? '' : ' is-disabled';
+                        const btn2A11y = m.pdfs?.flauta2 ? '' : ' aria-disabled="true" tabindex="-1"';
+                        return `
             <div class="mc${isEnsaio ? ' mc-is-ensaio' : ''}" style="--card-accent:${palette.accent};--card-accent-rgb:${palette.accentRgb};animation-delay:${delay}s">
               <div class="mc-stripe ${palette.stripe}"></div>
               <div class="mc-header">
@@ -1922,8 +2253,8 @@
               </div>
             </div>
           `;
-        }).join('');
-        block.innerHTML = `
+                    }).join('');
+                block.innerHTML = `
           <div class="composer-head">
             <span class="composer-head-dot" style="background:${palette.dot}; color:${palette.dot};"></span>
             <h3 class="composer-head-title">${group.compositor}</h3>
@@ -1931,42 +2262,44 @@
           </div>
           <div class="composer-grid">${cards}</div>
         `;
-        grid.appendChild(block);
-      });
-    }
-    /* ── FILTERS ── */
-    function applyFilters() {
-      const q = normalizeText(document.getElementById('searchInput').value);
-      const filtered = MUSIC_INDEX.filter(m => {
-        const matchesText = !q || m.searchText.includes(q);
-        const matchesComposer = !activeComp || activeComp === FILTER_ENSAIO || m.compositor === activeComp;
-        const matchesEnsaio = activeComp !== FILTER_ENSAIO || isMusicaNoProximoEnsaio(m.id);
-        return matchesText && matchesComposer && matchesEnsaio;
-      }).sort((a, b) => {
-        const ensaioDiff = Number(isMusicaNoProximoEnsaio(b.id)) - Number(isMusicaNoProximoEnsaio(a.id));
-        if (ensaioDiff) return ensaioDiff;
-        if (a.compositor !== b.compositor) return DATE_COLLATOR.compare(a.compositor, b.compositor);
-        return DATE_COLLATOR.compare(a.titulo, b.titulo);
-      });
-      renderCards(filtered);
-    }
-    /* ── INIT ── */
-    const searchInput = document.getElementById('searchInput');
-    refreshScheduleCache();
-    renderAgendaCard();
-    buildChips();
-    applyFilters();
-    updateCountdowns();
-    window.setInterval(updateCountdowns, 1000);
-    window.setInterval(() => {
-      const before = cachedNextEnsaio?.id;
-      refreshScheduleCache();
-      if (before !== cachedNextEnsaio?.id) {
+                grid.appendChild(block);
+            });
+        }
+        /* ── FILTERS ── */
+        function applyFilters() {
+            const q = normalizeText(document.getElementById('searchInput').value);
+            const filtered = MUSIC_INDEX.filter(m => {
+                const matchesText = !q || m.searchText.includes(q);
+                const matchesComposer = !activeComp || activeComp === FILTER_ENSAIO || m.compositor === activeComp;
+                const matchesEnsaio = activeComp !== FILTER_ENSAIO || isMusicaNoProximoEnsaio(m.id);
+                return matchesText && matchesComposer && matchesEnsaio;
+            }).sort((a, b) => {
+                const ensaioDiff = Number(isMusicaNoProximoEnsaio(b.id)) - Number(isMusicaNoProximoEnsaio(a.id));
+                if (ensaioDiff) return ensaioDiff;
+                if (a.compositor !== b.compositor) return DATE_COLLATOR.compare(a.compositor, b.compositor);
+                return DATE_COLLATOR.compare(a.titulo, b.titulo);
+            });
+            renderCards(filtered);
+        }
+        /* ── INIT ── */
+        const searchInput = document.getElementById('searchInput');
+        refreshScheduleCache();
         renderAgendaCard();
-        scheduleFilters();
-      }
-    }, 60000);
-    searchInput.addEventListener('input', scheduleFilters, { passive: true });
-  </script>
+        buildChips();
+        applyFilters();
+        updateCountdowns();
+        window.setInterval(updateCountdowns, 1000);
+        window.setInterval(() => {
+            const beforeEnsaio = cachedNextEnsaio?.id;
+            const beforeApresentacao = cachedNextApresentacao?.id;
+            refreshScheduleCache();
+            if (beforeEnsaio !== cachedNextEnsaio?.id || beforeApresentacao !== cachedNextApresentacao?.id) {
+                renderAgendaCard();
+                scheduleFilters();
+            }
+        }, 60000);
+        searchInput.addEventListener('input', scheduleFilters, { passive: true });
+    </script>
 </body>
+
 </html>
