@@ -967,6 +967,91 @@
             border-color: rgba(223, 110, 110, .2)
         }
 
+        .bt {
+            background: linear-gradient(90deg, #d4a43a, #f0c96c)
+        }
+
+        .bbt {
+            background: rgba(212, 164, 58, .10);
+            color: #f0c96c;
+            border-color: rgba(212, 164, 58, .2)
+        }
+
+        .mc.mc-is-extra {
+            border-color: rgba(240, 201, 108, .46);
+            box-shadow:
+                0 24px 62px rgba(0, 0, 0, .38),
+                0 0 0 1px rgba(240, 201, 108, .15) inset,
+                0 0 30px rgba(240, 201, 108, .13);
+        }
+
+        .mc-badge-extra {
+            display: inline-flex;
+            align-items: center;
+            gap: .36rem;
+            margin-top: .76rem;
+            margin-left: .55rem;
+            padding: .28rem .72rem;
+            border-radius: 999px;
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .01em;
+            color: var(--gold2);
+            background: rgba(212, 164, 58, .12);
+            border: 1px solid rgba(212, 164, 58, .30);
+            box-shadow: 0 0 18px rgba(212, 164, 58, .10);
+        }
+
+        .mc-body.is-extra {
+            grid-template-columns: 1fr;
+        }
+
+        .mc-extra-box {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            background: linear-gradient(180deg, rgba(212, 164, 58, .08), rgba(255, 255, 255, .025));
+            border: 1px solid rgba(212, 164, 58, .18);
+        }
+
+        .mc-extra-title {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            color: var(--gold2);
+            font-size: .78rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            margin-bottom: .65rem;
+        }
+
+        .mc-extra-text {
+            color: var(--txt2);
+            font-size: .82rem;
+            line-height: 1.55;
+            margin-bottom: .85rem;
+        }
+
+        .mc-extra-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .45rem;
+        }
+
+        .mc-extra-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            padding: .38rem .68rem;
+            border-radius: 999px;
+            color: var(--txt);
+            background: rgba(255, 255, 255, .045);
+            border: 1px solid rgba(255, 255, 255, .07);
+            font-size: .76rem;
+            font-weight: 700;
+        }
+
         .mc-body {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1530,7 +1615,6 @@
             </div>
         </div>
     </section>
-
     <div class="search-zone z1">
         <div class="container">
             <div class="search-shell glass">
@@ -1545,7 +1629,6 @@
             </div>
         </div>
     </div>
-
     <main class="z1">
         <div class="container">
             <div class="section-head">
@@ -1556,8 +1639,6 @@
             <div id="musicGrid"></div>
         </div>
     </main>
-
-
     <div class="modal fade repertorio-modal" id="apresentacaoRepertorioModal" tabindex="-1"
         aria-labelledby="apresentacaoRepertorioModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -1587,7 +1668,6 @@
             </div>
         </div>
     </div>
-
     <footer class="z1">
         <div class="container">
             <div class="row align-items-center">
@@ -1617,7 +1697,6 @@
             </div>
         </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
@@ -1653,7 +1732,8 @@
             'John Williams': { stripe: 'jw', badge: 'bjw', dot: '#f0c96c', accent: '#f0c96c', accentRgb: '240, 201, 108' },
             'Alan Silvestri': { stripe: 'as', badge: 'bas', dot: '#34d9c3', accent: '#71ebdc', accentRgb: '113, 235, 220' },
             'Ennio Morricone': { stripe: 'em', badge: 'bem', dot: '#bcc1ff', accent: '#bcc1ff', accentRgb: '188, 193, 255' },
-            'Hans Zimmer': { stripe: 'hz', badge: 'bhz', dot: '#ffb1b1', accent: '#ffb1b1', accentRgb: '255, 177, 177' }
+            'Hans Zimmer': { stripe: 'hz', badge: 'bhz', dot: '#ffb1b1', accent: '#ffb1b1', accentRgb: '255, 177, 177' },
+            'Ludwig van Beethoven': { stripe: 'bt', badge: 'bbt', dot: '#f0c96c', accent: '#f0c96c', accentRgb: '240, 201, 108' }
         };
 
         const MUSICAS = [
@@ -1668,7 +1748,7 @@
                     flauta2: 'Forrest Gump • Alan Silvestri • Flauta 2 • Flávio • Isabella • Miguel.pdf'
                 }
             },
-            /* {
+            {
                 id: 'avengers',
                 titulo: 'Avengers Theme',
                 sub: '("From The Avengers")',
@@ -1679,7 +1759,7 @@
                     flauta1: 'Avengers Theme (From The Avengers) • Alan Silvestri • Flauta 1 • Renison • Flávio.pdf',
                     flauta2: 'Avengers Theme (From The Avengers) • Alan Silvestri • Flauta 2 • Isabella • Miguel.pdf'
                 }
-            }, */
+            },
             {
                 id: 'gabriels-oboe',
                 titulo: "Gabriel's Oboe",
@@ -1701,6 +1781,44 @@
                     flauta1: 'IL Buono, IL Brutto, IL Cattivo • Ennio Morricone • Flauta 1 • Renison • Flávio.pdf',
                     flauta2: 'IL Buono, IL Brutto, IL Cattivo • Ennio Morricone • Flauta 2 • Isabella • Miguel.pdf'
                 }
+            },
+            {
+                id: 'era-uma-vez',
+                titulo: 'Era uma vez no Oeste',
+                compositor: 'Ennio Morricone',
+                flauta1: ['Renison', 'Flávio'],
+                flauta2: ['Isabella', 'Miguel'],
+                pdfs: {
+                    flauta1: 'Era Uma Vez no Oeste • Ennio Morricone • Flauta 1 • Renison • Flávio.pdf',
+                    flauta2: 'Era Uma Vez no Oeste • Ennio Morricone • Flauta 2 • Isabella • Miguel.pdf'
+                }
+            },
+            {
+                id: 'harry',
+                titulo: 'Harry Potter',
+                compositor: 'John Williams',
+                flauta1: ['Renison', 'Flávio'],
+                flauta2: ['Isabella', 'Miguel'],
+                pdfs: {
+                    flauta1: 'Harry Potter • John Williams • Flauta 1 • Renison • Flávio.pdf',
+                    flauta2: 'Harry Potter • John Williams • Flauta 2 • Isabella • Miguel.pdf'
+                }
+            },
+            {
+                id: 'ode-to-joy',
+                titulo: 'Jesus, Alegria dos homens',
+                compositor: 'Ludwig van Beethoven',
+
+                extraordinaria: true,
+                participacaoEspecial: {
+                    titulo: 'Execução extraordinária',
+                    instrumentos: ['Violinos', 'Coral'],
+                    observacao: 'Nesta música o naipe de flautas não toca. A execução será feita por violinos e coral.'
+                },
+
+                flauta1: [],
+                flauta2: [],
+                pdfs: {}
             },
             /* {
                 id: 'imperial-march',
@@ -1750,7 +1868,7 @@
                     flauta2: 'Main Theme ( From Interstellar ) • Hans Zimmer • Flauta 2 • Isabella • Miguel.pdf'
                 }
             },
-            {
+            /* {
                 id: 'medley',
                 titulo: 'Medley',
                 compositor: 'John Williams',
@@ -1760,7 +1878,7 @@
                     flauta1: 'Medley • John Williams • Flauta 1 • Renison • Flávio.pdf',
                     flauta2: 'Medley • John Williams • Flauta 2 • Isabella • Miguel.pdf'
                 }
-            },
+            }, */
             {
                 id: 'gladiator',
                 titulo: 'Now We Are Free',
@@ -1803,28 +1921,28 @@
                 titulo: 'Próximo Ensaio',
                 dataHora: '2026-05-12T19:30:00',
                 local: CONFIG.localEnsaioEscola,
-                repertorio: ['avengers','imperial-march']
+                repertorio: ['avengers', 'imperial-march']
             },
             {
                 id: 'ensaio-2026-05-14',
                 titulo: 'Próximo Ensaio',
                 dataHora: '2026-05-14T19:30:00',
                 local: CONFIG.localEnsaioPadrao,
-                repertorio: ['avengers','cinema-paradiso']
+                repertorio: ['avengers', 'cinema-paradiso']
             },
             {
                 id: 'ensaio-2026-05-19',
                 titulo: 'Próximo Ensaio',
                 dataHora: '2026-05-19T19:30:00',
                 local: CONFIG.localEnsaioEscola,
-                 repertorio: ['avengers','imperial-march']
+                repertorio: ['avengers', 'imperial-march']
             },
             {
                 id: 'ensaio-2026-05-21',
                 titulo: 'Próximo Ensaio',
                 dataHora: '2026-05-21T19:30:00',
                 local: CONFIG.localEnsaioPadrao,
-                 repertorio: ['avengers','imperial-march']
+                repertorio: ['avengers', 'imperial-march']
             },
             {
                 id: 'ensaio-2026-05-26',
@@ -1838,49 +1956,49 @@
                 titulo: 'Próximo Ensaio',
                 dataHora: '2026-05-28T19:30:00',
                 local: CONFIG.localEnsaioPadrao,
-                 repertorio: ['avengers','imperial-march']
+                repertorio: ['avengers', 'imperial-march']
             },
             {
                 id: 'ensaio-2026-06-02',
                 titulo: 'Próximo Ensaio',
                 dataHora: '2026-06-02T19:30:00',
                 local: CONFIG.localEnsaioEscola,
-                 repertorio: ['avengers','imperial-march']
+                repertorio: ['avengers', 'imperial-march']
             },
             {
                 id: 'ensaio-2026-06-04',
                 titulo: 'Próximo Ensaio',
                 dataHora: '2026-06-04T19:30:00',
                 local: CONFIG.localEnsaioPadrao,
-                 repertorio: ['avengers','imperial-march']
+                repertorio: ['avengers', 'imperial-march']
             },
             {
                 id: 'ensaio-2026-06-09',
                 titulo: 'Próximo Ensaio',
                 dataHora: '2026-06-09T19:30:00',
                 local: CONFIG.localEnsaioEscola,
-                 repertorio: ['avengers','imperial-march']
+                repertorio: ['avengers', 'imperial-march']
             },
             {
                 id: 'ensaio-2026-06-11',
                 titulo: 'Próximo Ensaio',
                 dataHora: '2026-06-11T19:30:00',
                 local: CONFIG.localEnsaioPadrao,
-                 repertorio: ['avengers','imperial-march']
+                repertorio: ['avengers', 'imperial-march']
             },
             {
                 id: 'ensaio-2026-06-16',
                 titulo: 'Próximo Ensaio',
                 dataHora: '2026-06-16T19:30:00',
                 local: CONFIG.localEnsaioEscola,
-                repertorio: ['avengers','imperial-march']
+                repertorio: ['avengers', 'imperial-march']
             },
             {
-                id: 'ensaio-2026-06-18',
+                id: 'ensaio-2026-06-23',
                 titulo: 'Próximo Ensaio',
-                dataHora: '2026-06-18T19:30:00',
-                local: CONFIG.localEnsaioPadrao,
-                 repertorio: ['avengers','imperial-march']
+                dataHora: '2026-06-23T19:30:00',
+                local: CONFIG.localApresentacaoPadrao,
+                repertorio: ['ode-to-joy', 'avengers', 'il-buono', 'jurassic-park', 'harry', 'era-uma-vez', 'cast-away', 'gabriels-oboe', 'schindlers-list', 'interstellar', 'gladiator', 'cinema-paradiso', 'forrest-gump',]
             }
         ];
         const APRESENTACOES = [
@@ -1889,7 +2007,7 @@
                 titulo: 'Apresentação',
                 dataHora: '2026-06-25T19:30:00',
                 local: CONFIG.localApresentacaoPadrao,
-                /* repertorio: ['forrest-gump', 'avengers', 'gabriels-oboe', 'il-buono', 'imperial-march', 'cast-away', 'cinema-paradiso', 'interstellar', 'medley', 'gladiator', 'jurassic-park', 'schindlers-list'] */
+                repertorio: ['ode-to-joy', 'avengers', 'il-buono', 'jurassic-park', 'harry', 'era-uma-vez', 'cast-away', 'gabriels-oboe', 'schindlers-list', 'interstellar', 'gladiator', 'cinema-paradiso', 'forrest-gump',]
             }
         ];
         /* ── HELPERS E ÍNDICES ── */
@@ -1913,7 +2031,16 @@
         }
         const MUSIC_INDEX = MUSICAS.map(m => ({
             ...m,
-            searchText: normalizeText(`${m.titulo} ${m.compositor} ${m.sub || ''} ${m.flauta1.join(' ')} ${m.flauta2.join(' ')}`)
+            searchText: normalizeText(`
+                ${m.titulo}
+                ${m.compositor}
+                ${m.sub || ''}
+                ${(m.flauta1 || []).join(' ')}
+                ${(m.flauta2 || []).join(' ')}
+                ${m.participacaoEspecial?.titulo || ''}
+                ${(m.participacaoEspecial?.instrumentos || []).join(' ')}
+                ${m.participacaoEspecial?.observacao || ''}
+            `)
         }));
         const ORDERED_ENSAIOS = sortByDateAsc(ENSAIOS);
         const ORDERED_APRESENTACOES = sortByDateAsc(APRESENTACOES);
@@ -2181,9 +2308,12 @@
         function renderCards(lista) {
             const grid = document.getElementById('musicGrid');
             const lbl = document.getElementById('resultsLabel');
+
             grid.innerHTML = '';
+
             const composerLabel = getActiveFilterLabel();
             lbl.innerHTML = `<b>${lista.length}</b> música(s) · <b>${composerLabel}</b>`;
+
             if (!lista.length) {
                 grid.innerHTML = `
           <div class="no-results">
@@ -2194,31 +2324,127 @@
         `;
                 return;
             }
+
             const groups = groupByComposer(lista);
+
             groups.forEach((group, groupIndex) => {
-                const palette = CMAP[group.compositor] || { stripe: 'jw', badge: 'bjw', dot: '#f0c96c' };
+                const palette = CMAP[group.compositor] || {
+                    stripe: 'jw',
+                    badge: 'bjw',
+                    dot: '#f0c96c',
+                    accent: '#f0c96c',
+                    accentRgb: '240, 201, 108'
+                };
+
                 const block = document.createElement('section');
                 block.className = 'composer-block';
+
                 const proximoEnsaioInfo = formatDateCard(getNextEnsaio()?.dataHora || new Date().toISOString());
+
                 const cards = [...group.items]
                     .sort((a, b) => Number(isMusicaNoProximoEnsaio(b.id)) - Number(isMusicaNoProximoEnsaio(a.id)) || a.titulo.localeCompare(b.titulo, 'pt-BR'))
                     .map((m, i) => {
                         const sub = m.sub ? `<div class="mc-subtitle">${m.sub}</div>` : '';
-                        const chips1 = m.flauta1.map(p => `<div class="pchip"><i class="fa-solid fa-user" aria-hidden="true"></i>${p}</div>`).join('');
-                        const chips2 = m.flauta2.map(p => `<div class="pchip"><i class="fa-solid fa-user" aria-hidden="true"></i>${p}</div>`).join('');
                         const delay = ((groupIndex * 3) + (i % 6)) * .04;
                         const isEnsaio = isMusicaNoProximoEnsaio(m.id);
+                        const isExtraordinaria = Boolean(m.extraordinaria);
+
                         const ensaioBadge = isEnsaio
                             ? `<span class="mc-badge-ensaio"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Ensaio ${proximoEnsaioInfo.diaMes}</span>`
                             : '';
+
+                        const extraBadge = isExtraordinaria
+                            ? `<span class="mc-badge-extra"><i class="fa-solid fa-star" aria-hidden="true"></i>Extraordinária</span>`
+                            : '';
+
+                        const flauta1 = Array.isArray(m.flauta1) ? m.flauta1 : [];
+                        const flauta2 = Array.isArray(m.flauta2) ? m.flauta2 : [];
+
+                        const chips1 = flauta1
+                            .map(p => `<div class="pchip"><i class="fa-solid fa-user" aria-hidden="true"></i>${p}</div>`)
+                            .join('');
+
+                        const chips2 = flauta2
+                            .map(p => `<div class="pchip"><i class="fa-solid fa-user" aria-hidden="true"></i>${p}</div>`)
+                            .join('');
+
                         const pdf1 = buildPdfHref(m.pdfs?.flauta1);
                         const pdf2 = buildPdfHref(m.pdfs?.flauta2);
+
                         const btn1Disabled = m.pdfs?.flauta1 ? '' : ' is-disabled';
                         const btn1A11y = m.pdfs?.flauta1 ? '' : ' aria-disabled="true" tabindex="-1"';
+
                         const btn2Disabled = m.pdfs?.flauta2 ? '' : ' is-disabled';
                         const btn2A11y = m.pdfs?.flauta2 ? '' : ' aria-disabled="true" tabindex="-1"';
+
+                        const participacaoEspecial = m.participacaoEspecial || {};
+                        const instrumentos = Array.isArray(participacaoEspecial.instrumentos)
+                            ? participacaoEspecial.instrumentos
+                            : [];
+
+                        const instrumentosHtml = instrumentos
+                            .map(item => `
+                        <span class="mc-extra-tag">
+                            <i class="fa-solid fa-check" aria-hidden="true"></i>${item}
+                        </span>
+                    `)
+                            .join('');
+
+                        const bodyHtml = isExtraordinaria
+                            ? `
+              <div class="mc-body is-extra">
+                <div class="mc-extra-box">
+                  <div class="mc-extra-title">
+                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                    ${participacaoEspecial.titulo || 'Execução extraordinária'}
+                  </div>
+
+                  <div class="mc-extra-text">
+                    ${participacaoEspecial.observacao || 'Esta música será executada por outros naipes ou instrumentos.'}
+                  </div>
+
+                  <div class="mc-extra-tags">
+                    ${instrumentosHtml || `
+                      <span class="mc-extra-tag">
+                        <i class="fa-solid fa-music" aria-hidden="true"></i>Outros instrumentos
+                      </span>
+                    `}
+                  </div>
+                </div>
+              </div>
+            `
+                            : `
+              <div class="mc-body">
+                <div class="naipe-col">
+                  <div class="naipe-head f1">
+                    <i class="fa-solid fa-music" aria-hidden="true"></i>I Flauta
+                  </div>
+
+                  <div class="chips-wrap">${chips1}</div>
+
+                  <a href="${pdf1}" target="_blank" rel="noopener noreferrer" class="col-btn col-btn-f1${btn1Disabled}" aria-label="Abrir PDF da I Flauta de ${m.titulo}"${btn1A11y}>
+                    <i class="fa-regular fa-file-pdf" aria-hidden="true"></i>
+                    <span>Visualizar PDF</span>
+                  </a>
+                </div>
+
+                <div class="naipe-col">
+                  <div class="naipe-head f2">
+                    <i class="fa-solid fa-music" aria-hidden="true"></i>II Flauta
+                  </div>
+
+                  <div class="chips-wrap">${chips2}</div>
+
+                  <a href="${pdf2}" target="_blank" rel="noopener noreferrer" class="col-btn col-btn-f2${btn2Disabled}" aria-label="Abrir PDF da II Flauta de ${m.titulo}"${btn2A11y}>
+                    <i class="fa-regular fa-file-pdf" aria-hidden="true"></i>
+                    <span>Visualizar PDF</span>
+                  </a>
+                </div>
+              </div>
+            `;
+
                         return `
-            <div class="mc${isEnsaio ? ' mc-is-ensaio' : ''}" style="--card-accent:${palette.accent};--card-accent-rgb:${palette.accentRgb};animation-delay:${delay}s">
+            <div class="mc${isEnsaio ? ' mc-is-ensaio' : ''}${isExtraordinaria ? ' mc-is-extra' : ''}" style="--card-accent:${palette.accent};--card-accent-rgb:${palette.accentRgb};animation-delay:${delay}s">
               <div class="mc-stripe ${palette.stripe}"></div>
               <div class="mc-header">
                 <div class="mc-track">${m.id.toUpperCase().replaceAll('-', ' ')}</div>
@@ -2228,32 +2454,13 @@
                   <i class="fa-solid fa-user" style="font-size:.65rem;" aria-hidden="true"></i>${m.compositor}
                 </span>
                 ${ensaioBadge}
+                ${extraBadge}
               </div>
-              <div class="mc-body">
-                <div class="naipe-col">
-                  <div class="naipe-head f1">
-                    <i class="fa-solid fa-music" aria-hidden="true"></i>I Flauta
-                  </div>
-                  <div class="chips-wrap">${chips1}</div>
-                  <a href="${pdf1}" target="_blank" rel="noopener noreferrer" class="col-btn col-btn-f1${btn1Disabled}" aria-label="Abrir PDF da I Flauta de ${m.titulo}"${btn1A11y}>
-                    <i class="fa-regular fa-file-pdf" aria-hidden="true"></i>
-                    <span>Visualizar PDF</span>
-                  </a>
-                </div>
-                <div class="naipe-col">
-                  <div class="naipe-head f2">
-                    <i class="fa-solid fa-music" aria-hidden="true"></i>II Flauta
-                  </div>
-                  <div class="chips-wrap">${chips2}</div>
-                  <a href="${pdf2}" target="_blank" rel="noopener noreferrer" class="col-btn col-btn-f2${btn2Disabled}" aria-label="Abrir PDF da II Flauta de ${m.titulo}"${btn2A11y}>
-                    <i class="fa-regular fa-file-pdf" aria-hidden="true"></i>
-                    <span>Visualizar PDF</span>
-                  </a>
-                </div>
-              </div>
+              ${bodyHtml}
             </div>
           `;
                     }).join('');
+
                 block.innerHTML = `
           <div class="composer-head">
             <span class="composer-head-dot" style="background:${palette.dot}; color:${palette.dot};"></span>
@@ -2262,6 +2469,7 @@
           </div>
           <div class="composer-grid">${cards}</div>
         `;
+
                 grid.appendChild(block);
             });
         }
